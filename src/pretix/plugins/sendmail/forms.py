@@ -7,7 +7,7 @@ from i18nfield.forms import I18nFormField, I18nTextarea, I18nTextInput
 
 from pretix.base.email import get_available_placeholders
 from pretix.base.forms import PlaceholderValidator, I18nModelForm
-from pretix.base.forms.widgets import SplitDateTimePickerWidget
+from pretix.base.forms.widgets import SplitDateTimePickerWidget, TimePickerWidget
 from pretix.base.models import CheckinList, Item, Order, SubEvent
 from pretix.control.forms import CachedFileField, SplitDateTimeField
 from pretix.control.forms.widgets import Select2, Select2Multiple
@@ -183,7 +183,8 @@ class CreateRule(I18nModelForm):
                   'date_is_absolute',
                   'send_date', 'send_offset_days', 'send_offset_time',
                   'include_pending', 'all_products', 'limit_products',
-                  'send_to']
+                  'send_to',]
+                  # 'offset_is_after', 'offset_to_event_end']
 
         field_classes = {
             'subevent': SafeModelMultipleChoiceField,
@@ -192,7 +193,7 @@ class CreateRule(I18nModelForm):
             'date_is_absolute': forms.ChoiceField,
         }
 
-        # TODO: fix date_is_absolute label and error messages
+        # TODO: fix error messages
         # actually, just finalize the form in general. functionality's all there, but UX isn't 100% yet
 
         widgets = {
@@ -203,11 +204,15 @@ class CreateRule(I18nModelForm):
                 'data-display-dependency': '#id_date_is_absolute_1,#id_date_is_absolute_2,#id_date_is_absolute_3,'
                                            '#id_date_is_absolute_4',
             }),
-            'send_offset_time': forms.TimeInput(attrs={
+            'send_offset_time': TimePickerWidget(attrs={
                 'data-display-dependency': '#id_date_is_absolute_1,#id_date_is_absolute_2,#id_date_is_absolute_3,'
                                            '#id_date_is_absolute_4',
             }),
+            'all_products': forms.CheckboxInput(attrs={
+                'data-disabled-if': '#id_limit_products'
+            }),
             'date_is_absolute': forms.RadioSelect,
+            'send_to': forms.RadioSelect,
         }
 
         labels = {
@@ -233,8 +238,11 @@ class CreateRule(I18nModelForm):
                 dia += "_a" if instance.offset_is_after else "_b"
                 dia += "_e" if instance.offset_to_event_end else "_s"
 
-            kwargs.setdefault('initial', {})
-            kwargs['initial']['date_is_absolute'] = dia
+        else:
+            dia = "abs"
+
+        kwargs.setdefault('initial', {})
+        kwargs['initial']['date_is_absolute'] = dia
 
         super().__init__(*args, **kwargs)
 
@@ -254,6 +262,7 @@ class CreateRule(I18nModelForm):
 
     def clean(self):
         d = super().clean()
+
         sd = d.get('send_date')
         sod = d.get('send_offset_days')
         sot = d.get('send_offset_time')

@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db import transaction
 from django.db.models import Exists, OuterRef, Q
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.timezone import now
@@ -245,18 +245,6 @@ class EmailHistoryView(EventPermissionRequiredMixin, ListView):
         return ctx
 
 
-#
-# Oh hi! you're digging around in the source code right now!
-# first off, i'm sorry for this shitty code, it was written using
-# mass amounts of caffeine and minuscule amounts of being able to focus
-#
-# A few things i've been considering:
-# - CreateRule and UpdateRule are probably redundant, or can use the same form with different initial data
-#
-# what i haven't been considering:
-# - just reading the damn docs already (not entirely serious)
-#
-
 class CreateRule(EventPermissionRequiredMixin, CreateView):
     template_name = 'pretixplugins/sendmail/create_rule.html'
     permission = 'can_change_orders'
@@ -274,7 +262,6 @@ class CreateRule(EventPermissionRequiredMixin, CreateView):
         return super().form_invalid(form)
 
     def form_valid(self, form):
-
         self.output = {}
 
         if self.request.POST.get("action") == "preview":
@@ -386,7 +373,7 @@ class DeleteRule(EventPermissionRequiredMixin, DeleteView):
 
     def get_object(self, queryset=None) -> Rule:
         with scope(event=self.request.event):
-            return Rule.objects.filter(id=self.kwargs['rule'])[0]
+            return get_object_or_404(Rule, id=self.kwargs['rule'])
 
     @transaction.atomic
     def delete(self, request, *args, **kwargs):
@@ -396,8 +383,4 @@ class DeleteRule(EventPermissionRequiredMixin, DeleteView):
         self.object.delete()
         messages.success(self.request, _('The selected rule has been deleted.'))
         return HttpResponseRedirect(success_url)
-
-
-
-
 

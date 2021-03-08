@@ -20,7 +20,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for r in rules %} {# TODO: replace this with a table and think about what to display in it #}
+            {% for r in rules %}
                 <tr>
                     <td>
                         <strong><a href="{% url "plugins:sendmail:rule.update" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}">{{ r.subject }}</a></strong>
@@ -34,7 +34,6 @@
                     </td>
                 </tr>
             {% endfor %}
-
             </tbody>
         </table>
     </div>

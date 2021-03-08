@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Sub-Events',
                 'ordering': ('date_from', 'name'),
             },
-            bases=(pretix.base.models.event.EventMixin, models.Model, pretix.base.models.base.LoggingMixin),
+            bases=(pretix.base.models.event.AbstractEvent, models.Model, pretix.base.models.base.LoggingMixin),
         ),
         migrations.CreateModel(
             name='SubEventItem',

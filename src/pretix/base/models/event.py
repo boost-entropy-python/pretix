@@ -37,7 +37,14 @@ from ..settings import settings_hierarkey
 from .organizer import Organizer, Team
 
 
-class EventMixin:
+class AbstractEvent(models.Model):
+
+    last_modified = models.DateTimeField(
+        auto_now=True, db_index=True
+    )
+
+    class Meta:
+        abstract = True
 
     def clean(self):
         if self.presale_start and self.presale_end and self.presale_start > self.presale_end:
@@ -301,7 +308,7 @@ class EventMixin:
 
 
 @settings_hierarkey.add(parent_field='organizer', cache_namespace='event')
-class Event(EventMixin, LoggedModel):
+class Event(AbstractEvent, LoggedModel):
     """
     This model represents an event. An event is anything you can buy
     tickets for.
@@ -427,6 +434,7 @@ class Event(EventMixin, LoggedModel):
         help_text=_('Only sell tickets for this event on the following sales channels.'),
         default=['web'],
     )
+
     objects = ScopedManager(organizer='organizer')
 
     class Meta:
@@ -1070,7 +1078,7 @@ class Event(EventMixin, LoggedModel):
                 raise ValidationError(_('The event\'s presale cannot end before it starts.'))
 
 
-class SubEvent(EventMixin, LoggedModel):
+class SubEvent(AbstractEvent, LoggedModel):
     """
     This model represents a date within an event series.
 
@@ -1150,9 +1158,6 @@ class SubEvent(EventMixin, LoggedModel):
     )
     seating_plan = models.ForeignKey('SeatingPlan', on_delete=models.PROTECT, null=True, blank=True,
                                      related_name='subevents')
-    last_modified = models.DateTimeField(
-        auto_now=True, db_index=True
-    )
 
     items = models.ManyToManyField('Item', through='SubEventItem')
     variations = models.ManyToManyField('ItemVariation', through='SubEventItemVariation')
