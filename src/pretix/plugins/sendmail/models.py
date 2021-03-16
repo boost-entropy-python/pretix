@@ -26,9 +26,7 @@ class ScheduledMail(models.Model):
 
     def recompute(self):
         lm = self.subevent.last_modified if self.subevent else self.event.last_modified
-        print(f'recompute {self.pk}')
         if self.last_computed < lm:
-            print(f'recomputing {self.pk}')
             self.compute_time()
 
     def compute_time(self):
@@ -50,7 +48,6 @@ class ScheduledMail(models.Model):
         self.save()
 
     def send(self):
-        print(f'send {self.pk}')
         if self.subevent:
             e = self.subevent.event
             orders = self.subevent.event.orders.annotate(has_matching_position=Exists(OrderPosition.objects.filter(
