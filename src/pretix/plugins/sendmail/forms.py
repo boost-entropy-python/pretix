@@ -14,7 +14,25 @@ from pretix.control.forms.widgets import Select2, Select2Multiple
 from pretix.plugins.sendmail.models import Rule
 
 
-class MailForm(forms.Form):
+class FormPlaceholderMixin:
+    def _set_field_placeholders(self, fn, base_parameters):
+        phs = [
+            '{%s}' % p
+            for p in sorted(get_available_placeholders(self.event, base_parameters).keys())
+        ]
+        ht = _('Available placeholders: {list}').format(
+            list=', '.join(phs)
+        )
+        if self.fields[fn].help_text:
+            self.fields[fn].help_text += ' ' + str(ht)
+        else:
+            self.fields[fn].help_text = ht
+        self.fields[fn].validators.append(
+            PlaceholderValidator(phs)
+        )
+
+
+class MailForm(FormPlaceholderMixin, forms.Form):
     recipients = forms.ChoiceField(
         label=_('Send email to'),
         widget=forms.RadioSelect,
@@ -74,22 +92,6 @@ class MailForm(forms.Form):
         if bool(d.get('subevents_from')) != bool(d.get('subevents_to')):
             raise ValidationError(pgettext_lazy('subevent', 'If you set a date range, please set both a start and an end.'))
         return d
-
-    def _set_field_placeholders(self, fn, base_parameters):
-        phs = [
-            '{%s}' % p
-            for p in sorted(get_available_placeholders(self.event, base_parameters).keys())
-        ]
-        ht = _('Available placeholders: {list}').format(
-            list=', '.join(phs)
-        )
-        if self.fields[fn].help_text:
-            self.fields[fn].help_text += ' ' + str(ht)
-        else:
-            self.fields[fn].help_text = ht
-        self.fields[fn].validators.append(
-            PlaceholderValidator(phs)
-        )
 
     def __init__(self, *args, **kwargs):
         event = self.event = kwargs.pop('event')
@@ -175,7 +177,7 @@ class MailForm(forms.Form):
             del self.fields['subevents_to']
 
 
-class CreateRule(I18nModelForm):
+class CreateRule(FormPlaceholderMixin, I18nModelForm):
     class Meta:
         model = Rule
 
@@ -183,8 +185,7 @@ class CreateRule(I18nModelForm):
                   'date_is_absolute',
                   'send_date', 'send_offset_days', 'send_offset_time',
                   'include_pending', 'all_products', 'limit_products',
-                  'send_to',]
-                  # 'offset_is_after', 'offset_to_event_end']
+                  'send_to']
 
         field_classes = {
             'subevent': SafeModelMultipleChoiceField,
@@ -208,9 +209,10 @@ class CreateRule(I18nModelForm):
                 'data-display-dependency': '#id_date_is_absolute_1,#id_date_is_absolute_2,#id_date_is_absolute_3,'
                                            '#id_date_is_absolute_4',
             }),
-            'all_products': forms.CheckboxInput(attrs={
-                'data-disabled-if': '#id_limit_products'
-            }),
+            'limit_products': forms.CheckboxSelectMultiple(
+                attrs={'class': 'scrolling-multiple-choice',
+                       'data-inverse-dependency': '#id_all_products'},
+            ),
             'date_is_absolute': forms.RadioSelect,
             'send_to': forms.RadioSelect,
         }
@@ -221,10 +223,6 @@ class CreateRule(I18nModelForm):
             'date_is_absolute': _('Type of schedule time'),
             'send_offset_days': _('Number of days'),
             'send_offset_time': _('Time of day'),
-        }
-
-        help_texts = {
-
         }
 
     def __init__(self, *args, **kwargs):
@@ -246,19 +244,16 @@ class CreateRule(I18nModelForm):
 
         super().__init__(*args, **kwargs)
 
-        self.fields['limit_products'] = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple(
-                attrs={'class': 'scrolling-multiple-choice'},
-            ),
-            queryset=Item.objects.filter(event=self.event),
-            required=False,
-        )
+        self.fields['limit_products'].queryset = Item.objects.filter(event=self.event)
 
         self.fields['date_is_absolute'].choices = [('abs', _('Absolute')),
                                                    ('rel_b_s', _('Relative, before event start')),
                                                    ('rel_b_e', _('Relative, before event end')),
                                                    ('rel_a_s', _('Relative, after event start')),
                                                    ('rel_a_e', _('Relative, after event end'))]
+
+        self._set_field_placeholders('subject', ['event', 'order'])
+        self._set_field_placeholders('template', ['event', 'order'])
 
     def clean(self):
         d = super().clean()
@@ -273,7 +268,6 @@ class CreateRule(I18nModelForm):
             d['date_is_absolute'] = True
             d['send_offset_days'] = d['send_offset_time'] = None
         else:
-            # this is probably a bit ugly, i am sorry
             if not (sod and sot):
                 raise ValidationError(_('Please specify the offset days and time'))
             d['offset_is_after'] = True if dia[4] == 'a' else False
@@ -289,5 +283,8 @@ class CreateRule(I18nModelForm):
         else:
             if not lp:
                 raise ValidationError(_('Please specify a product'))
+
+        self.instance.offset_is_after = d.get('offset_is_after', False)
+        self.instance.offset_to_event_end = d.get('offset_to_event_end', False)
 
         return d

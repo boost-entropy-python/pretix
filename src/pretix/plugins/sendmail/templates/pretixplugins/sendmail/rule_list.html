@@ -16,6 +16,7 @@
             <tr>
                 <th>{% trans "Email subject" %}</th>
                 <th>{% trans "Will be sent at" %}</th>
+                <th>{% trans "Sent / Total" %}</th>
                 <th></th>
             </tr>
             </thead>
@@ -27,6 +28,9 @@
                     </td>
                     <td>
                         {{ r.human_readable_time }}
+                    </td>
+                    <td>
+                        {{ r.sent_mails }} / {{ r.total_mails }}
                     </td>
                     <td>
                         <a class="btn btn-sm btn-default" href="{% url "plugins:sendmail:rule.update" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}"><i class="fa fa-edit"></i></a>

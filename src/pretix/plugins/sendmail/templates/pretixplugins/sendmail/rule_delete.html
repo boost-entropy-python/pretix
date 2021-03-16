@@ -6,8 +6,7 @@
     <h1>{% trans "Delete Rule" %}</h1>
     <form action="" method="post" class="form-horizontal">
         {% csrf_token %}
-{#      TODO: figure out why the rule.subject here isn't working #}
-        <p>{% blocktrans %}Are you sure you want to delete the rule <strong>{{ rule.subject }}</strong>?{% endblocktrans %}</p>
+        <p>{% blocktrans with subject=rule.subject %}Are you sure you want to delete the rule <strong>{{ subject }}</strong>?{% endblocktrans %}</p>
         <div class="form-group submit-group">
             <a class="btn btn-default btn-cancel" href="{% url "plugins:sendmail:rule.list" organizer=request.organizer.slug event=request.event.slug %}">
                 {% trans "Cancel" %}

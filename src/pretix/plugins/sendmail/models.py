@@ -1,4 +1,4 @@
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, timezone
 
 from django.db import models, transaction
 from django.db.models import Exists, OuterRef
@@ -7,8 +7,12 @@ from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _, pgettext_lazy, ngettext
 from django_scopes import ScopedManager
 from i18nfield.fields import I18nCharField, I18nTextField
+from i18nfield.strings import LazyI18nString
 
-from pretix.base.models import Event, SubEvent, OrderPosition, Item
+from pretix.base.email import get_email_context
+from pretix.base.models import Event, SubEvent, OrderPosition, Item, InvoiceAddress, Order
+from pretix.base.services.mail import SendMailException
+from pretix.plugins.sendmail.tasks import send_mails
 
 
 class ScheduledMail(models.Model):
@@ -18,11 +22,13 @@ class ScheduledMail(models.Model):
 
     sent = models.BooleanField(default=False)
     last_computed = models.DateTimeField(null=True)
-    computed_datetime = models.DateTimeField(null=True)  # gets filled out on creation (on rule creation)
+    computed_datetime = models.DateTimeField(null=True)
 
     def recompute(self):
         lm = self.subevent.last_modified if self.subevent else self.event.last_modified
+        print(f'recompute {self.pk}')
         if self.last_computed < lm:
+            print(f'recomputing {self.pk}')
             self.compute_time()
 
     def compute_time(self):
@@ -30,23 +36,83 @@ class ScheduledMail(models.Model):
             self.computed_datetime = self.rule.send_date
         else:
             e = self.subevent if self.subevent else self.event
-            offset = timedelta(days=self.rule.send_offset_days)
+            o_days = self.rule.send_offset_days
+            if not self.rule.offset_is_after:
+                o_days *= -1
+
+            offset = timedelta(days=o_days)
             st = self.rule.send_offset_time
             base_time = e.date_to if self.rule.offset_to_event_end else e.date_from
-
-            d = base_time + offset if self.rule.offset_is_after else base_time - offset
+            d = base_time + offset
             self.computed_datetime = d.replace(hour=st.hour, minute=st.minute, second=st.second)
 
-        self.last_computed = datetime.now()
+        self.last_computed = datetime.now(timezone.utc)
+        self.save()
+
+    def send(self):
+        print(f'send {self.pk}')
+        if self.subevent:
+            e = self.subevent.event
+            orders = self.subevent.event.orders.annotate(has_matching_position=Exists(OrderPosition.objects.filter(
+                order=OuterRef('pk'), subevent=self.subevent))).filter(has_matching_position=True)
+            positions = OrderPosition.objects.filter(order__event=self.subevent.event,
+                                                     subevent=self.subevent).select_related('order')
+
+        else:
+            e = self.event
+            orders = self.event.orders.all()
+            positions = OrderPosition.objects.filter(order__event=self.event).select_related('order')
+
+        send_to_orders = self.rule.send_to in (Rule.CUSTOMERS, Rule.BOTH)
+        send_to_attendees = self.rule.send_to in (Rule.ATTENDEES, Rule.BOTH)
+
+        subject = LazyI18nString(self.rule.subject)
+        template = LazyI18nString(self.rule.template)
+
+        for o in orders:
+            if not self.rule.include_pending and o.status != Order.STATUS_PENDING:
+                continue
+
+            o_sent = False
+
+            try:
+                ia = o.invoice_address
+            except InvoiceAddress.DoesNotExist:
+                ia = InvoiceAddress(order=o)
+
+            if send_to_orders:
+                email_ctx = get_email_context(event=e, order=o, position_or_address=ia)
+                try:
+                    o.send_mail(subject, template, email_ctx)
+                    o_sent = True
+                except SendMailException:
+                    ...  # todo: log failed emails
+
+            if send_to_attendees:
+                for p in positions:
+                    email_ctx = get_email_context(event=e, order=o, position_or_address=ia, position=p)
+                    try:
+                        if p.attendee_email:
+                            p.send_mail(subject, template, email_ctx)
+                        elif not o_sent:
+                            o.send_mail(subject, template, email_ctx)
+                            o_sent = True
+                    except SendMailException:
+                        ...  # ¯\_(ツ)_/¯
+
+        self.sent = True
+        self.save()
 
 
 class Rule(models.Model):
-    CUSTOMERS = "customers"
+    CUSTOMERS = "orders"
     ATTENDEES = "attendees"
+    BOTH = "both"
 
     SEND_TO_CHOICES = [
         (CUSTOMERS, _("Customers")),
         (ATTENDEES, _("Attendees")),
+        (BOTH, _("Both"))
     ]
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
@@ -83,7 +149,7 @@ class Rule(models.Model):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
-        # first, create scheduled mails that need to be created
+        # create scheduled mails that need to be created
         if self.event.has_subevents:
             with transaction.atomic():
                 for se in self.event.subevents.annotate(has_sm=Exists(ScheduledMail.objects.filter(subevent=OuterRef('pk'), rule=self))).filter(has_sm=False):
@@ -96,7 +162,6 @@ class Rule(models.Model):
                 sm.compute_time()
                 sm.save()
 
-        # todo: continue here, write creation code, make sure recompute works, or
         for sm in ScheduledMail.objects.filter(rule=self):
             sm.recompute()
 
@@ -146,3 +211,11 @@ class Rule(models.Model):
                         'time': date_format(self.send_offset_time, 'TIME_FORMAT')
                     }
             return s.format(days=self.send_offset_days, time=self.send_offset_time)
+
+    @property
+    def total_mails(self):
+        return len(ScheduledMail.objects.filter(rule=self))
+
+    @property
+    def sent_mails(self):
+        return len(ScheduledMail.objects.filter(rule=self, sent=True))

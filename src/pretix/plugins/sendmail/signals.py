@@ -50,7 +50,7 @@ def control_nav_import(sender, request=None, **kwargs):
                         'event': request.event.slug,
                         'organizer': request.event.organizer.slug,
                     }),
-                    'active': (url.namespace == 'plugins:sendmail' and url.url_name == 'rule.list'),
+                    'active': (url.namespace == 'plugins:sendmail' and url.url_name.startswith('rule.')),
                 },
             ]
         },
