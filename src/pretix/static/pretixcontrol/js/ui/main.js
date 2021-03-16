@@ -308,18 +308,6 @@ var form_handlers = function (el) {
         dependency.closest('.form-group').find('input[name=' + dependency.attr("name") + ']').on("dp.change", update);
     });
 
-    el.find("input[data-disabled-if], select[data-disabled-if], textarea[data-disabled-if]").each(function () {
-        var dependent = $(this),
-            dependency = $($(this).attr("data-disabled-if")),
-            update = function (ev) {
-                var enabled = dependency.toArray().some(function(d) {return (d.type === 'checkbox' || d.type === 'radio') ? d.checked : !!d.value;});
-                dependent.prop('required', enabled).closest('.form-group').toggleClass('disabled', enabled);
-            };
-        update();
-        dependency.closest('.form-group').find('input[name=' + dependency.attr("name") + ']').on("change", update);
-        dependency.closest('.form-group').find('input[name=' + dependency.attr("name") + ']').on("dp.change", update);
-    });
-
     el.find("input[data-required-if], select[data-required-if], textarea[data-required-if]").each(function () {
         var dependent = $(this),
             dependency = $($(this).attr("data-required-if")),
