@@ -36,16 +36,8 @@ def control_nav_import(sender, request=None, **kwargs):
                     }),
                     'active': (url.namespace == 'plugins:sendmail' and url.url_name == 'history'),
                 },
-                # {
-                #     'label': _('Schedule emails'),
-                #     'url': reverse('plugins:sendmail:rule.create', kwargs={
-                #         'event': request.event.slug,
-                #         'organizer': request.event.organizer.slug,
-                #     }),
-                #     'active': (url.namespace == 'plugins:sendmail' and url.url_name == 'rule.create'),
-                # },
                 {
-                    'label': _('Scheduled emails'),
+                    'label': _('Email Rules'),
                     'url': reverse('plugins:sendmail:rule.list', kwargs={
                         'event': request.event.slug,
                         'organizer': request.event.organizer.slug,

@@ -25,7 +25,7 @@ from pretix.plugins.sendmail.tasks import send_mails
 
 from . import forms
 from .models import Rule
-from ...control.views import CreateView, UpdateView
+from pretix.control.views import CreateView, UpdateView
 
 logger = logging.getLogger('pretix.plugins.sendmail')
 
@@ -246,9 +246,9 @@ class EmailHistoryView(EventPermissionRequiredMixin, ListView):
 
 
 class CreateRule(EventPermissionRequiredMixin, CreateView):
-    template_name = 'pretixplugins/sendmail/create_rule.html'
+    template_name = 'pretixplugins/sendmail/rule_create.html'
     permission = 'can_change_orders'
-    form_class = forms.CreateRule
+    form_class = forms.RuleForm
 
     model = Rule
 
@@ -303,8 +303,8 @@ class CreateRule(EventPermissionRequiredMixin, CreateView):
 
 class UpdateRule(EventPermissionRequiredMixin, UpdateView):
     model = Rule
-    form_class = forms.CreateRule
-    template_name = 'pretixplugins/sendmail/update_rule.html'
+    form_class = forms.RuleForm
+    template_name = 'pretixplugins/sendmail/rule_update.html'
     permission = 'can_change_event_settings'
     pk_url_kwarg = "rule"
 
@@ -314,10 +314,6 @@ class UpdateRule(EventPermissionRequiredMixin, UpdateView):
             'event': self.request.event.slug,
             'rule': self.object.pk,
         })
-
-    def get_queryset(self):
-        with scope(event=self.request.event):
-            return Rule.objects.all()
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -352,10 +348,6 @@ class ListRules(EventPermissionRequiredMixin, ListView):
     model = Rule
     paginate_by = 20
     context_object_name = 'rules'
-
-    def get_queryset(self):
-        with scope(event=self.request.event):
-            return Rule.objects.all()
 
 
 class DeleteRule(EventPermissionRequiredMixin, DeleteView):

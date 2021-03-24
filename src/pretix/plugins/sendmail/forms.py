@@ -177,7 +177,7 @@ class MailForm(FormPlaceholderMixin, forms.Form):
             del self.fields['subevents_to']
 
 
-class CreateRule(FormPlaceholderMixin, I18nModelForm):
+class RuleForm(FormPlaceholderMixin, I18nModelForm):
     class Meta:
         model = Rule
 
@@ -258,30 +258,25 @@ class CreateRule(FormPlaceholderMixin, I18nModelForm):
     def clean(self):
         d = super().clean()
 
-        sd = d.get('send_date')
-        sod = d.get('send_offset_days')
-        sot = d.get('send_offset_time')
         dia = d.get('date_is_absolute')
         if dia == 'abs':
-            if not sd:
+            if not d.get('send_date'):
                 raise ValidationError(_('Please specify the send date'))
             d['date_is_absolute'] = True
             d['send_offset_days'] = d['send_offset_time'] = None
         else:
-            if not (sod and sot):
+            if not (d.get('send_offset_days') and d.get('send_offset_time')):
                 raise ValidationError(_('Please specify the offset days and time'))
             d['offset_is_after'] = True if dia[4] == 'a' else False
             d['offset_to_event_end'] = True if dia[6] == 'e' else False
             d['date_is_absolute'] = False
             d['send_date'] = None
 
-        ap = d.get('all_products')
-        lp = d.get('limit_products')
-        if ap:
+        if d.get('all_products'):
             # having products checked while the option is ignored is probably counterintuitive
             d['limit_products'] = Item.objects.none()
         else:
-            if not lp:
+            if not d.get('limit_products'):
                 raise ValidationError(_('Please specify a product'))
 
         self.instance.offset_is_after = d.get('offset_is_after', False)

@@ -1,9 +1,9 @@
 {% extends "pretixcontrol/event/base.html" %}
 {% load i18n %}
 {% load static %}
-{% block title %}{% trans "Scheduled Emails" %}{% endblock %}
+{% block title %}{% trans "Email Rules" %}{% endblock %}
 {% block content %}
-    <h1>{% trans "Scheduled Emails" %}</h1>
+    <h1>{% trans "Email Rules" %}</h1>
     <p>
         <a href="{% url "plugins:sendmail:rule.create" organizer=request.organizer.slug event=request.event.slug %}">
             <button class="btn btn-primary">{% trans "Create Rule" %}</button>

@@ -1,9 +1,9 @@
 {% extends "pretixcontrol/event/base.html" %}
 {% load i18n %}
 {% load static %}
-{% block title %}{% trans "Delete Rule" %}{% endblock %}
+{% block title %}{% trans "Delete Email Rule" %}{% endblock %}
 {% block content %}
-    <h1>{% trans "Delete Rule" %}</h1>
+    <h1>{% trans "Delete Email Rule" %}</h1>
     <form action="" method="post" class="form-horizontal">
         {% csrf_token %}
         <p>{% blocktrans with subject=rule.subject %}Are you sure you want to delete the rule <strong>{{ subject }}</strong>?{% endblocktrans %}</p>
