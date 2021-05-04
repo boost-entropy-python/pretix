@@ -21,14 +21,19 @@ class ScheduledMail(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
     sent = models.BooleanField(default=False)
-    last_computed = models.DateTimeField()
+    last_computed = models.DateTimeField(auto_now_add=True)
     computed_datetime = models.DateTimeField()
+
+    def save(self, **kwargs):
+        if not self.computed_datetime:
+            self.recompute()
+        super().save(**kwargs)
 
     def recompute(self):
         if self.rule.date_is_absolute:
             self.computed_datetime = self.rule.send_date
         else:
-            e = self.subevent if self.subevent else self.event
+            e = self.subevent or self.event
             o_days = self.rule.send_offset_days
             if not self.rule.offset_is_after:
                 o_days *= -1
@@ -40,28 +45,24 @@ class ScheduledMail(models.Model):
             self.computed_datetime = d.replace(hour=st.hour, minute=st.minute, second=st.second)
 
         self.last_computed = timezone.now()
-        self.save()
 
     def send(self):
+        e = self.event
         if self.subevent:
-            e = self.subevent.event
-            orders = self.subevent.event.orders.annotate(has_matching_position=Exists(OrderPosition.objects.filter(
+            orders = e.orders.annotate(has_matching_position=Exists(OrderPosition.objects.filter(
                 order=OuterRef('pk'), subevent=self.subevent))).filter(has_matching_position=True)
 
         else:
-            e = self.event
-            orders = self.event.orders.all()
+            orders = e.orders.all()
+
+        status = [Order.STATUS_PENDING, Order.STATUS_PAID] if self.rule.include_pending else [Order.STATUS_PAID]
+
+        orders = orders.filter(status__in=status).select_related('invoice_address').prefetch_related('positions')
 
         send_to_orders = self.rule.send_to in (Rule.CUSTOMERS, Rule.BOTH)
         send_to_attendees = self.rule.send_to in (Rule.ATTENDEES, Rule.BOTH)
 
-        subject = LazyI18nString(self.rule.subject)
-        template = LazyI18nString(self.rule.template)
-
         for o in orders:
-            if not self.rule.include_pending and o.status != Order.STATUS_PENDING:
-                continue
-
             o_sent = False
 
             try:
@@ -72,19 +73,26 @@ class ScheduledMail(models.Model):
             if send_to_orders:
                 email_ctx = get_email_context(event=e, order=o, position_or_address=ia)
                 try:
-                    o.send_mail(subject, template, email_ctx)
+                    o.send_mail(self.rule.subject, self.rule.template, email_ctx,
+                                log_entry_type='pretix.plugins.sendmail.rule.sent')
                     o_sent = True
                 except SendMailException:
                     ...  # ¯\_(ツ)_/¯
 
             if send_to_attendees:
-                for p in o.positions:
+                positions = o.positions.all()
+                if not self.rule.all_products:
+                    positions = positions.filter(item__in=self.rule.limit_products.all())
+
+                for p in positions:
                     email_ctx = get_email_context(event=e, order=o, position_or_address=ia, position=p)
                     try:
                         if p.attendee_email:
-                            p.send_mail(subject, template, email_ctx)
+                            p.send_mail(self.rule.subject, self.rule.template, email_ctx,
+                                        log_entry_type='pretix.plugins.sendmail.rule.sent.attendee')
                         elif not o_sent:
-                            o.send_mail(subject, template, email_ctx)
+                            o.send_mail(self.rule.subject, self.rule.template, email_ctx,
+                                        log_entry_type='pretix.plugins.sendmail.rule.sent')
                             o_sent = True
                     except SendMailException:
                         ...  # ¯\_(ツ)_/¯
@@ -106,23 +114,22 @@ class Rule(models.Model):
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
-    subject = I18nCharField(max_length=255)
-    template = I18nTextField()
+    subject = I18nCharField(max_length=255, verbose_name=_('Subject'))
+    template = I18nTextField(verbose_name=_('Message'))
 
-    # all products or limit products
-    all_products = models.BooleanField(default=True)
-    limit_products = models.ManyToManyField(Item, blank=True)
+    all_products = models.BooleanField(default=True, verbose_name=_('All products'))
+    limit_products = models.ManyToManyField(Item, blank=True, verbose_name=_('Limit products'))
 
-    include_pending = models.BooleanField(default=False)
+    include_pending = models.BooleanField(default=False, verbose_name=_('Include pending orders'))
 
     # either send_date or send_offset_* have to be set
-    send_date = models.DateTimeField(null=True, blank=True)
-    send_offset_days = models.IntegerField(null=True, blank=True)
-    send_offset_time = models.TimeField(null=True, blank=True)
+    send_date = models.DateTimeField(null=True, blank=True, verbose_name=_('Send date'))
+    send_offset_days = models.IntegerField(null=True, blank=True, verbose_name=_('Number of days'))
+    send_offset_time = models.TimeField(null=True, blank=True, verbose_name=_('Time of day'))
 
-    date_is_absolute = models.BooleanField(default=True, blank=True)
-    offset_to_event_end = models.BooleanField(default=False, blank=True)
-    offset_is_after = models.BooleanField(default=False, blank=True)
+    date_is_absolute = models.BooleanField(default=True, blank=True, verbose_name=_('Type of schedule time'))
+    offset_to_event_end = models.BooleanField(default=False, blank=True)  # no verbose name because not actually
+    offset_is_after = models.BooleanField(default=False, blank=True)      # displayed in any forms
 
     send_to = models.CharField(max_length=10, choices=SEND_TO_CHOICES, default=CUSTOMERS)
 
@@ -131,18 +138,14 @@ class Rule(models.Model):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
-        # create scheduled mails that need to be created
+
         if self.event.has_subevents:
-            with transaction.atomic():
-                for se in self.event.subevents.annotate(has_sm=Exists(ScheduledMail.objects.filter(subevent=OuterRef('pk'), rule=self))).filter(has_sm=False):
-                    sm = ScheduledMail.objects.create(rule=self, subevent=se, event=self.event)
-                    sm.recompute()
-                    sm.save()
+            for se in self.event.subevents.annotate(has_sm=Exists(ScheduledMail.objects.filter(
+                    subevent=OuterRef('pk'), rule=self))).filter(has_sm=False):
+                ScheduledMail.objects.create(rule=self, subevent=se, event=self.event)
         else:
             if not ScheduledMail.objects.filter(rule=self, event=self.event).exists():
-                sm = ScheduledMail.objects.create(rule=self, event=self.event)
-                sm.recompute()
-                sm.save()
+                ScheduledMail.objects.create(rule=self, event=self.event)
 
         for sm in self.scheduledmail_set.all():
             sm.recompute()

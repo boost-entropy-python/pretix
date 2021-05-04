@@ -9,21 +9,17 @@
         <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
             {% csrf_token %}
 
-            {% if form.subevent %}
-                {% bootstrap_field form.subevent layout='control' %}
-            {% endif %}
-
             {% bootstrap_field form.subject layout='control' %}
 
             {% bootstrap_field form.template layout='control' %}
 
-            {% bootstrap_field form.date_is_absolute layout='control' %}
+            {% bootstrap_field form.date_is_absolute layout='horizontal' %}
 
-            {% bootstrap_field form.send_date layout='control' %}
+            {% bootstrap_field form.send_date layout='horizontal' %}
 
-            {% bootstrap_field form.send_offset_days layout='control' %}
+            {% bootstrap_field form.send_offset_days layout='horizontal' %}
 
-            {% bootstrap_field form.send_offset_time layout='control' %}
+            {% bootstrap_field form.send_offset_time layout='horizontal' %}
 
             {% bootstrap_field form.include_pending layout='control' %}
 
@@ -31,7 +27,7 @@
 
             {% bootstrap_field form.all_products layout='control' %}
 
-            {% bootstrap_field form.limit_products layout='control' %}
+            {% bootstrap_field form.limit_products layout='horizontal' %}
 
             <fieldset>
             <legend>{% trans "E-mail preview" %}</legend>

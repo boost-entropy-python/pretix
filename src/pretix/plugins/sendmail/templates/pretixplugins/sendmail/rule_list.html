@@ -10,36 +10,38 @@
         </a>
     </p>
 
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>{% trans "Email subject" %}</th>
-                <th>{% trans "Will be sent at" %}</th>
-                <th>{% trans "Sent / Total" %}</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for r in rules %}
+    {% if rules %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td>
-                        <strong><a href="{% url "plugins:sendmail:rule.update" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}">{{ r.subject }}</a></strong>
-                    </td>
-                    <td>
-                        {{ r.human_readable_time }}
-                    </td>
-                    <td>
-                        {{ r.sent_mails }} / {{ r.total_mails }}
-                    </td>
-                    <td>
-                        <a class="btn btn-sm btn-default" href="{% url "plugins:sendmail:rule.update" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-sm btn-danger" href="{% url "plugins:sendmail:rule.delete" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}"><i class="fa fa-trash"></i></a>
-                    </td>
+                    <th>{% trans "Email subject" %}</th>
+                    <th>{% trans "Will be sent" %}</th>
+                    <th>{% trans "Sent / Total dates" %}</th>
+                    <th></th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% include "pretixcontrol/pagination.html" %}
+                </thead>
+                <tbody>
+                {% for r in rules %}
+                    <tr>
+                        <td>
+                            <strong><a href="{% url "plugins:sendmail:rule.update" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}">{{ r.subject }}</a></strong>
+                        </td>
+                        <td>
+                            {{ r.human_readable_time }}
+                        </td>
+                        <td>
+                            {{ r.sent_mails }} / {{ r.total_mails }}
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{% url "plugins:sendmail:rule.update" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-sm btn-danger" href="{% url "plugins:sendmail:rule.delete" organizer=request.organizer.slug event=request.event.slug rule=r.pk %}"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include "pretixcontrol/pagination.html" %}
+    {% endif %}
 {% endblock %}

@@ -364,14 +364,20 @@ class DeleteRule(EventPermissionRequiredMixin, DeleteView):
         })
 
     def get_object(self, queryset=None) -> Rule:
-        with scope(event=self.request.event):
-            return get_object_or_404(Rule, id=self.kwargs['rule'])
+        return get_object_or_404(Rule, id=self.kwargs['rule'])
 
     @transaction.atomic
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         success_url = self.get_success_url()
-        # TODO: log
+
+        self.request.event.log_action('pretix.plugins.sendmail.rule.deleted',
+                                      user=self.request.user,
+                                      data={
+                                          'subject': self.object.subject,
+                                          'text': self.object.template,
+                                      })
+
         self.object.delete()
         messages.success(self.request, _('The selected rule has been deleted.'))
         return HttpResponseRedirect(success_url)

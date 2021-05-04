@@ -194,9 +194,6 @@ class RuleForm(FormPlaceholderMixin, I18nModelForm):
             'date_is_absolute': forms.ChoiceField,
         }
 
-        # TODO: fix error messages
-        # actually, just finalize the form in general. functionality's all there, but UX isn't 100% yet
-
         widgets = {
             'send_date': SplitDateTimePickerWidget(attrs={
                 'data-display-dependency': '#id_date_is_absolute_0',
@@ -215,14 +212,6 @@ class RuleForm(FormPlaceholderMixin, I18nModelForm):
             ),
             'date_is_absolute': forms.RadioSelect,
             'send_to': forms.RadioSelect,
-        }
-
-        labels = {
-            'include_pending': _('Include pending orders'),
-            'template': _('Message'),
-            'date_is_absolute': _('Type of schedule time'),
-            'send_offset_days': _('Number of days'),
-            'send_offset_time': _('Time of day'),
         }
 
     def __init__(self, *args, **kwargs):
@@ -267,8 +256,8 @@ class RuleForm(FormPlaceholderMixin, I18nModelForm):
         else:
             if not (d.get('send_offset_days') and d.get('send_offset_time')):
                 raise ValidationError(_('Please specify the offset days and time'))
-            d['offset_is_after'] = True if dia[4] == 'a' else False
-            d['offset_to_event_end'] = True if dia[6] == 'e' else False
+            d['offset_is_after'] = '_a' in dia
+            d['offset_to_event_end'] = '_e' in dia
             d['date_is_absolute'] = False
             d['send_date'] = None
 
