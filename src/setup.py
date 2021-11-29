@@ -193,7 +193,7 @@ setup(
         'drf_ujson2==1.6.*',
         'isoweek',
         'jsonschema',
-        'kombu==4.6.*',
+        'kombu>=4.6,<5.3',
         'libsass==0.21.*',
         'lxml',
         'markdown==3.3.4',  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
