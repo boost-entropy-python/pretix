@@ -530,7 +530,10 @@ def _get_attendee_name_part(key, op, order, ev):
 
 
 def _get_ia_name_part(key, op, order, ev):
-    return order.invoice_address.name_parts.get(key, '') if getattr(order, 'invoice_address', None) else ''
+    value = order.invoice_address.name_parts.get(key, '') if getattr(order, 'invoice_address', None) else ''
+    if key == 'salutation' and value:
+        return pgettext('person_name_salutation', value)
+    return value
 
 
 def get_images(event):
@@ -546,6 +549,14 @@ def get_variables(event):
     v = copy.copy(DEFAULT_VARIABLES)
 
     scheme = PERSON_NAME_SCHEMES[event.settings.name_scheme]
+
+    concatenation_for_salutation = scheme.get("concatenation_for_salutation", scheme["concatenation"])
+    v['attendee_name_for_salutation'] = {
+        'label': _("Attendee name for salutation"),
+        'editor_sample': _("Mr Doe"),
+        'evaluate': lambda op, order, ev: concatenation_for_salutation(op.attendee_name_parts or {})
+    }
+
     for key, label, weight in scheme['fields']:
         v['attendee_name_%s' % key] = {
             'label': _("Attendee name: {part}").format(part=label),
@@ -562,6 +573,12 @@ def get_variables(event):
 
     v['invoice_name']['editor_sample'] = scheme['concatenation'](scheme['sample'])
     v['attendee_name']['editor_sample'] = scheme['concatenation'](scheme['sample'])
+
+    v['invoice_name_for_salutation'] = {
+        'label': _("Invoice address name for salutation"),
+        'editor_sample': _("Mr Doe"),
+        'evaluate': lambda op, order, ev: concatenation_for_salutation(order.invoice_address.name_parts if getattr(order, 'invoice_address', None) else {})
+    }
 
     for key, label, weight in scheme['fields']:
         v['invoice_name_%s' % key] = {
