@@ -57,6 +57,7 @@ from paypalcheckoutsdk import orders as pp_orders, payments as pp_payments
 
 from pretix.base.models import Event, Order, OrderPayment, OrderRefund, Quota
 from pretix.base.payment import PaymentException
+from pretix.base.services.cart import get_fees
 from pretix.base.settings import GlobalSettingsObject
 from pretix.control.permissions import event_permission_required
 from pretix.multidomain.urlreverse import eventreverse
@@ -133,21 +134,30 @@ class XHRView(View):
 
         if order:
             lp = order.payments.last()
-            if lp and lp.state not in (OrderPayment.PAYMENT_STATE_CONFIRMED, OrderPayment.PAYMENT_STATE_REFUNDED):
+            if lp and lp.fee and lp.state not in (
+                    OrderPayment.PAYMENT_STATE_CONFIRMED, OrderPayment.PAYMENT_STATE_REFUNDED
+            ):
                 fee = lp.fee.value - prov.calculate_fee(order.pending_sum - lp.fee.value)
             else:
                 fee = prov.calculate_fee(order.pending_sum)
 
             cart = {
                 'positions': order.positions,
-                'total': order.pending_sum,
-                'fee': fee,
+                'cart_total': order.pending_sum,
+                'cart_fees': Decimal('0.00'),
+                'payment_fee': fee,
             }
         else:
+            cart_total = get_cart_total(request)
+            cart_fees = Decimal('0.00')
+            for fee in get_fees(request.event, request, cart_total, None, None, get_cart(request)):
+                cart_fees += fee.value
+
             cart = {
                 'positions': get_cart(request),
-                'total': get_cart_total(request),
-                'fee': prov.calculate_fee(get_cart_total(request)),
+                'cart_total': cart_total,
+                'cart_fees': cart_fees,
+                'payment_fee': prov.calculate_fee(cart_total + cart_fees),
             }
 
         paypal_order = prov._create_paypal_order(request, None, cart)
