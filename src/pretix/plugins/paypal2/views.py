@@ -212,8 +212,16 @@ def isu_return(request, *args, **kwargs):
         )
         response = prov.client.execute(req)
     except IOError as e:
-        messages.error(request, _('An error occurred during connecting with PayPal, please try again.'))
-        logger.exception('PayPal PartnersMerchantIntegrationsGetRequest: {}'.format(str(e)))
+        retry = request.GET.get('retry', 0)
+        retry = int(retry)
+        if retry < 3:
+            params = request.GET.copy()
+            params['retry'] = retry + 1
+            logger.exception('PayPal PartnersMerchantIntegrationsGetRequest: {}; Retrying.'.format(str(e)))
+            return redirect('{}?{}'.format(request.path, params.urlencode()))
+        else:
+            messages.error(request, _('An error occurred during connecting with PayPal, please try again.'))
+            logger.exception('PayPal PartnersMerchantIntegrationsGetRequest: {}'.format(str(e)))
     else:
         params = ['merchant_id', 'tracking_id', 'payments_receivable', 'primary_email_confirmed']
         if not any(k in response.result for k in params):
@@ -454,7 +462,7 @@ def isu_disconnect(request, **kwargs):
     del request.event.settings.payment_paypal_isu_merchant_id
     del request.event.settings.payment_paypal_isu_scopes
     request.event.settings.payment_paypal__enabled = False
-    messages.success(request, _('Your PayPal account has been disconnected.BB'))
+    messages.success(request, _('Your PayPal account has been disconnected.'))
 
     return redirect(reverse('control:event.settings.payment.provider', kwargs={
         'organizer': request.event.organizer.slug,
