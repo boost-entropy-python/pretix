@@ -199,10 +199,9 @@ class CheckInListBulkActionView(CheckInListQueryMixin, EventPermissionRequiredMi
 
             return 'reverted', request.POST.get('returnquery')
         else:
+            t = Checkin.TYPE_EXIT if request.POST.get('checkout') == 'true' else Checkin.TYPE_ENTRY
             for op in positions:
                 if op.order.status == Order.STATUS_PAID or (self.list.include_pending and op.order.status == Order.STATUS_PENDING):
-                    t = Checkin.TYPE_EXIT if request.POST.get('checkout') == 'true' else Checkin.TYPE_ENTRY
-
                     lci = op.checkins.filter(list=self.list).first()
                     if self.list.allow_multiple_entries or t != Checkin.TYPE_ENTRY or (lci and lci.type != Checkin.TYPE_ENTRY):
                         ci = Checkin.objects.create(position=op, list=self.list, datetime=now(), type=t)
@@ -430,9 +429,9 @@ class CheckinListView(EventPermissionRequiredMixin, PaginationMixin, ListView):
         qs = Checkin.all.filter(
             list__event=self.request.event,
         ).select_related(
-            'position', 'position', 'position__item', 'position__variation', 'position__subevent'
+            'position', 'position__order', 'position__item', 'position__variation', 'position__subevent'
         ).prefetch_related(
-            'list', 'gate'
+            'list', 'gate', 'device'
         )
         if self.filter_form.is_valid():
             qs = self.filter_form.filter_qs(qs)
