@@ -698,9 +698,12 @@ class PaypalMethod(BasePaymentProvider):
     def payment_pending_render(self, request, payment) -> str:
         retry = True
         try:
-            if payment.info and payment.info_data['state'] == 'pending':
+            if (
+                    payment.info
+                    and payment.info_data['purchase_units'][0]['payments']['captures'][0]['status'] == 'pending'
+            ):
                 retry = False
-        except KeyError:
+        except (KeyError, IndexError):
             pass
         template = get_template('pretixplugins/paypal2/pending.html')
         ctx = {'request': request, 'event': self.event, 'settings': self.settings,
