@@ -199,7 +199,7 @@ def isu_return(request, *args, **kwargs):
     if not any(k in request.GET for k in getparams) or not any(k in request.session for k in sessionparams):
         messages.error(request, _('An error occurred returning from PayPal: request parameters missing. Please try again.'))
         missing_getparams = set(getparams) - set(request.GET)
-        missing_sessionparams = set(sessionparams) - set(request.session)
+        missing_sessionparams = {p for p in sessionparams if p not in request.session}
         logger.exception('PayPal2 - Missing params in GET {} and/or Session {}'.format(missing_getparams, missing_sessionparams))
         return redirect(reverse('control:index'))
 
@@ -211,7 +211,7 @@ def isu_return(request, *args, **kwargs):
     try:
         cache.incr('pretix_paypal_token_hash_cycle')
     except ValueError:
-        cache.set('pretix_paypal_token_hash_cycle', 0)
+        cache.set('pretix_paypal_token_hash_cycle', 1, None)
 
     gs = GlobalSettingsObject()
     prov = Paypal(event)
@@ -376,7 +376,7 @@ def webhook(request, *args, **kwargs):
     prov.init_api()
 
     try:
-        if rso:
+        if rso and 'id' in rso.payment.info_data:
             payloadid = rso.payment.info_data['id']
         sale = prov.client.execute(pp_orders.OrdersGetRequest(payloadid)).result
     except IOError:
