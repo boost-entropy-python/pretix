@@ -26,11 +26,11 @@ from django.utils.translation import gettext_lazy as _
 from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter
 
+from ...helpers.safe_openpyxl import SafeCell
 from ..channels import get_all_sales_channels
 from ..exporter import ListExporter
 from ..models import ItemMetaValue
 from ..signals import register_data_exporters
-from ...helpers.safe_openpyxl import SafeCell
 
 
 def _max(a1, a2):
@@ -135,7 +135,7 @@ class ItemDataExporter(ListExporter):
                         _("Yes") if i.free_price else "",
                         str(i.tax_rule) if i.tax_rule else "",
                         _("Yes") if i.admission else "",
-                        _("Yes") if i.generate_tickets else "",
+                        _("Yes") if i.generate_tickets else (_("Default") if i.generate_tickets is None else ""),
                         _("Yes") if i.allow_waitinglist else "",
                         date_format(_max(i.available_from, v.available_from).astimezone(self.timezone),
                                     "SHORT_DATETIME_FORMAT") if i.available_from or v.available_from else "",
@@ -177,7 +177,7 @@ class ItemDataExporter(ListExporter):
                     _("Yes") if i.free_price else "",
                     str(i.tax_rule) if i.tax_rule else "",
                     _("Yes") if i.admission else "",
-                    _("Yes") if i.generate_tickets else "",
+                    _("Yes") if i.generate_tickets else (_("Default") if i.generate_tickets is None else ""),
                     _("Yes") if i.allow_waitinglist else "",
                     date_format(i.available_from.astimezone(self.timezone),
                                 "SHORT_DATETIME_FORMAT") if i.available_from else "",
