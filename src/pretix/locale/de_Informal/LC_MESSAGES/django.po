@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-01 07:49+0000\n"
-"PO-Revision-Date: 2022-07-01 08:03+0000\n"
+"PO-Revision-Date: 2022-07-22 11:11+0000\n"
 "Last-Translator: Raphael Michel <michel@rami.io>\n"
 "Language-Team: German (informal) <https://translate.pretix.eu/projects/"
 "pretix/pretix/de_Informal/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.2\n"
+"X-Generator: Weblate 4.13.1\n"
 
 #: htmlcov/pretix_control_views_dashboards_py.html:963
 #: pretix/control/templates/pretixcontrol/events/index.html:140
@@ -64,11 +64,12 @@ msgstr "pretixSCAN"
 
 #: pretix/api/auth/devicesecurity.py:76
 msgid "pretixSCAN (kiosk mode, no order sync, no search)"
-msgstr "pretixSCAN (Kiosk-Modus, keine Bestell-Synchronisierung, keine Suche)"
+msgstr ""
+"pretixSCAN (Kiosk-Modus, keine Bestellungs-Synchronisierung, keine Suche)"
 
 #: pretix/api/auth/devicesecurity.py:106
 msgid "pretixSCAN (online only, no order sync)"
-msgstr "pretixSCAN (nur online, keine Bestellsynchronisierung)"
+msgstr "pretixSCAN (nur online, keine Bestellungs-Synchronisierung)"
 
 #: pretix/api/auth/devicesecurity.py:137
 msgid "pretixPOS"
@@ -80,11 +81,11 @@ msgstr "Name der Applikation"
 
 #: pretix/api/models.py:42
 msgid "Redirection URIs"
-msgstr "URLs zur Weiterleitung"
+msgstr "Weiterleitungs-URIs"
 
 #: pretix/api/models.py:43
 msgid "Allowed URIs list, space separated"
-msgstr "Liste erlaubter URLs, mit Leerzeichen getrennt"
+msgstr "Liste erlaubter URIs, mit Leerzeichen getrennt"
 
 #: pretix/api/models.py:46 pretix/plugins/paypal/payment.py:112
 #: pretix/plugins/paypal2/payment.py:105
@@ -122,7 +123,7 @@ msgstr "Das Produkt \"{}\" ist keinem Kontingent zugeordnet."
 msgid ""
 "There is not enough quota available on quota \"{}\" to perform the operation."
 msgstr ""
-"Das Kontingent \"{name}\" hat nicht genug freie Kapazität für diese Änderung."
+"Das Kontingent \"{}\" hat nicht genug freie Kapazität für diese Änderung."
 
 #: pretix/api/serializers/cart.py:168 pretix/api/serializers/order.py:1091
 #: pretix/base/services/orders.py:1263
