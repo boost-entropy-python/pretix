@@ -60,6 +60,7 @@ invoice_address                       object                     Invoice address
 ├ state                               string                     Customer state (ISO 3166-2 code). Only supported in
                                                                  AU, BR, CA, CN, MY, MX, and US.
 ├ internal_reference                  string                     Customer's internal reference to be printed on the invoice
+├ custom_field                        string                     Custom invoice address field
 ├ vat_id                              string                     Customer VAT ID
 └ vat_id_validated                    string                     ``true``, if the VAT ID has been validated against the
                                                                  EU VAT service and validation was successful. This only
@@ -852,7 +853,7 @@ Creating orders
 
    You can supply the following fields of the resource:
 
-   * ``code`` (optional)
+   * ``code`` (optional) – Only ``A-Z`` and ``0-9``, but without ``O`` and ``1``.
    * ``status`` (optional) – Defaults to pending for non-free orders and paid for free orders. You can only set this to
      ``"n"`` for pending or ``"p"`` for paid. We will create a payment object for this order either in state ``created``
      or in state ``confirmed``, depending on this value. If you create a paid order, the ``order_paid`` signal will

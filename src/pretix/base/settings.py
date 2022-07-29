@@ -1514,6 +1514,15 @@ DEFAULTS = {
                     "before the order is canceled and a refund is issued."),
         )
     },
+    'cancel_allow_user_paid_require_approval_fee_unknown': {
+        'default': 'False',
+        'type': bool,
+        'form_class': forms.BooleanField,
+        'serializer_class': serializers.BooleanField,
+        'form_kwargs': dict(
+            label=_("Do not show the cancellation fee to users when they request cancellation."),
+        )
+    },
     'cancel_allow_user_paid_refund_as_giftcard': {
         'default': 'off',
         'type': str,
@@ -2585,7 +2594,9 @@ Your {organizer} team"""))
     },
     'name_scheme': {
         'default': 'full',  # default for new events is 'given_family'
-        'type': str
+        'type': str,
+        'serializer_class': serializers.ChoiceField,
+        'serializer_kwargs': {},
     },
     'giftcard_length': {
         'default': settings.ENTROPY['giftcard_secret'],
@@ -2980,6 +2991,9 @@ PERSON_NAME_SCHEMES = OrderedDict([
         },
     }),
 ])
+
+DEFAULTS['name_scheme']['serializer_kwargs']['choices'] = ((k, k) for k in PERSON_NAME_SCHEMES)
+
 COUNTRIES_WITH_STATE_IN_ADDRESS = {
     # Source: http://www.bitboost.com/ref/international-address-formats.html
     # This is not a list of countries that *have* states, this is a list of countries where states

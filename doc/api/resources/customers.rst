@@ -131,7 +131,9 @@ Endpoints
 
 .. http:post:: /api/v1/organizers/(organizer)/customers/
 
-   Creates a new customer
+   Creates a new customer. In addition to the fields defined on the resource, you can pass the field ``send_email``
+   to control whether the system should send an account activation email with a password reset link (defaults to
+   ``false``).
 
    **Example request**:
 
@@ -143,7 +145,8 @@ Endpoints
       Content-Type: application/json
 
       {
-        "email": "test@example.org"
+        "email": "test@example.org",
+        "send_email": true
       }
 
    **Example response**:
@@ -173,8 +176,8 @@ Endpoints
    the resource, other fields will be reset to default. With ``PATCH``, you only need to provide the fields that you
    want to change.
 
-   You can change all fields of the resource except the ``identifier``, ``last_login``, ``date_joined``, ``name``,
-   and ``last_modified`` fields.
+   You can change all fields of the resource except the ``identifier``, ``last_login``, ``date_joined``,
+   ``name`` (which is auto-generated from ``name_parts``), and ``last_modified`` fields.
 
    **Example request**:
 
