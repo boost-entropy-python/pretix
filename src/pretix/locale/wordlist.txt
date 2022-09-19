@@ -76,6 +76,7 @@ Mx
 MyBank
 multiline
 OpenCage
+OpenID
 OpenStreetMap
 overpayment
 OXXO
@@ -112,6 +113,7 @@ Sofort
 SOFORT
 Somecity
 SSL
+SSO
 STARTTLS
 Su
 subevent

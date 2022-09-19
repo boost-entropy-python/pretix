@@ -550,6 +550,24 @@ def get_organizer_navigation(request):
                     'active': 'organizer.membershiptype' in url.url_name,
                 }
             )
+            children.append(
+                {
+                    'label': _('SSO clients'),
+                    'url': reverse('control:organizer.ssoclients', kwargs={
+                        'organizer': request.organizer.slug
+                    }),
+                    'active': 'organizer.ssoclient' in url.url_name,
+                }
+            )
+            children.append(
+                {
+                    'label': _('SSO providers'),
+                    'url': reverse('control:organizer.ssoproviders', kwargs={
+                        'organizer': request.organizer.slug
+                    }),
+                    'active': 'organizer.ssoprovider' in url.url_name,
+                }
+            )
         if children:
             nav.append({
                 'label': _('Customer accounts'),
