@@ -26,6 +26,7 @@ from django.core.files.base import ContentFile
 from django.utils.timezone import override
 from django.utils.translation import gettext
 
+from pretix.base.exporter import OrganizerLevelExportMixin
 from pretix.base.i18n import LazyLocaleException, language
 from pretix.base.models import (
     CachedFile, Device, Event, Organizer, TeamAPIToken, User, cachedfile_name,
@@ -66,8 +67,8 @@ def export(self, event: Event, fileid: str, provider: str, form_data: Dict[str, 
                         gettext('Your export did not contain any data.')
                     )
                 file.filename, file.type, data = d
-                file.file.save(cachedfile_name(file, file.filename), ContentFile(data))
-                file.save()
+                f = ContentFile(data)
+                file.file.save(cachedfile_name(file, file.filename), f)
     return file.pk
 
 
@@ -101,9 +102,9 @@ def multiexport(self, organizer: Organizer, user: User, device: int, token: int,
             timezone = e.settings.timezone
             region = e.settings.region
         else:
-            locale = settings.LANGUAGE_CODE
-            timezone = settings.TIME_ZONE
-            region = None
+            locale = organizer.settings.locale or settings.LANGUAGE_CODE
+            timezone = organizer.settings.timezone or settings.TIME_ZONE
+            region = organizer.settings.region
     with language(locale, region), override(timezone):
         if form_data.get('events') is not None:
             if isinstance(form_data['events'][0], str):
@@ -119,12 +120,21 @@ def multiexport(self, organizer: Organizer, user: User, device: int, token: int,
                 continue
             ex = response(events, organizer, set_progress)
             if ex.identifier == provider:
+                if (
+                    isinstance(ex, OrganizerLevelExportMixin) and
+                    not staff_session and
+                    not (device or token or user).has_organizer_permission(organizer, ex.organizer_required_permission)
+                ):
+                    raise ExportError(
+                        gettext('You do not have sufficient permission to perform this export.')
+                    )
+
                 d = ex.render(form_data)
                 if d is None:
                     raise ExportError(
                         gettext('Your export did not contain any data.')
                     )
                 file.filename, file.type, data = d
-                file.file.save(cachedfile_name(file, file.filename), ContentFile(data))
-                file.save()
+                f = ContentFile(data)
+                file.file.save(cachedfile_name(file, file.filename), f)
     return file.pk
