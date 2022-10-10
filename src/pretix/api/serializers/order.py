@@ -1086,6 +1086,10 @@ class OrderCreateSerializer(I18nAwareModelSerializer):
 
                 seated = pos_data.get('item').seat_category_mappings.filter(subevent=pos_data.get('subevent')).exists()
                 if pos_data.get('seat'):
+                    if pos_data.get('addon_to'):
+                        errs[i]['seat'] = ['Seats are currently not supported for add-on products.']
+                        continue
+
                     if not seated:
                         errs[i]['seat'] = ['The specified product does not allow to choose a seat.']
                     try:
@@ -1281,6 +1285,9 @@ class OrderCreateSerializer(I18nAwareModelSerializer):
 
             if not simulate:
                 for cp in delete_cps:
+                    if cp.addon_to_id:
+                        continue
+                    cp.addons.all().delete()
                     cp.delete()
 
         order.total = sum([p.price for p in pos_map.values()])
