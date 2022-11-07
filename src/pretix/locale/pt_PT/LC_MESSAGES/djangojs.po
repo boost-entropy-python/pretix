@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-31 15:56+0000\n"
-"PO-Revision-Date: 2020-10-27 06:00+0000\n"
-"Last-Translator: David Vaz <davidmgvaz@gmail.com>\n"
+"POT-Creation-Date: 2022-11-07 15:22+0000\n"
+"PO-Revision-Date: 2022-11-07 14:50+0000\n"
+"Last-Translator: Fazenda Dengo <fazendadengo@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.pretix.eu/projects/"
 "pretix/pretix-js/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10.3\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: pretix/plugins/banktransfer/static/pretixplugins/banktransfer/ui.js:56
 #: pretix/plugins/banktransfer/static/pretixplugins/banktransfer/ui.js:62
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Mercado Pago"
 msgstr ""
 
-#: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:157
+#: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:159
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:48
 #, fuzzy
 #| msgctxt "widget"
@@ -139,13 +139,13 @@ msgstr ""
 msgid "Continue"
 msgstr "Continuar"
 
-#: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:215
+#: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:217
 #: pretix/plugins/stripe/static/pretixplugins/stripe/pretix-stripe.js:152
 #: pretix/plugins/stripe/static/pretixplugins/stripe/pretix-stripe.js:183
 msgid "Confirming your payment …"
 msgstr "A confirmar o seu pagamento…"
 
-#: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:240
+#: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:242
 msgid "Payment method unavailable"
 msgstr ""
 
@@ -634,27 +634,24 @@ msgstr[0] "(mais uma data)"
 msgstr[1] "(mais {num} datas)"
 
 #: pretix/static/pretixpresale/js/ui/cart.js:43
-#, fuzzy
-#| msgid "The items in your cart are no longer reserved for you."
 msgid ""
 "The items in your cart are no longer reserved for you. You can still "
 "complete your order as long as they’re available."
-msgstr "Os itens no seu carrinho já não estão reservados para si."
+msgstr ""
+"Os itens no seu carrinho já não estão mais reservados para você. Você ainda "
+"pode finalizar o seu pedido, desde que eles estejam disponíveis."
 
 #: pretix/static/pretixpresale/js/ui/cart.js:45
 msgid "Cart expired"
 msgstr "Carrinho expirado"
 
 #: pretix/static/pretixpresale/js/ui/cart.js:50
-#, fuzzy
-#| msgid "The items in your cart are reserved for you for one minute."
-#| msgid_plural ""
-#| "The items in your cart are reserved for you for {num} minutes."
 msgid "The items in your cart are reserved for you for one minute."
 msgid_plural "The items in your cart are reserved for you for {num} minutes."
-msgstr[0] "Os artigos no seu carrinho estão reservados para si por um minuto."
+msgstr[0] ""
+"Os artigos no seu carrinho estão reservados para você por um minuto."
 msgstr[1] ""
-"Os artigos no seu carrinho estão reservados para si por {num} minutos."
+"Os artigos no seu carrinho estão reservados para você por {num} minutos."
 
 #: pretix/static/pretixpresale/js/ui/main.js:152
 msgid "The organizer keeps %(currency)s %(amount)s"
