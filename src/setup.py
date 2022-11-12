@@ -176,7 +176,7 @@ setup(
         'django-formset-js-improved==0.5.0.2',
         'django-formtools==2.3',
         'django-hierarkey==1.1.*',
-        'django-hijack==3.1.*',
+        'django-hijack==3.2.*',
         'django-i18nfield==1.9.*,>=1.9.4',
         'django-libsass==0.9',
         'django-localflavor==3.1',
@@ -185,7 +185,7 @@ setup(
         'django-oauth-toolkit==1.2.*',
         'django-otp==1.1.*',
         'django-phonenumber-field==7.0.*',
-        'django-redis==5.0.*',
+        'django-redis==5.2.*',
         'django-scopes==1.2.*',
         'django-statici18n==2.3.*',
         'djangorestframework==3.14.*',
@@ -205,8 +205,8 @@ setup(
         'paypalrestsdk==1.13.*',
         'paypal-checkout-serversdk==1.0.*',
         'PyJWT==2.6.*',
-        'phonenumberslite==8.12.*',
-        'Pillow==9.2.*',
+        'phonenumberslite==8.13.*',
+        'Pillow==9.3.*',
         'protobuf==4.21.*',
         'psycopg2-binary',
         'pycountry',
@@ -232,7 +232,7 @@ setup(
         'vat_moss_forked==2020.3.20.0.11.0',
         'vobject==0.9.*',
         'webauthn==0.4.*',
-        'zeep==4.1.*'
+        'zeep==4.2.*'
     ],
     extras_require={
         'dev': [
@@ -252,7 +252,7 @@ setup(
             'pytest-mock==3.10.*',
             'pytest-rerunfailures==10.2',
             'pytest-sugar',
-            'pytest-xdist==2.5.*',
+            'pytest-xdist==3.0.*',
             'pytest==7.2.*',
             'responses',
         ],
