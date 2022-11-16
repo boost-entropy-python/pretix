@@ -158,7 +158,7 @@ setup(
 
     keywords='tickets web shop ecommerce',
     install_requires=[
-        'arabic-reshaper==2.1.3',  # Support for Arabic in reportlab
+        'arabic-reshaper==2.1.4',  # Support for Arabic in reportlab
         'babel',
         'BeautifulSoup4==4.11.*',
         'bleach==5.0.*',
@@ -173,7 +173,7 @@ setup(
         'django-compressor==4.1.*',
         'django-countries==7.4.*',
         'django-filter==22.1',
-        'django-formset-js-improved==0.5.0.2',
+        'django-formset-js-improved==0.5.0.3',
         'django-formtools==2.3',
         'django-hierarkey==1.1.*',
         'django-hijack==3.2.*',
