@@ -194,7 +194,7 @@ setup(
         'isoweek',
         'jsonschema',
         'kombu==4.6.*',
-        'libsass==0.21.*',
+        'libsass==0.22.*',
         'lxml',
         'markdown==3.3.4',  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
         # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
@@ -222,7 +222,7 @@ setup(
         'reportlab==3.6.*',
         'requests==2.28.*',
         'sentry-sdk==1.10.*',  # when upgrading, check https://github.com/getsentry/sentry-python/issues/1700
-        'sepaxml==2.5.*',
+        'sepaxml==2.6.*',
         'slimit',
         'static3==0.7.*',
         'stripe==4.2.*',
