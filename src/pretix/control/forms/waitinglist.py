@@ -19,28 +19,38 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 #
-import copy
+from django.urls import reverse
+from django_scopes.forms import SafeModelChoiceField
 
-from django.core.files import File
-from django.db import models
+from pretix.base.forms import I18nModelForm
+from pretix.base.models import WaitingListEntry
+from pretix.control.forms.widgets import Select2
 
 
-class Thumbnail(models.Model):
-    source = models.CharField(max_length=255)
-    size = models.CharField(max_length=255)
-    thumb = models.FileField(upload_to='pub/thumbs/', max_length=255)
-    created = models.DateTimeField(auto_now_add=True, null=True)
+class WaitingListEntryTransferForm(I18nModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.event.has_subevents:
+            self.fields['subevent'].required = True
+            self.fields['subevent'].queryset = self.event.subevents.all()
+            self.fields['subevent'].widget = Select2(
+                attrs={
+                    'data-model-select2': 'event',
+                    'data-select2-url': reverse('control:event.subevents.select2', kwargs={
+                        'event': self.event.slug,
+                        'organizer': self.event.organizer.slug,
+                    }),
+                }
+            )
+            self.fields['subevent'].widget.choices = self.fields['subevent'].choices
 
     class Meta:
-        unique_together = (('source', 'size'),)
-
-
-def modelcopy(obj: models.Model, **kwargs):
-    n = obj.__class__(**kwargs)
-    for f in obj._meta.fields:
-        val = getattr(obj, f.name)
-        if isinstance(val, (models.Model, File)):
-            setattr(n, f.name, copy.copy(val))
-        else:
-            setattr(n, f.name, copy.deepcopy(val))
-    return n
+        model = WaitingListEntry
+        fields = [
+            'subevent',
+        ]
+        field_classes = {
+            'subevent': SafeModelChoiceField,
+        }
