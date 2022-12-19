@@ -224,6 +224,11 @@ def _merge_csp(a, b):
         if k not in a:
             a[k] = b[k]
 
+    for k, v in a.items():
+        if "'unsafe-inline'" in v:
+            # If we need unsafe-inline, drop any hashes or nonce as they will be ignored otherwise
+            a[k] = [i for i in v if not i.startswith("'nonce-") and not i.startswith("'sha-")]
+
 
 class SecurityMiddleware(MiddlewareMixin):
     CSP_EXEMPT = (
@@ -301,7 +306,7 @@ class SecurityMiddleware(MiddlewareMixin):
             resp['Content-Security-Policy'] = _render_csp(h).format(static=staticdomain, dynamic=dynamicdomain,
                                                                     media=mediadomain)
             for k, v in h.items():
-                h[k] = ' '.join(v).format(static=staticdomain, dynamic=dynamicdomain, media=mediadomain).split(' ')
+                h[k] = sorted(set(' '.join(v).format(static=staticdomain, dynamic=dynamicdomain, media=mediadomain).split(' ')))
             resp['Content-Security-Policy'] = _render_csp(h)
         elif 'Content-Security-Policy' in resp:
             del resp['Content-Security-Policy']
