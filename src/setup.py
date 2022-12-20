@@ -168,7 +168,7 @@ setup(
         'css-inline==0.8.*',
         'defusedcsv>=1.1.0',
         'dj-static',
-        'Django==3.2.*',
+        'Django>=3.2,<4.2',
         'django-bootstrap3==22.2.*',
         'django-compressor==4.1.*',
         'django-countries==7.5.*',
