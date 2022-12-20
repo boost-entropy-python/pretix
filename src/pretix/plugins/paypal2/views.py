@@ -426,7 +426,10 @@ def webhook(request, *args, **kwargs):
     if not payment:
         return HttpResponse('Payment not found', status=200)
 
-    payment.order.log_action('pretix.plugins.paypal.event', data=event_json)
+    payment.order.log_action('pretix.plugins.paypal.event', data={
+        **event_json,
+        '_order_state': sale.dict(),
+    })
 
     if payment.state == OrderPayment.PAYMENT_STATE_CONFIRMED and sale['status'] in ('PARTIALLY_REFUNDED', 'REFUNDED', 'COMPLETED'):
         if event_json['resource_type'] == 'refund':
@@ -470,10 +473,27 @@ def webhook(request, *args, **kwargs):
     elif payment.state in (OrderPayment.PAYMENT_STATE_PENDING, OrderPayment.PAYMENT_STATE_CREATED,
                            OrderPayment.PAYMENT_STATE_CANCELED, OrderPayment.PAYMENT_STATE_FAILED) \
             and sale['status'] == 'COMPLETED':
-        try:
-            payment.confirm()
-        except Quota.QuotaExceededException:
-            pass
+        any_captures = False
+        all_captures_completed = True
+        for purchaseunit in sale['purchase_units']:
+            for capture in purchaseunit['payments']['captures']:
+                try:
+                    ReferencedPayPalObject.objects.get_or_create(order=payment.order, payment=payment,
+                                                                 reference=capture['id'])
+                except ReferencedPayPalObject.MultipleObjectsReturned:
+                    pass
+
+                if capture['status'] not in ('COMPLETED', 'REFUNDED', 'PARTIALLY_REFUNDED'):
+                    all_captures_completed = False
+                else:
+                    any_captures = True
+        if any_captures and all_captures_completed:
+            try:
+                payment.info = json.dumps(sale.dict())
+                payment.save(update_fields=['info'])
+                payment.confirm()
+            except Quota.QuotaExceededException:
+                pass
 
     return HttpResponse(status=200)
 
