@@ -859,12 +859,19 @@ class DeviceQueryMixin:
     @cached_property
     def request_data(self):
         if self.request.method == "POST":
-            return self.request.POST
-        return self.request.GET
+            d = self.request.POST
+        else:
+            d = self.request.GET
+        d = d.copy()
+        d.setdefault('state', 'active')
+        return d
 
     @cached_property
     def filter_form(self):
-        return DeviceFilterForm(data=self.request_data, request=self.request)
+        return DeviceFilterForm(
+            data=self.request_data,
+            request=self.request,
+        )
 
     def get_queryset(self):
         qs = self.request.organizer.devices.prefetch_related(
@@ -1508,7 +1515,7 @@ class GiftCardUpdateView(OrganizerDetailViewMixin, OrganizerPermissionRequiredMi
 class ExportMixin:
     @cached_property
     def exporter(self):
-        id = self.request.GET.get("identifier") or self.request.POST.get("exporter")
+        id = self.request.GET.get("identifier") or self.request.POST.get("exporter") or self.request.GET.get("exporter")
         if not id:
             return None
         for ex in self.exporters:
@@ -1579,7 +1586,7 @@ class ExportMixin:
 class ExportDoView(OrganizerPermissionRequiredMixin, ExportMixin, AsyncAction, TemplateView):
     known_errortypes = ['ExportError']
     task = multiexport
-    template_name = 'pretixcontrol/organizers/export.html'
+    template_name = 'pretixcontrol/organizers/export_form.html'
 
     def get_success_message(self, value):
         return None
