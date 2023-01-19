@@ -632,6 +632,7 @@ class Event(EventMixin, LoggedModel):
             return super().presale_has_ended
 
     def delete_all_orders(self, really=False):
+        from .checkin import Checkin
         from .orders import (
             OrderFee, OrderPayment, OrderPosition, OrderRefund, Transaction,
         )
@@ -645,6 +646,7 @@ class Event(EventMixin, LoggedModel):
         OrderFee.objects.filter(order__event=self).delete()
         OrderRefund.objects.filter(order__event=self).delete()
         OrderPayment.objects.filter(order__event=self).delete()
+        Checkin.objects.filter(list__event=self).delete()
         self.orders.all().delete()
 
     def save(self, *args, **kwargs):
