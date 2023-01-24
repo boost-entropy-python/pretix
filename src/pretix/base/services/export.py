@@ -228,13 +228,24 @@ def _run_scheduled_export(schedule, context: Union[Event, Organizer], exporter, 
         else:
             schedule.error_counter = 0
             schedule.save(update_fields=['error_counter'])
+            to = [r for r in schedule.mail_additional_recipients.split(",") if r]
+            cc = [r for r in schedule.mail_additional_recipients_cc.split(",") if r]
+            bcc = [r for r in schedule.mail_additional_recipients_bcc.split(",") if r]
+            if to:
+                # If there is an explicit To, the owner is Cc. Otherwise, the owner is To. Yes, this is
+                # purely cosmetical and has policital reasons.
+                cc.append(schedule.owner.email)
+            else:
+                to.append(schedule.owner.email)
+
             mail(
-                email=[schedule.owner.email] + [r for r in schedule.mail_additional_recipients.split(",") if r],
-                cc=[r for r in schedule.mail_additional_recipients_cc.split(",") if r],
-                bcc=[r for r in schedule.mail_additional_recipients_bcc.split(",") if r],
+                email=to,
+                cc=cc,
+                bcc=bcc,
                 subject=schedule.mail_subject,
                 template=LazyI18nString(schedule.mail_template),
                 context=get_email_context(event=context) if isinstance(context, Event) else {},
+                event=context if isinstance(context, Event) else None,
                 organizer=context.organizer if isinstance(context, Event) else context,
                 locale=schedule.locale,
                 attach_cached_files=[file],
