@@ -56,6 +56,7 @@ from pretix.base.models import (
     Checkin, CheckinList, Device, Order, OrderPosition, QuestionOption,
 )
 from pretix.base.signals import checkin_created, order_placed, periodic_task
+from pretix.helpers import OF_SELF
 from pretix.helpers.jsonlogic import Logic
 from pretix.helpers.jsonlogic_boolalg import convert_to_dnf
 from pretix.helpers.jsonlogic_query import (
@@ -288,6 +289,11 @@ def _logic_explain(rules, ev, rule_data):
     paths_with_min_weight = [
         p for i, p in enumerate(paths) if path_weights[i] == min_weight
     ]
+
+    # Step 7: All things equal, prefer shorter explanations
+    paths_with_min_weight.sort(
+        key=lambda p: len([v for v in p if not _var_values[v]])
+    )
 
     # Finally, return the text for one of them
     return ', '.join(var_texts[v] for v in paths_with_min_weight[0] if not _var_values[v])
@@ -729,8 +735,11 @@ def perform_checkin(op: OrderPosition, clist: CheckinList, given_answers: dict, 
         _save_answers(op, answers, given_answers)
 
     with transaction.atomic():
-        # Lock order positions
-        op = OrderPosition.all.select_for_update().get(pk=op.pk)
+        # Lock order positions, if it is an entry. We don't need it for exits, as a race condition wouldn't be problematic
+        opqs = OrderPosition.all
+        if type != Checkin.TYPE_EXIT:
+            opqs = opqs.select_for_update(of=OF_SELF)
+        op = opqs.get(pk=op.pk)
 
         if not clist.all_products and op.item_id not in [i.pk for i in clist.limit_products.all()]:
             raise CheckInError(
@@ -842,10 +851,7 @@ def process_exit_all(sender, **kwargs):
         exit_all_at__isnull=False
     ).select_related('event', 'event__organizer')
     for cl in qs:
-        positions = cl.positions_inside.filter(
-            Q(last_exit__isnull=True) | Q(last_exit__lte=cl.exit_all_at),
-            last_entry__lte=cl.exit_all_at,
-        )
+        positions = cl.positions_inside_query(ignore_status=True, at_time=cl.exit_all_at)
         for p in positions:
             with scope(organizer=cl.event.organizer):
                 ci = Checkin.objects.create(

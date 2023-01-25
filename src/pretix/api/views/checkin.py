@@ -95,7 +95,7 @@ class CheckinListViewSet(viewsets.ModelViewSet):
     queryset = CheckinList.objects.none()
     filter_backends = (DjangoFilterBackend, RichOrderingFilter)
     filterset_class = CheckinListFilter
-    ordering = ('subevent__date_from', 'name')
+    ordering = ('subevent__date_from', 'name', 'id')
     ordering_fields = ('subevent__date_from', 'id', 'name',)
 
     def _get_permission_name(self, request):
@@ -684,7 +684,7 @@ class CheckinListPositionViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CheckinListOrderPositionSerializer
     queryset = OrderPosition.all.none()
     filter_backends = (ExtendedBackend, RichOrderingFilter)
-    ordering = (F('attendee_name_cached').asc(nulls_last=True), 'positionid')
+    ordering = (F('attendee_name_cached').asc(nulls_last=True), 'pk')
     ordering_fields = (
         'order__code', 'order__datetime', 'positionid', 'attendee_name',
         'last_checked_in', 'order__email',

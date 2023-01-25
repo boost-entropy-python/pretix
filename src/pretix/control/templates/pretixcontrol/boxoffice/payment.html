@@ -24,7 +24,7 @@
         <dt>{% trans "Receipt number" context "terminal_zvt" %}</dt>
         <dd>{{ payment_info.payment_data.receiptNumber }}</dd>
         <dt>{% trans "Card type" context "terminal_zvt" %}</dt>
-        <dd>{{ payment_info.payment_data.cardName }}</dd>
+        <dd>{{ payment_info.payment_data.cardName|default_if_none:payment_info.payment_data.cardType }}</dd>
         <dt>{% trans "Card expiration" context "terminal_zvt" %}</dt>
         <dd>{{ payment_info.payment_data.expiry }}</dd>
     {% elif payment_info.payment_type == "sumup" %}
@@ -98,5 +98,8 @@
         <dd>{{ payment_info.payment_data.posEntryMode }}</dd>
         <dt>{% trans "Result Code" %}</dt>
         <dd>{{ payment_info.payment_data.posResultCode }}</dd>
+    {% elif payment_info.payment_type == "cash" %}
+        <dt>{% trans "Payment method" %}</dt>
+        <dd>{% trans "Cash" %}</dd>
     {% endif %}
 </dl>
