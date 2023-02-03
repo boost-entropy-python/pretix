@@ -200,7 +200,7 @@ setup(
         # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
         'mt-940==4.23.*',
         'oauthlib==3.2.*',
-        'openpyxl==3.0.*',
+        'openpyxl==3.1.*',
         'packaging',
         'paypalrestsdk==1.13.*',
         'paypal-checkout-serversdk==1.0.*',
@@ -211,7 +211,7 @@ setup(
         'psycopg2-binary',
         'pycountry',
         'pycparser==2.21',
-        'pycryptodome==3.16.*',
+        'pycryptodome==3.17.*',
         'PyPDF2==3.0.*',
         'python-bidi==0.4.*',  # Support for Arabic in reportlab
         'python-dateutil==2.8.*',
