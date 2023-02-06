@@ -293,14 +293,16 @@ class DateFrameWidget(forms.MultiWidget):
         if '/' in value:
             return [
                 'custom',
-                date.fromisoformat(value.split('/', 1)[0]),
-                date.fromisoformat(value.split('/', 1)[-1]),
+                date.fromisoformat(value.split('/', 1)[0]) if value.split('/', 1)[0] else None,
+                date.fromisoformat(value.split('/', 1)[-1]) if value.split('/', 1)[-1] else None,
             ]
         return [value, None, None]
 
     def get_context(self, name, value, attrs):
         ctx = super().get_context(name, value, attrs)
         ctx['required'] = self.timeframe_choices[0][0] == 'unset'
+        ctx['widget']['subwidgets'][1]['attrs'].pop('required', None)
+        ctx['widget']['subwidgets'][2]['attrs'].pop('required', None)
         return ctx
 
 
