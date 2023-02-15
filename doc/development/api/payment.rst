@@ -122,6 +122,8 @@ The provider class
 
    .. automethod:: refund_control_render
 
+   .. automethod:: refund_control_render_short
+
    .. automethod:: new_refund_control_form_render
 
    .. automethod:: new_refund_control_form_process
@@ -131,6 +133,8 @@ The provider class
    .. automethod:: api_refund_details
 
    .. automethod:: matching_id
+
+   .. automethod:: refund_matching_id
 
    .. automethod:: shred_payment_info
 

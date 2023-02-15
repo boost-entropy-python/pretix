@@ -557,10 +557,18 @@ class StripeMethod(BasePaymentProvider):
     def matching_id(self, payment: OrderPayment):
         return payment.info_data.get("id", None)
 
+    def refund_matching_id(self, refund: OrderRefund):
+        return refund.info_data.get('id', None)
+
     def api_payment_details(self, payment: OrderPayment):
         return {
             "id": payment.info_data.get("id", None),
             "payment_method": payment.info_data.get("payment_method", None)
+        }
+
+    def api_refund_details(self, refund: OrderRefund):
+        return {
+            "id": refund.info_data.get("id", None),
         }
 
     def payment_control_render(self, request, payment) -> str:
