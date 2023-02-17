@@ -330,7 +330,7 @@ Vue.component('pricebox', {
         },
         priceline: function () {
             if (this.price.gross === "0.00") {
-                if (this.mandatory_priced_addons) {
+                if (this.mandatory_priced_addons && !this.original_price) {
                     return "\xA0"; // nbsp, because an empty string would cause the HTML element to collapse
                 }
                 return strings.free;
@@ -1732,7 +1732,7 @@ var create_widget = function (element) {
     }
     var voucher = element.attributes.voucher ? element.attributes.voucher.value : null;
     var subevent = element.attributes.subevent ? element.attributes.subevent.value : null;
-    var style = element.attributes.style ? element.attributes.style.value : null;
+    var style = element.attributes["list-type"] ? element.attributes["list-type"].value : (element.attributes.style ? element.attributes.style.value : null);
     var skip_ssl = element.attributes["skip-ssl-check"] ? true : false;
     var disable_iframe = element.attributes["disable-iframe"] ? true : false;
     var disable_vouchers = element.attributes["disable-vouchers"] ? true : false;
