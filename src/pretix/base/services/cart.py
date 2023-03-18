@@ -726,7 +726,7 @@ class CartManager:
             custom_price = None
             if item.free_price and i.get('price'):
                 custom_price = Decimal(str(i.get('price')).replace(",", "."))
-                if custom_price > 100000000:
+                if custom_price > 99_999_999_999:
                     raise ValueError('price_too_high')
 
             op = self.AddOperation(
@@ -841,7 +841,7 @@ class CartManager:
             custom_price = None
             if item.free_price and a.get('price'):
                 custom_price = Decimal(str(a.get('price')).replace(",", "."))
-                if custom_price > 100000000:
+                if custom_price > 99_999_999_999:
                     raise ValueError('price_too_high')
 
             # Fix positions with wrong price (TODO: happens out-of-cartmanager-transaction and therefore a little hacky)
@@ -1141,7 +1141,7 @@ class CartManager:
                             custom_price_input=op.custom_price_input,
                             custom_price_input_is_net=op.custom_price_input_is_net,
                             line_price_gross=line_price.gross,
-                            tax_rate=line_price.tax,
+                            tax_rate=line_price.rate,
                             price=line_price.gross,
                         )
                         if self.event.settings.attendee_names_asked:
@@ -1188,7 +1188,7 @@ class CartManager:
                                         custom_price_input=b.custom_price_input,
                                         custom_price_input_is_net=b.custom_price_input_is_net,
                                         line_price_gross=bline_price.gross,
-                                        tax_rate=bline_price.tax,
+                                        tax_rate=bline_price.rate,
                                         price=bline_price.gross,
                                         is_bundled=True
                                     ))

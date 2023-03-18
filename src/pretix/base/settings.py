@@ -1484,6 +1484,19 @@ DEFAULTS = {
             label=_("Do not allow changes after"),
         )
     },
+    'change_allow_user_if_checked_in': {
+        'default': 'False',
+        'type': bool,
+        'form_class': forms.BooleanField,
+        'serializer_class': serializers.BooleanField,
+        'form_kwargs': dict(
+            label=_("Allow change even though the ticket has already been checked in"),
+            help_text=_("By default, order changes are disabled after any ticket in the order has been checked in. "
+                        "If you check this box, this requirement is lifted. It is still not possible to remove an "
+                        "add-on product that has already been checked in individually. Use with care, and preferably "
+                        "only in combination with a limitation on price changes above."),
+        )
+    },
     'change_allow_attendee': {
         'default': 'False',
         'type': bool,
@@ -1512,7 +1525,7 @@ DEFAULTS = {
         'form_class': forms.DecimalField,
         'serializer_class': serializers.DecimalField,
         'serializer_kwargs': dict(
-            max_digits=10, decimal_places=2
+            max_digits=13, decimal_places=2
         ),
         'form_kwargs': dict(
             label=_("Charge a fixed cancellation fee"),
@@ -1537,7 +1550,7 @@ DEFAULTS = {
         'form_class': forms.DecimalField,
         'serializer_class': serializers.DecimalField,
         'serializer_kwargs': dict(
-            max_digits=10, decimal_places=2
+            max_digits=13, decimal_places=2
         ),
         'form_kwargs': dict(
             label=_("Charge a percentual cancellation fee"),
@@ -1571,7 +1584,7 @@ DEFAULTS = {
         'form_class': forms.DecimalField,
         'serializer_class': serializers.DecimalField,
         'serializer_kwargs': dict(
-            max_digits=10, decimal_places=2
+            max_digits=13, decimal_places=2
         ),
         'form_kwargs': dict(
             label=_("Keep a fixed cancellation fee"),
@@ -1592,7 +1605,7 @@ DEFAULTS = {
         'form_class': forms.DecimalField,
         'serializer_class': serializers.DecimalField,
         'serializer_kwargs': dict(
-            max_digits=10, decimal_places=2
+            max_digits=13, decimal_places=2
         ),
         'form_kwargs': dict(
             label=_("Keep a percentual cancellation fee"),
@@ -1631,10 +1644,10 @@ DEFAULTS = {
         'form_class': forms.DecimalField,
         'serializer_class': serializers.DecimalField,
         'serializer_kwargs': dict(
-            max_digits=10, decimal_places=2
+            max_digits=13, decimal_places=2
         ),
         'form_kwargs': dict(
-            max_digits=10, decimal_places=2,
+            max_digits=13, decimal_places=2,
             label=_("Step size for reduction amount"),
             help_text=_('By default, customers can choose an arbitrary amount for you to keep. If you set this to e.g. '
                         '10, they will only be able to choose values in increments of 10.')

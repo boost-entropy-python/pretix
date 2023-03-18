@@ -690,6 +690,7 @@ class CancelSettingsForm(SettingsForm):
         'change_allow_user_price',
         'change_allow_user_until',
         'change_allow_user_addons',
+        'change_allow_user_if_checked_in',
         'change_allow_attendee',
     ]
 
@@ -1568,7 +1569,7 @@ class QuickSetupProductForm(I18nForm):
     )
     default_price = forms.DecimalField(
         label=_("Price (optional)"),
-        max_digits=7, decimal_places=2, required=False,
+        max_digits=13, decimal_places=2, required=False,
         localize=True,
         widget=forms.TextInput(
             attrs={

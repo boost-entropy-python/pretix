@@ -220,7 +220,7 @@ class Order(LockModel, LoggedModel):
         verbose_name=_("Expiration date")
     )
     total = models.DecimalField(
-        decimal_places=2, max_digits=10,
+        decimal_places=2, max_digits=13,
         verbose_name=_("Total amount")
     )
     comment = models.TextField(
@@ -403,8 +403,8 @@ class Order(LockModel, LoggedModel):
             state__in=(OrderRefund.REFUND_STATE_CREATED, OrderRefund.REFUND_STATE_TRANSIT),
             order=OuterRef('pk')
         )
-        payment_sum_sq = Subquery(payment_sum, output_field=models.DecimalField(decimal_places=2, max_digits=10))
-        refund_sum_sq = Subquery(refund_sum, output_field=models.DecimalField(decimal_places=2, max_digits=10))
+        payment_sum_sq = Subquery(payment_sum, output_field=models.DecimalField(decimal_places=2, max_digits=13))
+        refund_sum_sq = Subquery(refund_sum, output_field=models.DecimalField(decimal_places=2, max_digits=13))
         if sums:
             qs = qs.annotate(
                 payment_sum=payment_sum_sq,
@@ -626,7 +626,10 @@ class Order(LockModel, LoggedModel):
                 has_checkin=Exists(Checkin.objects.filter(position_id=OuterRef('pk')))
             ).select_related('item').prefetch_related('issued_gift_cards')
         )
-        cancelable = all([op.item.allow_cancel and not op.has_checkin for op in positions])
+        if self.event.settings.change_allow_user_if_checked_in:
+            cancelable = all([op.item.allow_cancel for op in positions])
+        else:
+            cancelable = all([op.item.allow_cancel and not op.has_checkin for op in positions])
         if not cancelable or not positions:
             return False
         for op in positions:
@@ -1313,7 +1316,7 @@ class AbstractPosition(models.Model):
         on_delete=models.PROTECT
     )
     price = models.DecimalField(
-        decimal_places=2, max_digits=10,
+        decimal_places=2, max_digits=13,
         verbose_name=_("Price")
     )
     attendee_name_cached = models.CharField(
@@ -1545,7 +1548,7 @@ class OrderPayment(models.Model):
         max_length=190, choices=PAYMENT_STATES
     )
     amount = models.DecimalField(
-        decimal_places=2, max_digits=10,
+        decimal_places=2, max_digits=13,
         verbose_name=_("Amount")
     )
     order = models.ForeignKey(
@@ -1929,7 +1932,7 @@ class OrderRefund(models.Model):
         max_length=190, choices=REFUND_SOURCES
     )
     amount = models.DecimalField(
-        decimal_places=2, max_digits=10,
+        decimal_places=2, max_digits=13,
         verbose_name=_("Amount")
     )
     order = models.ForeignKey(
@@ -2078,7 +2081,7 @@ class OrderFee(models.Model):
     )
 
     value = models.DecimalField(
-        decimal_places=2, max_digits=10,
+        decimal_places=2, max_digits=13,
         verbose_name=_("Value")
     )
     order = models.ForeignKey(
@@ -2102,7 +2105,7 @@ class OrderFee(models.Model):
         null=True, blank=True
     )
     tax_value = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=13, decimal_places=2,
         verbose_name=_('Tax value')
     )
     canceled = models.BooleanField(default=False)
@@ -2236,7 +2239,7 @@ class OrderPosition(AbstractPosition):
     )
 
     voucher_budget_use = models.DecimalField(
-        max_digits=10, decimal_places=2, null=True, blank=True,
+        max_digits=13, decimal_places=2, null=True, blank=True,
     )
 
     tax_rate = models.DecimalField(
@@ -2249,7 +2252,7 @@ class OrderPosition(AbstractPosition):
         null=True, blank=True
     )
     tax_value = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=13, decimal_places=2,
         verbose_name=_('Tax value')
     )
 
@@ -2670,7 +2673,7 @@ class Transaction(models.Model):
         verbose_name=pgettext_lazy("subevent", "Date"),
     )
     price = models.DecimalField(
-        decimal_places=2, max_digits=10,
+        decimal_places=2, max_digits=13,
         verbose_name=_("Price")
     )
     tax_rate = models.DecimalField(
@@ -2683,7 +2686,7 @@ class Transaction(models.Model):
         null=True, blank=True
     )
     tax_value = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=13, decimal_places=2,
         verbose_name=_('Tax value')
     )
     fee_type = models.CharField(
@@ -2761,19 +2764,19 @@ class CartPosition(AbstractPosition):
         verbose_name=_('Tax rate')
     )
     listed_price = models.DecimalField(
-        decimal_places=2, max_digits=10, null=True,
+        decimal_places=2, max_digits=13, null=True,
     )
     price_after_voucher = models.DecimalField(
-        decimal_places=2, max_digits=10, null=True,
+        decimal_places=2, max_digits=13, null=True,
     )
     custom_price_input = models.DecimalField(
-        decimal_places=2, max_digits=10, null=True,
+        decimal_places=2, max_digits=13, null=True,
     )
     custom_price_input_is_net = models.BooleanField(
         default=False,
     )
     line_price_gross = models.DecimalField(
-        decimal_places=2, max_digits=10, null=True,
+        decimal_places=2, max_digits=13, null=True,
     )
     requested_valid_from = models.DateTimeField(
         null=True,
@@ -2843,7 +2846,7 @@ class CartPosition(AbstractPosition):
         # Migrate from pre-discounts position
         if self.item.free_price and self.custom_price_input is None:
             custom_price = self.price
-            if custom_price > 100000000:
+            if custom_price > 99_999_999_999:
                 raise ValueError('price_too_high')
             self.custom_price_input = custom_price
             self.custom_price_input_is_net = not False
@@ -3056,7 +3059,7 @@ class CachedCombinedTicket(models.Model):
 class CancellationRequest(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='cancellation_requests')
     created = models.DateTimeField(auto_now_add=True)
-    cancellation_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    cancellation_fee = models.DecimalField(max_digits=13, decimal_places=2)
     refund_as_giftcard = models.BooleanField(default=False)
 
 

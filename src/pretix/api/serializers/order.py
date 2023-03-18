@@ -381,11 +381,9 @@ class PdfDataSerializer(serializers.Field):
                 res['meta:' + k] = v
 
             if instance.variation_id:
-                print(instance, instance.variation, instance.variation_id, instance.item)
                 if not hasattr(instance.variation, '_cached_meta_data'):
                     instance.variation.item = instance.item  # saves some database lookups
                     instance.variation._cached_meta_data = instance.variation.meta_data
-                print(instance.variation._cached_meta_data.items())
                 for k, v in instance.variation._cached_meta_data.items():
                     res['itemmeta:' + k] = v
             else:
@@ -781,7 +779,7 @@ class OrderPositionCreateSerializer(I18nAwareModelSerializer):
     attendee_name = serializers.CharField(required=False, allow_null=True)
     seat = serializers.CharField(required=False, allow_null=True)
     price = serializers.DecimalField(required=False, allow_null=True, decimal_places=2,
-                                     max_digits=10)
+                                     max_digits=13)
     voucher = serializers.SlugRelatedField(slug_field='code', queryset=Voucher.objects.none(),
                                            required=False, allow_null=True)
     country = CompatibleCountryField(source='*')
