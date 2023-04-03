@@ -360,7 +360,7 @@ DEFAULT_VARIABLES = OrderedDict((
         "label": _("List of Add-Ons"),
         "editor_sample": _("Add-on 1\nAdd-on 2"),
         "evaluate": lambda op, order, ev: "\n".join([
-            '{} - {}'.format(p.item, p.variation) if p.variation else str(p.item)
+            '{} - {}'.format(p.item.name, p.variation.value) if p.variation else str(p.item.name)
             for p in (
                 op.addons.all() if 'addons' in getattr(op, '_prefetched_objects_cache', {})
                 else op.addons.select_related('item', 'variation')
@@ -454,6 +454,11 @@ DEFAULT_VARIABLES = OrderedDict((
             op.valid_until.astimezone(timezone(ev.settings.timezone)),
             "TIME_FORMAT"
         ) if op.valid_until else ""
+    }),
+    ("medium_identifier", {
+        "label": _("Reusable Medium ID"),
+        "editor_sample": _("ABC1234DEF4567"),
+        "evaluate": lambda op, order, ev: op.linked_media.all()[0].identifier if op.linked_media.all() else "",
     }),
     ("seat", {
         "label": _("Seat: Full name"),
@@ -583,10 +588,11 @@ def variables_from_questions(sender, *args, **kwargs):
 
 
 def _get_attendee_name_part(key, op, order, ev):
+    name_parts = op.attendee_name_parts or (op.addon_to.attendee_name_parts if op.addon_to else {})
     if isinstance(key, tuple):
-        parts = [_get_attendee_name_part(c[0], op, order, ev) for c in key if not (c[0] == 'salutation' and op.attendee_name_parts.get(c[0], '') == "Mx")]
+        parts = [_get_attendee_name_part(c[0], op, order, ev) for c in key if not (c[0] == 'salutation' and name_parts.get(c[0], '') == "Mx")]
         return ' '.join(p for p in parts if p)
-    value = op.attendee_name_parts.get(key, '')
+    value = name_parts.get(key, '')
     if key == 'salutation':
         return pgettext('person_name_salutation', value)
     return value
@@ -617,7 +623,7 @@ def get_variables(event):
     v['attendee_name_for_salutation'] = {
         'label': _("Attendee name for salutation"),
         'editor_sample': _("Mr Doe"),
-        'evaluate': lambda op, order, ev: concatenation_for_salutation(op.attendee_name_parts or {})
+        'evaluate': lambda op, order, ev: concatenation_for_salutation(op.attendee_name_parts or (op.addon_to.attendee_name_parts if op.addon_to else {}))
     }
 
     for key, label, weight in scheme['fields']:
@@ -760,6 +766,9 @@ class Renderer:
             content = op.secret
         else:
             content = self._get_text_content(op, order, o)
+
+        if len(content) == 0:
+            return
 
         level = 'H'
         if len(content) > 32:
