@@ -160,7 +160,7 @@ setup(
     install_requires=[
         'arabic-reshaper==3.0.0',  # Support for Arabic in reportlab
         'babel',
-        'BeautifulSoup4==4.11.*',
+        'BeautifulSoup4==4.12.*',
         'bleach==5.0.*',
         'celery==5.2.*',
         'chardet==5.1.*',
@@ -206,7 +206,7 @@ setup(
         'paypal-checkout-serversdk==1.0.*',
         'PyJWT==2.6.*',
         'phonenumberslite==8.13.*',
-        'Pillow==9.4.*',
+        'Pillow==9.5.*',
         'protobuf==4.22.*',
         'psycopg2-binary',
         'pycountry',
@@ -239,7 +239,7 @@ setup(
         'dev': [
             'coverage',
             'coveralls',
-            'django-debug-toolbar==3.8.*',
+            'django-debug-toolbar==4.0.*',
             'flake8==6.0.*',
             'freezegun',
             'isort==5.12.*',
