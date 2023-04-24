@@ -217,7 +217,7 @@ setup(
         'pypdf==3.8.*',
         'python-bidi==0.4.*',  # Support for Arabic in reportlab
         'python-dateutil==2.8.*',
-        'python-u2flib-server==4.*',
+        'python-u2flib-server>=4,<6',
         'pytz',
         'pyuca',
         'qrcode==7.4.*',
