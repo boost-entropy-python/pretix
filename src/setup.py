@@ -192,7 +192,7 @@ setup(
         'dnspython==2.2.*',
         'drf_ujson2==1.7.*',
         'geoip2==4.*',
-        'importlib-metadata==6.4.*',  # Polyfill, we can probably drop this once we require Python 3.10+
+        'importlib-metadata==6.5.*',  # Polyfill, we can probably drop this once we require Python 3.10+
         'isoweek',
         'jsonschema',
         'kombu==5.2.*',
@@ -256,7 +256,7 @@ setup(
             'pytest-rerunfailures==11.*',
             'pytest-sugar',
             'pytest-xdist==3.2.*',
-            'pytest==7.2.*',
+            'pytest==7.3.*',
             'responses',
         ],
         'memcached': ['pylibmc'],
