@@ -48,7 +48,7 @@ dependencies = [
   "django-hijack==3.3.*",
   "django-i18nfield==1.9.*,>=1.9.4",
   "django-libsass==0.9",
-  "django-localflavor==3.1",
+  "django-localflavor==4.0",
   "django-markup",
   "django-mysql",
   "django-oauth-toolkit==2.2.*",
@@ -61,13 +61,13 @@ dependencies = [
   "dnspython==2.2.*",
   "drf_ujson2==1.7.*",
   "geoip2==4.*",
-  "importlib_metadata==6.5.*",  # Polyfill, we can probably drop this once we require Python 3.10+
+  "importlib_metadata==6.6.*",  # Polyfill, we can probably drop this once we require Python 3.10+
   "isoweek",
   "jsonschema",
   "kombu==5.2.*",
   "libsass==0.22.*",
   "lxml",
-  "markdown==3.3.4",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
+  "markdown==3.4.3",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
   # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
   "mt-940==4.23.*",
   "oauthlib==3.2.*",
