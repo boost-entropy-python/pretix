@@ -96,6 +96,18 @@ def primary_font_kwargs():
     }
 
 
+def invoice_font_kwargs():
+    from pretix.presale.style import get_fonts
+
+    choices = [('Open Sans', 'Open Sans')]
+    choices += sorted([
+        (a, a) for a, v in get_fonts().items()
+    ], key=lambda a: a[0])
+    return {
+        'choices': choices,
+    }
+
+
 def restricted_plugin_kwargs():
     from pretix.base.plugins import get_all_plugins
 
@@ -621,6 +633,17 @@ DEFAULTS = {
                         "used at most once over all of your events. This setting only affects future invoices. You can "
                         "use %Y (with century) %y (without century) to insert the year of the invoice, or %m and %d for "
                         "the day of month."),
+            validators=[
+                RegexValidator(
+                    # We actually allow more characters than we name in the error message since some of these characters
+                    # are in active use at the time of the introduction of this validation, so we can't really forbid
+                    # them, but we don't think they belong in an invoice number and don't want to advertise them.
+                    regex="^[a-zA-Z0-9-_%./,&:# ]+$",
+                    message=lazy(lambda *args: _('Please only use the characters {allowed} in this field.').format(
+                        allowed='A-Z, a-z, 0-9, -./:#'
+                    ), str)()
+                )
+            ],
         )
     },
     'invoice_numbers_prefix_cancellations': {
@@ -632,6 +655,17 @@ DEFAULTS = {
             label=_("Invoice number prefix for cancellations"),
             help_text=_("This will be prepended to invoice numbers of cancellations. If you leave this field empty, "
                         "the same numbering scheme will be used that you configured for regular invoices."),
+            validators=[
+                RegexValidator(
+                    # We actually allow more characters than we name in the error message since some of these characters
+                    # are in active use at the time of the introduction of this validation, so we can't really forbid
+                    # them, but we don't think they belong in an invoice number and don't want to advertise them.
+                    regex="^[a-zA-Z0-9-_%./,&:# ]+$",
+                    message=lazy(lambda *args: _('Please only use the characters {allowed} in this field.').format(
+                        allowed='A-Z, a-z, 0-9, -./:#'
+                    ), str)()
+                )
+            ],
         )
     },
     'invoice_renderer_highlight_order_code': {
@@ -643,6 +677,19 @@ DEFAULTS = {
             label=_("Highlight order code to make it stand out visibly"),
             help_text=_("Only respected by some invoice renderers."),
         )
+    },
+    'invoice_renderer_font': {
+        'default': 'Open Sans',
+        'type': str,
+        'form_class': forms.ChoiceField,
+        'serializer_class': serializers.ChoiceField,
+        'serializer_kwargs': lambda: dict(**invoice_font_kwargs()),
+        'form_kwargs': lambda: dict(
+            label=_('Font'),
+            help_text=_("Only respected by some invoice renderers."),
+            required=True,
+            **invoice_font_kwargs()
+        ),
     },
     'invoice_renderer': {
         'default': 'classic',  # default for new events is 'modern1'
