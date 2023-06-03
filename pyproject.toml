@@ -51,7 +51,7 @@ dependencies = [
   "django-markup",
   "django-mysql",
   "django-oauth-toolkit==2.2.*",
-  "django-otp==1.1.*",
+  "django-otp==1.2.*",
   "django-phonenumber-field==7.1.*",
   "django-redis==5.2.*",
   "django-scopes==2.0.*",
@@ -68,7 +68,7 @@ dependencies = [
   "lxml",
   "markdown==3.4.3",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
   # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
-  "mt-940==4.23.*",
+  "mt-940==4.30.*",
   "oauthlib==3.2.*",
   "openpyxl==3.1.*",
   "packaging",
@@ -82,7 +82,7 @@ dependencies = [
   "pycountry",
   "pycparser==2.21",
   "pycryptodome==3.18.*",
-  "pypdf==3.8.*",
+  "pypdf==3.9.*",
   "python-bidi==0.4.*",  # Support for Arabic in reportlab
   "python-dateutil==2.8.*",
   "python-u2flib-server==4.*",
