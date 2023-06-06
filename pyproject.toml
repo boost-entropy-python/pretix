@@ -49,7 +49,6 @@ dependencies = [
   "django-libsass==0.9",
   "django-localflavor==4.0",
   "django-markup",
-  "django-mysql",
   "django-oauth-toolkit==2.2.*",
   "django-otp==1.2.*",
   "django-phonenumber-field==7.1.*",
@@ -109,7 +108,6 @@ dependencies = [
 
 [project.optional-dependencies]
 memcached = ["pylibmc"]
-mysql = ["mysqlclient"]
 dev = [
   "coverage",
   "coveralls",
@@ -126,7 +124,7 @@ dev = [
   "pytest-mock==3.10.*",
   "pytest-rerunfailures==11.*",
   "pytest-sugar",
-  "pytest-xdist==3.2.*",
+  "pytest-xdist==3.3.*",
   "pytest==7.3.*",
   "responses",
 ]
