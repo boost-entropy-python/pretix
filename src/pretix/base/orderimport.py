@@ -830,13 +830,12 @@ class QuestionColumn(ImportColumn):
 class CustomerColumn(ImportColumn):
     identifier = 'customer'
     verbose_name = gettext_lazy('Customer')
-    default_value = None
 
     def clean(self, value, previous_values):
         if value:
             try:
                 value = self.event.organizer.customers.get(
-                    Q(identifier=value) | Q(email=value) | Q(external_identifier=value)
+                    Q(identifier=value) | Q(email__iexact=value) | Q(external_identifier=value)
                 )
             except Customer.MultipleObjectsReturned:
                 value = self.event.organizer.customers.get(
