@@ -11,7 +11,6 @@ window.PretixWidget = {
 };
 
 var Vue = module.exports;
-Vue.component('resize-observer', VueResize.ResizeObserver)
 
 var strings = {
     'quantity': django.pgettext('widget', 'Quantity'),
@@ -736,9 +735,6 @@ var shared_methods = {
             window.open(redirect_url);
         }
     },
-    handleResize: function () {
-        this.mobile = this.$refs.wrapper.clientWidth <= 800;
-    }
 };
 
 var shared_widget_data = function () {
@@ -1493,7 +1489,6 @@ Vue.component('pretix-widget-event-week-calendar', {
 Vue.component('pretix-widget', {
     template: ('<div class="pretix-widget-wrapper" ref="wrapper">'
         + '<div :class="classObject">'
-        + '<resize-observer @notify="handleResize" />'
         + shared_loading_fragment
         + '<div class="pretix-widget-error-message" v-if="$root.error && $root.view !== \'event\'">{{ $root.error }}</div>'
         + '<div class="pretix-widget-error-action" v-if="$root.error && $root.connection_error"><a :href="$root.newTabTarget" class="pretix-widget-button" target="_blank">'
@@ -1513,7 +1508,22 @@ Vue.component('pretix-widget', {
     data: shared_widget_data,
     methods: shared_methods,
     mounted: function () {
-        this.mobile = this.$refs.wrapper.clientWidth <= 600;
+        var thisObj = this;
+        if ("ResizeObserver" in window) {
+            var resizeObserver = new ResizeObserver(function(entries) {
+                thisObj.mobile = entries[0].contentRect.width <= 800;
+            });
+            resizeObserver.observe(this.$refs.wrapper);
+        } else {
+            this.mobile = this.$refs.wrapper.clientWidth <= 800;
+            var debounce;
+            window.addEventListener("resize", function() {
+                if (debounce) clearTimeout(debounce);
+                debounce = setTimeout(function () {
+                    thisObj.mobile = thisObj.$refs.wrapper.clientWidth <= 800;
+                }, 100);
+            });
+        }
     },
     computed: {
         classObject: function () {
@@ -1901,8 +1911,19 @@ var create_widget = function (element) {
         }
     }
 
+    var observer = new MutationObserver((mutationList) => {
+        mutationList.forEach((mutation) => {
+            if (mutation.type == "attributes" && mutation.attributeName.startsWith("data-")) {
+                Vue.set(app.widget_data, mutation.attributeName.substring(5), mutation.target.getAttribute(mutation.attributeName));
+            }
+        });
+    });
+    var observerOptions = { attributes: true };
+
     if (element.tagName !== "pretix-widget") {
         element.innerHTML = "<pretix-widget></pretix-widget>";
+        // we need to watch the container as well as the replaced root-node (see mounted())
+        observer.observe(element, observerOptions);
     }
 
     var app = new Vue({
@@ -1960,6 +1981,9 @@ var create_widget = function (element) {
         created: function () {
             this.reload();
         },
+        mounted: function () {
+            observer.observe(this.$el, observerOptions);
+        },
         computed: shared_root_computed,
         methods: shared_root_methods
     });
@@ -1986,8 +2010,19 @@ var create_button = function (element) {
         }
     }
 
+    var observer = new MutationObserver((mutationList) => {
+        mutationList.forEach((mutation) => {
+            if (mutation.type == "attributes" && mutation.attributeName.startsWith("data-")) {
+                Vue.set(app.widget_data, mutation.attributeName.substring(5), mutation.target.getAttribute(mutation.attributeName));
+            }
+        });
+    });
+    var observerOptions = { attributes: true };
+
     if (element.tagName !== "pretix-button") {
         element.innerHTML = "<pretix-button>" + element.innerHTML + "</pretix-button>";
+        // Vue does not replace the container, so watch container as well
+        observer.observe(element, observerOptions);
     }
 
     var itemsplit = raw_items.split(",");
@@ -2019,6 +2054,9 @@ var create_button = function (element) {
             }
         },
         created: function () {
+        },
+        mounted: function () {
+            observer.observe(this.$el, observerOptions);
         },
         computed: shared_root_computed,
         methods: shared_root_methods
