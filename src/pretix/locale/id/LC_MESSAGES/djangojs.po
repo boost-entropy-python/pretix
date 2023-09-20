@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-21 11:46+0000\n"
-"PO-Revision-Date: 2023-09-19 05:00+0000\n"
+"PO-Revision-Date: 2023-09-20 14:01+0000\n"
 "Last-Translator: Mahdia Aliyy <mahdlyy.k@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.pretix.eu/projects/pretix/"
 "pretix-js/id/>\n"
@@ -137,7 +137,7 @@ msgstr "Pasar Pago"
 #: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:164
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:48
 msgid "Continue"
-msgstr "LanjutMelanjutkan"
+msgstr "Lanjutkan"
 
 #: pretix/plugins/paypal2/static/pretixplugins/paypal2/pretix-paypal.js:222
 #: pretix/plugins/stripe/static/pretixplugins/stripe/pretix-stripe.js:204
@@ -646,7 +646,7 @@ msgstr "Keranjang sudah habis masa berlakunya"
 #: pretix/static/pretixpresale/js/ui/cart.js:50
 msgid "The items in your cart are reserved for you for one minute."
 msgid_plural "The items in your cart are reserved for you for {num} minutes."
-msgstr[0] "Item di keranjang Anda dicadangkan untuk Anda selama satu menit."
+msgstr[0] "Item di keranjang Anda direservasi untuk Anda selama {num} menit."
 
 #: pretix/static/pretixpresale/js/ui/main.js:171
 msgid "The organizer keeps %(currency)s %(amount)s"
