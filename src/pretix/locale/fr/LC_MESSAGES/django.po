@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-25 23:11+0000\n"
-"PO-Revision-Date: 2023-09-11 10:00+0000\n"
+"PO-Revision-Date: 2023-10-06 03:00+0000\n"
 "Last-Translator: Ronan LE MEILLAT <ronan.le_meillat@highcanfly.club>\n"
 "Language-Team: French <https://translate.pretix.eu/projects/pretix/pretix/fr/"
 ">\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.18.2\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: htmlcov/pretix_control_views_dashboards_py.html:963
 #: pretix/control/templates/pretixcontrol/events/index.html:140
@@ -104,7 +104,7 @@ msgstr "Grec"
 
 #: pretix/_base_settings.py:92
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonésien"
 
 #: pretix/_base_settings.py:93
 msgid "Italian"
@@ -3040,10 +3040,9 @@ msgid "Invalid placeholder(s): %(value)s"
 msgstr "Caractère générique invalide : %(value)s"
 
 #: pretix/base/forms/widgets.py:67
-#, fuzzy, python-format
-#| msgid "Sample city"
+#, python-format
 msgid "Sample: %s"
-msgstr "Ville exemple"
+msgstr "Exemple : %s"
 
 #: pretix/base/forms/widgets.py:70
 #, python-brace-format
@@ -6375,14 +6374,10 @@ msgstr ""
 "la date indiquée."
 
 #: pretix/base/payment.py:342
-#, fuzzy
-#| msgid ""
-#| "Users will not be able to choose this payment provider after the given "
-#| "date."
 msgid ""
 "Users will not be able to choose this payment provider before the given date."
 msgstr ""
-"Les utilisateurs ne pourront plus choisir ce fournisseur de paiement après "
+"Les utilisateurs ne pourront plus choisir ce fournisseur de paiement avant "
 "la date indiquée."
 
 #: pretix/base/payment.py:347
@@ -7519,10 +7514,8 @@ msgid "Ticket type not allowed"
 msgstr "Type de ticket interdit"
 
 #: pretix/base/services/checkin.py:263
-#, fuzzy
-#| msgid "Create a new gate"
 msgid "Wrong entrance gate"
-msgstr "Créer une nouvelle porte"
+msgstr "Mauvaise porte d'entrée"
 
 #: pretix/base/services/checkin.py:285
 msgid "time since last entry"
@@ -7545,16 +7538,14 @@ msgid "number of entries today"
 msgstr "nombre d’entrées aujourd’hui"
 
 #: pretix/base/services/checkin.py:290
-#, fuzzy, python-brace-format
-#| msgid "number of entries today"
+#, python-brace-format
 msgid "number of entries since {datetime}"
-msgstr "nombre d’entrées aujourd’hui"
+msgstr "nombre d’entrées depuis {datetime}"
 
 #: pretix/base/services/checkin.py:291
-#, fuzzy, python-brace-format
-#| msgid "number of entries today"
+#, python-brace-format
 msgid "number of entries before {datetime}"
-msgstr "nombre d’entrées aujourd’hui"
+msgstr "nombre d’entrées avant {datetime}"
 
 #: pretix/base/services/checkin.py:292
 msgid "week day"
@@ -12125,18 +12116,11 @@ msgid "Filetype not allowed!"
 msgstr "Type de fichier interdit !"
 
 #: pretix/control/forms/__init__.py:321
-#, fuzzy
-#| msgid "Unofficial translation"
 msgid "Community translations"
-msgstr "Traduction non officielle"
+msgstr "Traductions communautaires"
 
 #: pretix/control/forms/__init__.py:323
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "This translation is not maintained by the pretix team. We cannot vouch "
-#| "for its correctness and new or recently changed features might not be "
-#| "translated and will show in English instead. You can help translating at "
-#| "translate.pretix.eu."
+#, python-brace-format
 msgid ""
 "These translations are not maintained by the pretix team. We cannot vouch "
 "for their correctness and new or recently changed features might not be "
@@ -12146,24 +12130,20 @@ msgstr ""
 "Cette traduction n'est pas maintenue par l'équipe de pretix. Nous ne pouvons "
 "pas garantir son exactitude et les fonctionnalités nouvelles ou récemment "
 "modifiées peuvent ne pas être traduites et s'afficheront en anglais à la "
-"place. Vous pouvez nous aider à traduire sur translate.pretix.eu."
+"place. Vous pouvez nous <a href=\"{translate_url}\" target=\"_blank\">aider "
+"à traduire</a>."
 
 #: pretix/control/forms/__init__.py:334
 msgid "Development only"
-msgstr ""
+msgstr "Développement seulement"
 
 #: pretix/control/forms/__init__.py:335
-#, fuzzy
-#| msgid ""
-#| "The translation for this language is still in progress. This language can "
-#| "currently only be selected on development installations of pretix, not in "
-#| "production."
 msgid ""
 "These translations are still in progress. These languages can currently only "
 "be selected on development installations of pretix, not in production."
 msgstr ""
-"La traduction de cette langue est toujours en cours. Ce langage ne peut "
-"actuellement être sélectionné que sur des installations de développement de "
+"La traduction de ces langues est toujours en cours. Ces langage ne peuvent "
+"actuellement être sélectionnés que sur des installations de développement de "
 "pretix, pas en production."
 
 #: pretix/control/forms/checkin.py:93 pretix/control/forms/event.py:1524
@@ -20183,6 +20163,10 @@ msgid ""
 "including most plugins. Even a low value might be enough if you only use "
 "specific features. Untranslated texts will show up in English."
 msgstr ""
+"Ce pourcentage de textes est traduit dans toutes les parties du système, y "
+"compris la plupart des plugins. Même une valeur faible peut suffire si vous "
+"n'utilisez que des fonctionnalités spécifiques. Les textes non traduits "
+"s'afficheront en anglais."
 
 #: pretix/control/templates/pretixcontrol/oauth/app_delete.html:4
 #: pretix/control/templates/pretixcontrol/oauth/app_delete.html:6
@@ -22494,14 +22478,6 @@ msgid "Other organizers accepting gift cards from you"
 msgstr "D’autres organisateurs acceptent les cartes-cadeaux de votre part"
 
 #: pretix/control/templates/pretixcontrol/organizers/giftcard_acceptance_list.html:87
-#, fuzzy
-#| msgid ""
-#| "You can invite other organizers to accept your gift cards. After you have "
-#| "done so, they need to go to the same page in their account and accept "
-#| "your invitation. Note that other organizers will be able to add money to "
-#| "gift cards as well that you will need to collect form them. It is your "
-#| "responsibility to handle the exchange of money to offset the transactions "
-#| "between the two organizers."
 msgid ""
 "You can invite other organizers to accept your gift cards. After you have "
 "done so, they need to go to the same page in their account and accept your "
@@ -22514,8 +22490,8 @@ msgstr ""
 "Une fois que vous l’avez fait, ils doivent aller à la même page dans leur "
 "compte et accepter votre invitation. Notez que d’autres organisateurs "
 "pourront également ajouter de l’argent aux cartes-cadeaux que vous devrez "
-"collecter auprès d’eux. Il est de votre responsabilité de gérer l’échange "
-"d’argent pour compenser les transactions entre les deux organisateurs."
+"collecter auprès d’eux. Il est de votre responsabilité de gérer l’échange d’"
+"argent pour compenser les transactions entre les deux organisateurs."
 
 #: pretix/control/templates/pretixcontrol/organizers/giftcard_acceptance_list.html:95
 msgid ""
@@ -29725,8 +29701,8 @@ msgid ""
 "Sorry, there was an error in the payment process. Please check the link in "
 "your emails to continue."
 msgstr ""
-"Désolé, une erreur s’est produite dans le processus de paiement. Veuillez "
-"vérifier le lien dans vos e-mails pour continuer."
+"Désolé, une erreur s'est produite lors du traitement du paiement. SVP "
+"vérifiez le lien dans vos courriels pour continuer."
 
 #: pretix/plugins/stripe/views.py:567
 msgid ""
