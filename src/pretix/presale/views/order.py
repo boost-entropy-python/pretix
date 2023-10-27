@@ -1172,9 +1172,9 @@ class OrderPositionGiftCardDetails(EventViewMixin, OrderPositionDetailMixin, Lis
 
     @cached_property
     def giftcard(self):
-        return GiftCard.objects.filter(
+        return get_object_or_404(GiftCard.objects.filter(
             Q(owner_ticket_id=self.position.pk) | Q(owner_ticket__addon_to_id=self.position.pk)
-        ).get(pk=self.kwargs['pk'])
+        ), pk=self.kwargs['pk'])
 
     def get_queryset(self):
         return self.giftcard.transactions.order_by('-datetime', '-pk')
@@ -1355,7 +1355,7 @@ class OrderChangeMixin:
                                         rate=a.tax_rate,
                                     )
                                 else:
-                                    v.initial_price = v.display_price
+                                    v.initial_price = v.suggested_price
                             i.expand = any(v.initial for v in i.available_variations)
                         else:
                             i.initial = len(current_addon_products[i.pk, None])
@@ -1369,7 +1369,7 @@ class OrderChangeMixin:
                                     rate=a.tax_rate,
                                 )
                             else:
-                                i.initial_price = i.display_price
+                                i.initial_price = i.suggested_price
 
                     if items:
                         p.addon_form['categories'].append({
