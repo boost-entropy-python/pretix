@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-18 07:26+0000\n"
-"PO-Revision-Date: 2022-06-20 02:00+0000\n"
+"PO-Revision-Date: 2023-11-02 13:02+0000\n"
 "Last-Translator: fyksen <fredrik@fyksen.me>\n"
 "Language-Team: Norwegian Bokmål <https://translate.pretix.eu/projects/pretix/"
 "pretix-js/nb_NO/>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.2\n"
+"X-Generator: Weblate 5.1.1\n"
 
 #: pretix/plugins/banktransfer/static/pretixplugins/banktransfer/ui.js:56
 #: pretix/plugins/banktransfer/static/pretixplugins/banktransfer/ui.js:62
 #: pretix/plugins/banktransfer/static/pretixplugins/banktransfer/ui.js:68
 msgid "Marked as paid"
-msgstr "Sett som betalt"
+msgstr "Merkert som betalt"
 
 #: pretix/plugins/banktransfer/static/pretixplugins/banktransfer/ui.js:76
 msgid "Comment:"
@@ -209,7 +209,7 @@ msgstr "Inngang"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:39
 msgid "Exit"
-msgstr "Utgang"
+msgstr "Avslutt"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:40
 msgid "Scan a ticket or search and press return…"
@@ -230,11 +230,11 @@ msgstr "Ubetalt"
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:44
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:45
 msgid "Canceled"
-msgstr "Kansellert"
+msgstr "Avlyst"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:46
 msgid "Redeemed"
-msgstr "Løst inn"
+msgstr "Innløst"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:47
 msgid "Cancel"
@@ -243,7 +243,7 @@ msgstr "Avbryt"
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:49
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:58
 msgid "Ticket not paid"
-msgstr "Billett ikke betalt"
+msgstr "Billetten er ikke betalt."
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:50
 msgid "This ticket is not yet paid. Do you want to continue anyways?"
@@ -251,7 +251,7 @@ msgstr "Denne billetten er ikke betalt. Vil du fortsette likevel?"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:51
 msgid "Additional information required"
-msgstr "Ekstra informasjon kreves"
+msgstr "pretix account invitation"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:52
 msgid "Valid ticket"
@@ -263,11 +263,11 @@ msgstr "Utgang registrert"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:54
 msgid "Ticket already used"
-msgstr "Billett allerede benyttet"
+msgstr "Billetten er allerede brukt."
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:55
 msgid "Information required"
-msgstr "Informasjon trengs"
+msgstr "Informasjon påkrevd"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:56
 msgid "Unknown ticket"
@@ -286,16 +286,12 @@ msgid "Ticket code revoked/changed"
 msgstr "Billettkode tilbakekalt/endret"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:61
-#, fuzzy
-#| msgid "Ticket not paid"
 msgid "Ticket blocked"
-msgstr "Billett ikke betalt"
+msgstr "Billett blokkert"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:62
-#, fuzzy
-#| msgid "Ticket not paid"
 msgid "Ticket not valid at this time"
-msgstr "Billett ikke betalt"
+msgstr "Billetten er ikke gyldig på dette tidspunktet"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:63
 msgid "Order canceled"
@@ -303,7 +299,7 @@ msgstr "Ordre kansellert"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:64
 msgid "Ticket code is ambiguous on list"
-msgstr ""
+msgstr "Billettkoden er tvetydig på listen"
 
 #: pretix/plugins/webcheckin/static/pretixplugins/webcheckin/main.js:65
 msgid "Checked-in Tickets"
@@ -423,7 +419,7 @@ msgstr "Produkt variasjon"
 
 #: pretix/static/pretixcontrol/js/ui/checkinrules.js:101
 msgid "Gate"
-msgstr ""
+msgstr "Port"
 
 #: pretix/static/pretixcontrol/js/ui/checkinrules.js:105
 msgid "Current date and time"
@@ -442,16 +438,12 @@ msgid "Number of previous entries since midnight"
 msgstr "Antall tidligere oppføringer siden midnatt"
 
 #: pretix/static/pretixcontrol/js/ui/checkinrules.js:121
-#, fuzzy
-#| msgid "Number of previous entries"
 msgid "Number of previous entries since"
-msgstr "Antall tidligere oppføringer"
+msgstr "Antall tidligere oppføringer siden"
 
 #: pretix/static/pretixcontrol/js/ui/checkinrules.js:125
-#, fuzzy
-#| msgid "Number of previous entries"
 msgid "Number of previous entries before"
-msgstr "Antall tidligere oppføringer"
+msgstr "Antall tidligere oppføringer før"
 
 #: pretix/static/pretixcontrol/js/ui/checkinrules.js:129
 msgid "Number of days with a previous entry"
@@ -507,7 +499,7 @@ msgstr "minutter"
 
 #: pretix/static/pretixcontrol/js/ui/checkinrules.js:174
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: pretix/static/pretixcontrol/js/ui/editor.js:72
 msgid "Check-in QR"
@@ -689,44 +681,39 @@ msgid "Your local time:"
 msgstr "Din lokale tid:"
 
 #: pretix/static/pretixpresale/js/walletdetection.js:39
-#, fuzzy
-#| msgid "Apple Pay"
 msgid "Google Pay"
-msgstr "Apple Pay"
+msgstr "Google Pay"
 
 #: pretix/static/pretixpresale/js/widget/widget.js:16
 msgctxt "widget"
 msgid "Quantity"
-msgstr ""
+msgstr "Antall"
 
 #: pretix/static/pretixpresale/js/widget/widget.js:17
 msgctxt "widget"
 msgid "Decrease quantity"
-msgstr ""
+msgstr "Begrenset antall"
 
 #: pretix/static/pretixpresale/js/widget/widget.js:18
 msgctxt "widget"
 msgid "Increase quantity"
-msgstr ""
+msgstr "Øk antall"
 
 #: pretix/static/pretixpresale/js/widget/widget.js:19
 msgctxt "widget"
 msgid "Price"
-msgstr ""
+msgstr "Pris"
 
 #: pretix/static/pretixpresale/js/widget/widget.js:20
-#, fuzzy
-#| msgid "Selected only"
 msgctxt "widget"
 msgid "Select"
-msgstr "Kun valgte"
+msgstr "Velg"
 
 #: pretix/static/pretixpresale/js/widget/widget.js:21
-#, fuzzy, javascript-format
-#| msgid "Selected only"
+#, javascript-format
 msgctxt "widget"
 msgid "Select %s"
-msgstr "Kun valgte"
+msgstr "Velg%s"
 
 #: pretix/static/pretixpresale/js/widget/widget.js:22
 #, fuzzy, javascript-format
@@ -937,6 +924,9 @@ msgid ""
 "add yourself to the waiting list. We will then notify if seats are available "
 "again."
 msgstr ""
+"Noen eller alle billettkategorier er for øyeblikket utsolgt. Hvis du ønsker, "
+"kan du legge deg til på ventelisten. Vi vil da gi deg beskjed hvis det blir "
+"ledige seter igjen."
 
 #: pretix/static/pretixpresale/js/widget/widget.js:63
 msgctxt "widget"
