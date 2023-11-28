@@ -498,7 +498,7 @@ Order position endpoints
                            ``attendee_name,positionid``
    :query string order: Only return positions of the order with the given order code
    :query string search: Fuzzy search matching the attendee name, order code, invoice address name as well as to the beginning of the secret.
-   :query string expand: Expand a field into a full object. Currently only ``subevent``, ``item``, and ``variation`` are supported. Can be passed multiple times.
+   :query string expand: Expand a field into a full object. Currently ``subevent``, ``item``, ``variation``, and ``answers.question`` are supported. Can be passed multiple times.
    :query integer item: Only return positions with the purchased item matching the given ID.
    :query integer item__in: Only return positions with the purchased item matching one of the given comma-separated IDs.
    :query integer variation: Only return positions with the purchased item variation matching the given ID.
@@ -632,7 +632,8 @@ Order position endpoints
                                        set this to ``false``. In that case, questions will just be ignored. Defaults
                                        to ``true``.
    :<json boolean canceled_supported: When this parameter is set to ``true``, the response code ``canceled`` may be
-                                      returned. Otherwise, canceled orders will return ``unpaid``.
+                                      returned. Otherwise, canceled orders will return ``unpaid``. (**Deprecated**, in
+                                      the future, this will be ignored and ``canceled`` may always be returned.)
    :<json datetime datetime: Specifies the datetime of the check-in. If not supplied, the current time will be used.
    :<json boolean force: Specifies that the check-in should succeed regardless of revoked barcode, previous check-ins or required
                          questions that have not been filled. This is usually used to upload offline scans that already happened,
@@ -706,6 +707,7 @@ Order position endpoints
             "position": 1,
             "identifier": "WY3TP9SL",
             "ask_during_checkin": true,
+            "show_during_checkin": true,
             "options": [
               {
                 "id": 1,
@@ -758,6 +760,7 @@ Order position endpoints
    * ``rules`` - Check-in prevented by a user-defined rule.
    * ``ambiguous`` - Multiple tickets match scan, rejected.
    * ``revoked`` - Ticket code has been revoked.
+   * ``unapproved`` - Order has not yet been approved.
 
    In case of reason ``rules`` or ``invalid_time``, there might be an additional response field ``reason_explanation``
    with a human-readable description of the violated rules. However, that field can also be missing or be ``null``.
