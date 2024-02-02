@@ -654,7 +654,7 @@ def days_for_template(ebd, week, future_only=False):
             'events': sorted(ebd.get(day), key=sort_ev) if day in ebd else []
         }
         for day in week.days()
-        if not future_only or day > now().astimezone(get_current_timezone()).date()
+        if not future_only or day >= now().astimezone(get_current_timezone()).date()
     ]
 
 
@@ -677,7 +677,7 @@ def weeks_for_template(ebd, year, month, future_only=False):
         ]
         for week in calendar.monthcalendar(year, month)
         if not future_only or (
-            any(day != 0 and date(year, month, day) > today for day in week)
+            any(day != 0 and date(year, month, day) >= today for day in week)
         )
     ]
 
@@ -862,7 +862,7 @@ class DayCalendarView(OrganizerViewMixin, EventListMixin, TemplateView):
 
     def _set_date_to_next_event(self):
         now_dt = now()
-        next_ev = filter_qs_by_attr(Event.objects.using(settings.DATABASE_REPLICA).anootate(
+        next_ev = filter_qs_by_attr(Event.objects.using(settings.DATABASE_REPLICA).annotate(
             effective_date=Case(
                 When(date_from__lt=now_dt, date_to__isnull=False, date_to__gte=now_dt, then=Value(now_dt)),
                 default=F('date_from'),

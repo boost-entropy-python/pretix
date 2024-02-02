@@ -19,4 +19,16 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 #
-__version__ = "2024.2.0.dev0"
+
+from django import template
+
+register = template.Library()
+
+
+@register.filter("iter_weekdays")
+def iter_weekdays(weeks):
+    for i in range(7):
+        for w in weeks:
+            if i <= len(w) and w[i]:
+                yield w[i]['date']
+                break
