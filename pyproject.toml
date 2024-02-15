@@ -37,7 +37,7 @@ dependencies = [
   "defusedcsv>=1.1.0",
   "dj-static",
   "Django==4.2.*",
-  "django-bootstrap3==23.1.*",
+  "django-bootstrap3==23.6.*",
   "django-compressor==4.4",
   "django-countries==7.5.*",
   "django-filter==23.5",
@@ -65,7 +65,7 @@ dependencies = [
   "kombu==5.3.*",
   "libsass==0.22.*",
   "lxml",
-  "markdown==3.4.3",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
+  "markdown==3.5.2",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
   # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
   "mt-940==4.30.*",
   "oauthlib==3.2.*",
@@ -81,7 +81,7 @@ dependencies = [
   "psycopg2-binary",
   "pycountry",
   "pycparser==2.21",
-  "pycryptodome==3.18.*",
+  "pycryptodome==3.20.*",
   "pypdf==3.9.*",
   "python-bidi==0.4.*",  # Support for Arabic in reportlab
   "python-dateutil==2.8.*",
@@ -102,7 +102,7 @@ dependencies = [
   "tqdm==4.*",
   "vat_moss_forked==2020.3.20.0.11.0",
   "vobject==0.9.*",
-  "webauthn==0.4.*",
+  "webauthn==2.0.*",
   "zeep==4.2.*"
 ]
 
@@ -112,7 +112,7 @@ dev = [
   "aiohttp==3.9.*",
   "coverage",
   "coveralls",
-  "fakeredis==2.18.*",
+  "fakeredis==2.21.*",
   "flake8==6.0.*",
   "freezegun",
   "isort==5.13.*",
@@ -124,11 +124,11 @@ dev = [
   "pytest-cache",
   "pytest-cov",
   "pytest-django==4.*",
-  "pytest-mock==3.10.*",
+  "pytest-mock==3.12.*",
   "pytest-rerunfailures==13.*",
   "pytest-sugar",
   "pytest-xdist==3.3.*",
-  "pytest==7.3.*",
+  "pytest==8.0.*",
   "responses",
 ]
 
