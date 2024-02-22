@@ -219,15 +219,17 @@ class ExtValidationMixin:
 
     def clean(self, *args, **kwargs):
         data = super().clean(*args, **kwargs)
-        if isinstance(data, UploadedFile):
-            filename = data.name
+
+        from ...base.models import CachedFile
+        if isinstance(data, (UploadedFile, CachedFile)):
+            filename = data.name if isinstance(data, UploadedFile) else data.filename
             ext = os.path.splitext(filename)[1]
             ext = ext.lower()
             if ext not in self.ext_whitelist:
                 raise forms.ValidationError(_("Filetype not allowed!"))
 
             if ext in IMAGE_EXTS:
-                validate_uploaded_file_for_valid_image(data)
+                validate_uploaded_file_for_valid_image(data if isinstance(data, UploadedFile) else data.file)
 
         return data
 
@@ -257,6 +259,12 @@ class CachedFileField(ExtFileField):
         if isinstance(data, File):
             if hasattr(data, '_uploaded_to'):
                 return data._uploaded_to
+
+            try:
+                self.clean(data)
+            except ValidationError:
+                return None
+
             cf = CachedFile.objects.create(
                 expires=now() + datetime.timedelta(days=1),
                 date=now(),
@@ -268,6 +276,9 @@ class CachedFileField(ExtFileField):
             cf.save()
             data._uploaded_to = cf
             return cf
+        if isinstance(data, CachedFile):
+            return data
+
         return super().bound_data(data, initial)
 
     def clean(self, *args, **kwargs):
