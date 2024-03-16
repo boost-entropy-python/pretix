@@ -197,7 +197,7 @@ error_messages = {
         'You need to select at least %(min)s add-ons from the category %(cat)s for the product %(base)s.',
         'min'
     ),
-    'addon_no_multi': gettext_lazy('You can select every add-ons from the category %(cat)s for the product %(base)s at most once.'),
+    'addon_no_multi': gettext_lazy('You can select every add-on from the category %(cat)s for the product %(base)s at most once.'),
     'addon_already_checked_in': gettext_lazy('You cannot remove the position %(addon)s since it has already been checked in.'),
 }
 
@@ -220,7 +220,7 @@ def reactivate_order(order: Order, force: bool=False, user: User=None, auth=None
         is_available = order._is_still_available(now(), count_waitinglist=False, check_voucher_usage=True,
                                                  check_memberships=True, lock=True, force=force)
         if is_available is True:
-            if order.payment_refund_sum >= order.total:
+            if order.payment_refund_sum >= order.total and not order.require_approval:
                 order.status = Order.STATUS_PAID
             else:
                 order.status = Order.STATUS_PENDING
@@ -2500,7 +2500,7 @@ class OrderChangeManager:
 
         remaining_total = sum([p.price for p in self.order.positions.all()]) + sum([f.value for f in self.order.fees.all()])
         offset_amount = min(max(0, self.completed_payment_sum - remaining_total), split_order.total)
-        if offset_amount >= split_order.total:
+        if offset_amount >= split_order.total and not split_order.require_approval:
             split_order.status = Order.STATUS_PAID
         else:
             split_order.status = Order.STATUS_PENDING
@@ -2671,6 +2671,7 @@ class OrderChangeManager:
 
         for p in self.order.positions.all():
             cp = CartPosition(
+                event=self.event,
                 item=p.item,
                 variation=p.variation,
                 attendee_name_parts=p.attendee_name_parts,
@@ -2691,16 +2692,23 @@ class OrderChangeManager:
                 positions_to_fake_cart[op.position].seat = op.seat
             elif isinstance(op, self.MembershipOperation):
                 positions_to_fake_cart[op.position].used_membership = op.membership
+            elif isinstance(op, self.ChangeValidFromOperation):
+                positions_to_fake_cart[op.position].override_valid_from = op.valid_from
+            elif isinstance(op, self.ChangeValidUntilOperation):
+                positions_to_fake_cart[op.position].override_valid_until = op.valid_until
             elif isinstance(op, self.CancelOperation) and op.position in positions_to_fake_cart:
                 fake_cart.remove(positions_to_fake_cart[op.position])
             elif isinstance(op, self.AddOperation):
                 cp = CartPosition(
+                    event=self.event,
                     item=op.item,
                     variation=op.variation,
                     used_membership=op.membership,
                     subevent=op.subevent,
                     seat=op.seat,
                 )
+                cp.override_valid_from = op.valid_from
+                cp.override_valid_until = op.valid_until
                 fake_cart.append(cp)
         try:
             validate_memberships_in_order(self.order.customer, fake_cart, self.event, lock=True, ignored_order=self.order, testmode=self.order.testmode)
