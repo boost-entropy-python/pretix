@@ -20,6 +20,7 @@
 # <https://www.gnu.org/licenses/>.
 #
 import hashlib
+import logging
 import time
 
 from django.conf import settings
@@ -29,12 +30,22 @@ from geoip2.errors import AddressNotFoundError
 
 from pretix.helpers.http import get_client_ip
 
+logger = logging.getLogger(__name__)
+
 
 class SessionInvalid(Exception):
     pass
 
 
 class SessionReauthRequired(Exception):
+    pass
+
+
+class Session2FASetupRequired(Exception):
+    pass
+
+
+class SessionPasswordChangeRequired(Exception):
     pass
 
 
@@ -71,6 +82,8 @@ def assert_session_valid(request):
     if 'User-Agent' in request.headers:
         if 'pinned_user_agent' in request.session:
             if request.session.get('pinned_user_agent') != get_user_agent_hash(request):
+                logger.info(f"Backend session for user {request.user.pk} terminated due to user agent change. "
+                            f"New agent: \"{request.headers['User-Agent']}\"")
                 raise SessionInvalid()
         else:
             request.session['pinned_user_agent'] = get_user_agent_hash(request)
@@ -82,9 +95,27 @@ def assert_session_valid(request):
 
         if 'pinned_country' in request.session:
             if request.session.get('pinned_country') != country:
+                logger.info(f"Backend session for user {request.user.pk} terminated due to country change. "
+                            f"Old country: \"{request.session.get('pinned_countres')}\" New country: \"{country}\"")
                 raise SessionInvalid()
         else:
             request.session['pinned_country'] = country
 
     request.session['pretix_auth_last_used'] = int(time.time())
+
+    if request.user.needs_password_change:
+        raise SessionPasswordChangeRequired()
+
+    force_2fa = not request.user.require_2fa and (
+        settings.PRETIX_OBLIGATORY_2FA is True or
+        (settings.PRETIX_OBLIGATORY_2FA == "staff" and request.user.is_staff) or
+        cache.get_or_set(
+            f'user_2fa_team_{request.user.pk}',
+            lambda: request.user.teams.filter(require_2fa=True).exists(),
+            timeout=300
+        )
+    )
+    if force_2fa:
+        raise Session2FASetupRequired()
+
     return True

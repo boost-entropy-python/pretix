@@ -39,8 +39,8 @@ dependencies = [
   "Django==4.2.*",
   "django-bootstrap3==23.6.*",
   "django-compressor==4.4",
-  "django-countries==7.5.*",
-  "django-filter==24.1",
+  "django-countries==7.6.*",
+  "django-filter==24.2",
   "django-formset-js-improved==0.5.0.3",
   "django-formtools==2.5.1",
   "django-hierarkey==1.1.*",
@@ -80,7 +80,7 @@ dependencies = [
   "protobuf==5.26.*",
   "psycopg2-binary",
   "pycountry",
-  "pycparser==2.21",
+  "pycparser==2.22",
   "pycryptodome==3.20.*",
   "pypdf==3.9.*",
   "python-bidi==0.4.*",  # Support for Arabic in reportlab
@@ -92,7 +92,7 @@ dependencies = [
   "redis==5.0.*",
   "reportlab==4.1.*",
   "requests==2.31.*",
-  "sentry-sdk==1.42.*",
+  "sentry-sdk==1.44.*",
   "sepaxml==2.6.*",
   "slimit",
   "static3==0.7.*",
@@ -102,7 +102,7 @@ dependencies = [
   "tqdm==4.*",
   "vat_moss_forked==2020.3.20.0.11.0",
   "vobject==0.9.*",
-  "webauthn==2.0.*",
+  "webauthn==2.1.*",
   "zeep==4.2.*"
 ]
 
@@ -122,7 +122,7 @@ dev = [
   "pytest-cache",
   "pytest-cov",
   "pytest-django==4.*",
-  "pytest-mock==3.12.*",
+  "pytest-mock==3.14.*",
   "pytest-rerunfailures==14.*",
   "pytest-sugar",
   "pytest-xdist==3.5.*",

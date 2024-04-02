@@ -45,6 +45,7 @@ from pretix.control.views import (
 urlpatterns = [
     re_path(r'^logout$', auth.logout, name='auth.logout'),
     re_path(r'^login$', auth.login, name='auth.login'),
+    re_path(r'^login/bad_origin$', auth.bad_origin_report, name='auth.bad_origin_report'),
     re_path(r'^login/2fa$', auth.Login2FAView.as_view(), name='auth.login.2fa'),
     re_path(r'^register$', auth.register, name='auth.register'),
     re_path(r'^invite/(?P<token>[a-zA-Z0-9]+)$', auth.invite, name='auth.invite'),
@@ -94,6 +95,7 @@ urlpatterns = [
     re_path(r'^settings/oauth/apps/(?P<pk>\d+)/roll$', oauth.OAuthApplicationRollView.as_view(),
             name='user.settings.oauth.app.roll'),
     re_path(r'^settings/2fa/$', user.User2FAMainView.as_view(), name='user.settings.2fa'),
+    re_path(r'^settings/2fa/leaveteams$', user.User2FALeaveTeamsView.as_view(), name='user.settings.2fa.leaveteams'),
     re_path(r'^settings/2fa/add$', user.User2FADeviceAddView.as_view(), name='user.settings.2fa.add'),
     re_path(r'^settings/2fa/enable', user.User2FAEnableView.as_view(), name='user.settings.2fa.enable'),
     re_path(r'^settings/2fa/disable', user.User2FADisableView.as_view(), name='user.settings.2fa.disable'),
