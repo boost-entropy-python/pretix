@@ -1237,6 +1237,9 @@ class Event(EventMixin, LoggedModel):
         if self.has_paid_things and not self.has_payment_provider:
             issues.append(_('You have configured at least one paid product but have not enabled any payment methods.'))
 
+        if self.has_paid_things and self.currency == "XXX":
+            issues.append(_('You have configured at least one paid product but have not configured a currency.'))
+
         if not self.quotas.exists():
             issues.append(_('You need to configure at least one quota to sell anything.'))
 
@@ -1465,6 +1468,10 @@ class SubEvent(EventMixin, LoggedModel):
 
     items = models.ManyToManyField('Item', through='SubEventItem')
     variations = models.ManyToManyField('ItemVariation', through='SubEventItemVariation')
+    comment = models.TextField(
+        verbose_name=_("Internal comment"),
+        null=True, blank=True
+    )
 
     last_modified = models.DateTimeField(
         auto_now=True, db_index=True
