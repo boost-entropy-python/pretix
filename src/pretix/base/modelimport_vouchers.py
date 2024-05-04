@@ -44,8 +44,6 @@ class CodeColumn(ImportColumn):
         super().__init__(*args)
 
     def clean(self, value, previous_values):
-        if not value:
-            raise ValidationError(_('A voucher cannot be created without a code.'))
         if value:
             MinLengthValidator(5)(value)
         if value and (value in self._cached or Voucher.objects.filter(event=self.event, code=value).exists()):
@@ -77,7 +75,7 @@ class MaxUsagesColumn(IntegerColumnMixin, ImportColumn):
         ]
 
     def clean(self, value, previous_values):
-        if value is None:
+        if value is None and previous_values.get("code"):
             raise ValidationError(_('The maximum number of usages must be set.'))
         return super().clean(value, previous_values)
 
