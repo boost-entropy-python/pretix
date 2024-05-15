@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-08 13:18+0000\n"
-"PO-Revision-Date: 2024-05-07 22:00+0000\n"
+"PO-Revision-Date: 2024-05-13 21:00+0000\n"
 "Last-Translator: Serhii Horichenko <m@sgg.im>\n"
 "Language-Team: Ukrainian <https://translate.pretix.eu/projects/pretix/pretix/"
 "uk/>\n"
@@ -1599,9 +1599,8 @@ msgstr ""
 
 #: pretix/base/exporters/items.py:58 pretix/base/exporters/orderlist.py:571
 #: pretix/base/exporters/orderlist.py:862
-#, fuzzy
 msgid "Product ID"
-msgstr "Продукт"
+msgstr "ID Продукту"
 
 #: pretix/base/exporters/items.py:59 pretix/base/exporters/orderlist.py:573
 #: pretix/base/exporters/orderlist.py:864
@@ -2178,7 +2177,7 @@ msgstr "Дата закінчення"
 #: pretix/presale/templates/pretixpresale/event/fragment_cart.html:11
 #: pretix/presale/templates/pretixpresale/organizers/customer_membership.html:45
 msgid "Product"
-msgstr "Товар"
+msgstr "Продукт"
 
 #: pretix/base/exporters/orderlist.py:578
 #: pretix/base/exporters/orderlist.py:583 pretix/base/forms/questions.py:654
@@ -2245,7 +2244,7 @@ msgstr "Зона сидіння"
 #: pretix/base/exporters/orderlist.py:598
 #: pretix/plugins/checkinlists/exporters.py:513
 msgid "Seat row"
-msgstr "Ряд"
+msgstr "Ряд місця"
 
 #: pretix/base/exporters/orderlist.py:599
 #: pretix/plugins/checkinlists/exporters.py:514
@@ -5940,7 +5939,7 @@ msgstr "Вартість доставки"
 
 #: pretix/base/models/orders.py:2219
 msgid "Service fee"
-msgstr "Плата за послуги"
+msgstr "Сервісний збір"
 
 #: pretix/base/models/orders.py:2220
 #: pretix/control/templates/pretixcontrol/order/index.html:156
@@ -7022,7 +7021,7 @@ msgstr "Ціна з урахуванням доповнень"
 #: pretix/base/services/placeholders.py:529
 #: pretix/base/services/placeholders.py:538 pretix/control/views/event.py:797
 msgid "John Doe"
-msgstr "John Doe (\"Джон До\")"
+msgstr "Петро Коваль"
 
 #: pretix/base/pdf.py:178
 #: pretix/control/templates/pretixcontrol/order/index.html:549
@@ -7050,7 +7049,7 @@ msgid ""
 "12345 Any City\n"
 "Atlantis"
 msgstr ""
-"Петро Козачук\n"
+"Петро Коваль\n"
 "Зразок компанії\n"
 "Вулиця Степана Бандери 42\n"
 "12345 Будь-яке місто\n"
@@ -7322,7 +7321,7 @@ msgstr "Партер, ряд 3, місце 4"
 #: pretix/base/pdf.py:492 pretix/base/pdf.py:498
 #: pretix/control/forms/orders.py:330
 msgid "General admission"
-msgstr "Загальний допуск"
+msgstr "Вільне місце"
 
 #: pretix/base/pdf.py:495
 msgid "Seat: zone"
@@ -7373,7 +7372,7 @@ msgstr "Ім'я учасника: {part}"
 #: pretix/base/services/placeholders.py:556
 #: pretix/control/forms/organizer.py:598
 msgid "Mr Doe"
-msgstr "Пане Петренко"
+msgstr "Пане Ковалю"
 
 #: pretix/base/pdf.py:656 pretix/base/pdf.py:663
 #: pretix/plugins/badges/exporters.py:486
@@ -11820,7 +11819,7 @@ msgstr "Джон"
 #: pretix/base/settings.py:3654 pretix/base/settings.py:3685
 msgctxt "person_name_sample"
 msgid "Doe"
-msgstr "До"
+msgstr "Коваль"
 
 #: pretix/base/settings.py:3472 pretix/base/settings.py:3488
 #: pretix/base/settings.py:3520 pretix/base/settings.py:3639
@@ -11848,7 +11847,7 @@ msgstr "Середнє ім'я"
 #: pretix/control/forms/organizer.py:592
 msgctxt "person_name_sample"
 msgid "John Doe"
-msgstr "Джон До"
+msgstr "Петро Коваль"
 
 #: pretix/base/settings.py:3592
 msgid "Calling name"
@@ -30137,10 +30136,8 @@ msgid "Do you really want to disconnect your Stripe account?"
 msgstr "Чи виточно хочете видалити адресу з вашого облікового запису?"
 
 #: pretix/plugins/stripe/templates/pretixplugins/stripe/oauth_disconnect.html:16
-#, fuzzy
-#| msgid "Discounts"
 msgid "Disconnect"
-msgstr "Знижка"
+msgstr "Від'єднати"
 
 #: pretix/plugins/stripe/templates/pretixplugins/stripe/pending.html:4
 msgid ""
@@ -32750,10 +32747,8 @@ msgstr "Календар"
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:49
 #: pretix/presale/templates/pretixpresale/fragment_day_calendar.html:65
 #: pretix/presale/templates/pretixpresale/fragment_week_calendar.html:37
-#, fuzzy
-#| msgid "Continue"
 msgid "(continued)"
-msgstr "Продовжити"
+msgstr "(подовжено)"
 
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:58
 #: pretix/presale/templates/pretixpresale/fragment_week_calendar.html:46
@@ -33229,7 +33224,7 @@ msgstr "Будь ласка, поверніться назад та спробу
 #: pretix/presale/views/order.py:373 pretix/presale/views/order.py:438
 #: pretix/presale/views/order.py:519
 msgid "The payment for this order cannot be continued."
-msgstr "Оплата за це замовлення не може бути продовжена."
+msgstr "Оплата за це замовлення не може бути подовжена."
 
 #: pretix/presale/views/order.py:378 pretix/presale/views/order.py:447
 #: pretix/presale/views/order.py:528 pretix/presale/views/order.py:569
