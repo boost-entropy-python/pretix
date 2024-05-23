@@ -1035,7 +1035,7 @@ class BaseInvoiceAddressForm(forms.ModelForm):
         self.all_optional = kwargs.pop('all_optional', False)
 
         kwargs.setdefault('initial', {})
-        if not kwargs.get('instance') or not kwargs['instance'].country:
+        if (not kwargs.get('instance') or not kwargs['instance'].country) and not kwargs["initial"].get("country"):
             kwargs['initial']['country'] = guess_country_from_request(self.request, self.event)
 
         super().__init__(*args, **kwargs)
@@ -1171,7 +1171,7 @@ class BaseInvoiceAddressForm(forms.ModelForm):
                     self.instance.vat_id_validated = False
                     messages.warning(self.request, e.message)
                 else:
-                    raise ValidationError(e.message)
+                    raise ValidationError({"vat_id": e.message})
             except VATIDTemporaryError as e:
                 self.instance.vat_id_validated = False
                 if self.request and self.vat_warning:
