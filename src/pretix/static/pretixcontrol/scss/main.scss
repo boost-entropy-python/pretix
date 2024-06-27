@@ -1,4 +1,5 @@
-@import "../../pretixbase/scss/_variables.scss";
+@import "../../pretixbase/scss/_theme_variables.scss";
+@import "../../pretixbase/scss/_bootstrap_vars.scss";
 @import "../../bootstrap/scss/_bootstrap.scss";
 @import "../../fontawesome/scss/font-awesome.scss";
 @import "../../pretixbase/scss/_theme.scss";
@@ -587,7 +588,7 @@ td > p:last-child,
         text-align: center;
     }
     &.availability .progress-bar-success {
-        background: lighten($brand-success, 20%);
+        background: var(--pretix-brand-success-lighten-20);
     }
 }
 .quotabox-more {
@@ -841,8 +842,20 @@ h1 .label {
 tbody[data-dnd-url] {
     transition: opacity 1s;
 }
+.table-items tbody + tbody {
+  border-top-width: 1px;
+}
+.table-items tbody[data-dnd-url]:after {
+    content:'';
+    display: table-row;
+    height: 0.5em;
+}
 .sortable-sorting tbody:not(.sortable-dragarea) {
     opacity: .4;
+}
+.font-normal {
+    font-style: normal;
+    font-weight: normal;
 }
 tbody th {
     background: $table-bg-hover;

@@ -80,6 +80,17 @@ of every page in the frontend. You will get the request as the keyword argument
 As with all plugin signals, the ``sender`` keyword argument will contain the event.
 """
 
+seatingframe_html_head = EventPluginSignal()
+"""
+Arguments: ``request``
+
+This signal allows you to put code inside the HTML ``<head>`` tag
+of the seatingframe page in the frontend. You will get the request as the keyword argument
+``request`` and are expected to return plain HTML.
+
+As with all plugin signals, the ``sender`` keyword argument will contain the event.
+"""
+
 html_page_header = EventPluginSignal()
 """
 Arguments: ``request``
@@ -98,33 +109,6 @@ Arguments: ``request``
 This signal allows you to put code before the end of the HTML ``<body>`` tag
 of every page in the frontend. You will get the request as the keyword argument
 ``request`` and are expected to return plain HTML.
-
-As with all plugin signals, the ``sender`` keyword argument will contain the event.
-"""
-
-sass_preamble = EventPluginSignal()
-"""
-Arguments: ``filename``
-
-This signal allows you to put SASS code at the beginning of the event-specific
-stylesheet. Keep in mind that this will only be called/rebuilt when the user changes
-display settings or pretix gets updated. You will get the filename that is being
-generated (usually "main.scss" or "widget.scss"). This SASS code will be loaded *after*
-setting of user-defined variables like colors and fonts but *before* pretix' SASS
-code.
-
-As with all plugin signals, the ``sender`` keyword argument will contain the event.
-"""
-
-sass_postamble = EventPluginSignal()
-"""
-Arguments: ``filename``
-
-This signal allows you to put SASS code at the end of the event-specific
-stylesheet. Keep in mind that this will only be called/rebuilt when the user changes
-display settings or pretix gets updated. You will get the filename that is being
-generated (usually "main.scss" or "widget.scss"). This SASS code will be loaded *after*
-all of pretix' SASS code.
 
 As with all plugin signals, the ``sender`` keyword argument will contain the event.
 """

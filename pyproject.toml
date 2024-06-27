@@ -59,7 +59,7 @@ dependencies = [
   "dnspython==2.6.*",
   "drf_ujson2==1.7.*",
   "geoip2==4.*",
-  "importlib_metadata==7.*",  # Polyfill, we can probably drop this once we require Python 3.10+
+  "importlib_metadata==8.*",  # Polyfill, we can probably drop this once we require Python 3.10+
   "isoweek",
   "jsonschema",
   "kombu==5.3.*",
@@ -103,7 +103,7 @@ dependencies = [
   "ua-parser==0.18.*",
   "vat_moss_forked==2020.3.20.0.11.0",
   "vobject==0.9.*",
-  "webauthn==2.1.*",
+  "webauthn==2.2.*",
   "zeep==4.2.*"
 ]
 
