@@ -12,7 +12,7 @@ Core
 
 .. automodule:: pretix.base.signals
    :members: periodic_task, event_live_issues, event_copy_data, email_filter, register_notification_types, notification,
-      item_copy_data, register_sales_channels, register_global_settings, quota_availability, global_email_filter,
+      item_copy_data, register_sales_channel_types, register_global_settings, quota_availability, global_email_filter,
       register_ticket_secret_generators, gift_card_transaction_display,
       register_text_placeholders, register_mail_placeholders
 
@@ -35,7 +35,7 @@ Frontend
 --------
 
 .. automodule:: pretix.presale.signals
-   :members: html_head, html_footer, footer_link, global_footer_link, front_page_top, front_page_bottom, front_page_bottom_widget, fee_calculation_for_cart, contact_form_fields, question_form_fields, contact_form_fields_overrides, question_form_fields_overrides, checkout_confirm_messages, checkout_confirm_page_content, checkout_all_optional, html_page_header, render_seating_plan, checkout_flow_steps, position_info, position_info_top, item_description, global_html_head, global_html_footer, global_html_page_header
+   :members: html_head, html_footer, footer_link, global_footer_link, front_page_top, front_page_bottom, front_page_bottom_widget, fee_calculation_for_cart, contact_form_fields, question_form_fields, contact_form_fields_overrides, question_form_fields_overrides, checkout_confirm_messages, checkout_confirm_page_content, checkout_all_optional, html_page_header, render_seating_plan, checkout_flow_steps, position_info, position_info_top, item_description, global_html_head, global_html_footer, global_html_page_header, seatingframe_html_head
 
 
 .. automodule:: pretix.presale.signals
