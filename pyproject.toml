@@ -82,8 +82,8 @@ dependencies = [
   "pycountry",
   "pycparser==2.22",
   "pycryptodome==3.20.*",
-  "pypdf==4.2.*",
-  "python-bidi==0.4.*",  # Support for Arabic in reportlab
+  "pypdf==4.3.*",
+  "python-bidi==0.5.*",  # Support for Arabic in reportlab
   "python-dateutil==2.9.*",
   "pytz",
   "pytz-deprecation-shim==0.1.*",
@@ -92,7 +92,7 @@ dependencies = [
   "redis==5.0.*",
   "reportlab==4.2.*",
   "requests==2.31.*",
-  "sentry-sdk==2.5.*",
+  "sentry-sdk==2.10.*",
   "sepaxml==2.6.*",
   "slimit",
   "static3==0.7.*",
