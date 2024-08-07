@@ -22,7 +22,7 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
-  "Framework :: Django :: 4.1",
+  "Framework :: Django :: 4.2",
 ]
 
 dependencies = [
@@ -35,11 +35,11 @@ dependencies = [
   "cryptography>=3.4.2",
   "css-inline==0.14.*",
   "defusedcsv>=1.1.0",
-  "Django[argon2]==4.2.*",
+  "Django[argon2]==4.2.*,>=4.2.15",
   "django-bootstrap3==24.2",
   "django-compressor==4.5.1",
   "django-countries==7.6.*",
-  "django-filter==24.2",
+  "django-filter==24.3",
   "django-formset-js-improved==0.5.0.3",
   "django-formtools==2.5.1",
   "django-hierarkey==1.2.*",
@@ -61,7 +61,7 @@ dependencies = [
   "importlib_metadata==8.*",  # Polyfill, we can probably drop this once we require Python 3.10+
   "isoweek",
   "jsonschema",
-  "kombu==5.3.*",
+  "kombu==5.4.*",
   "libsass==0.23.*",
   "lxml",
   "markdown==3.6",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
