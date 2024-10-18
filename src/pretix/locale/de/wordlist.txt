@@ -82,6 +82,7 @@ Connect
 Consent
 Copyleft
 Cronjob
+Cross
 csv
 Customer
 CZK
@@ -280,6 +281,7 @@ Scopes
 sechsstelligen
 Secret
 Security
+Selling
 SEPA
 Shirts
 Signaturverfahren
