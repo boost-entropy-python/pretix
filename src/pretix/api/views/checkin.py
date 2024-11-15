@@ -116,7 +116,7 @@ class CheckinListViewSet(viewsets.ModelViewSet):
         if 'subevent' in self.request.query_params.getlist('expand'):
             qs = qs.prefetch_related(
                 'subevent', 'subevent__event', 'subevent__subeventitem_set', 'subevent__subeventitemvariation_set',
-                'subevent__seat_category_mappings', 'subevent__meta_values', 'auto_checkin_sales_channels'
+                'subevent__seat_category_mappings', 'subevent__meta_values',
             )
         return qs
 
@@ -143,7 +143,9 @@ class CheckinListViewSet(viewsets.ModelViewSet):
             data=self.request.data
         )
 
+    @transaction.atomic
     def perform_destroy(self, instance):
+        instance.checkins.all().delete()
         instance.log_action(
             'pretix.event.checkinlist.deleted',
             user=self.request.user,
