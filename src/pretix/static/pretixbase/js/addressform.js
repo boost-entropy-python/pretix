@@ -20,7 +20,7 @@ $(function () {
                     xhr.abort();
                 }
                 for (var k in dependents) dependents[k].prop("disabled", true);
-                loader.fadeIn();
+                loader.show();
                 xhr = $.getJSON(url + '?country=' + dependency.val(), function (data) {
                     var selected_value = dependents.state.prop("data-selected-value");
                     if (selected_value) dependents.state.prop("data-selected-value", "");
@@ -43,9 +43,17 @@ $(function () {
                     }
                     for (var k in dependents) dependents[k].prop("disabled", false);
                 }).always(function() {
-                    loader.fadeOut();
+                    loader.hide();
                 }).fail(function(){
-                    // TODO: handle failed request
+                    // In case of errors, show everything and require nothing, we can still handle errors in backend
+                    for(var k in dependents) {
+                        const dependent = dependents[k],
+                            visible = true,
+                            required = false;
+
+                        dependent.closest(".form-group").toggle(visible).toggleClass('required', required);
+                        dependent.prop("required", required);
+                    }
                 });
             };
         dependents.state.prop("data-selected-value", dependents.state.val());
