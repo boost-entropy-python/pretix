@@ -66,10 +66,12 @@ BSD
 bspw
 Bokmål
 Boleto
+Buchhaltungs
 Bundles
 Butterfly
 bzw
 ca
+Ceuta
 Cc
 chardet
 charge
@@ -158,9 +160,12 @@ Inc
 inkl
 innenname
 innennamen
+innergemeinschaftliche
+Innergemeinschaftlicher
 Input
 Installations
 integrationen
+intra
 INV
 invalidieren
 invalidiert
@@ -177,10 +182,12 @@ Kombitickets
 Kompatibilitätsmodus
 Konfigurations
 Kosovo
+land
 landesspezifische
 Lead
 Leaflet
 Linktext
+lit
 Logindaten
 Lösch
 loszulegen
@@ -188,6 +195,7 @@ Ltd
 max
 MariaDB
 MapQuest
+Melilla
 Mercado
 Merchandise
 Meta
@@ -269,6 +277,7 @@ rückabgewickelt
 Rundungsdifferenzen
 Sa
 Saalplan
+Sammlungsstücken
 SAQ
 SCA
 Scan
@@ -357,6 +366,7 @@ USt
 Überzahlten
 Validierung
 Venmo
+Veranstalterdomain
 Veranstaltereinstellungen
 Veranstalterkonten
 Veranstalterkonto
@@ -367,6 +377,7 @@ Veranstalterseite
 Veranstalterübersicht
 veranstalterweiten
 Veranstaltungs
+Veranstalterdomain
 veranstaltungsweiten
 Verfügbarkeitsberechnung
 Verfügbarkeitsstatus
