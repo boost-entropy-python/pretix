@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-16 14:20+0000\n"
-"PO-Revision-Date: 2025-01-02 07:00+0000\n"
+"PO-Revision-Date: 2025-01-06 00:00+0000\n"
 "Last-Translator: Hijiri Umemoto <hijiri@umemoto.org>\n"
 "Language-Team: Japanese <https://translate.pretix.eu/projects/pretix/pretix/"
 "ja/>\n"
@@ -4552,7 +4552,7 @@ msgstr "アドオンカテゴリ"
 
 #: pretix/base/models/items.py:222 pretix/base/models/items.py:278
 msgid "Disable product for this date"
-msgstr "この日付の製品を無効にしてください"
+msgstr "この日付の製品を無効にする"
 
 #: pretix/base/models/items.py:226 pretix/base/models/items.py:282
 #: pretix/base/models/items.py:560
@@ -5638,7 +5638,7 @@ msgstr "支払い済みの注文"
 
 #: pretix/base/models/orders.py:418
 msgid "canceled (paid fee)"
-msgstr "キャンセル（料金支払い済み）"
+msgstr "キャンセル済み（支払い済み手数料）"
 
 #: pretix/base/models/orders.py:1031
 msgid ""
@@ -6587,7 +6587,7 @@ msgstr "購入した製品"
 #: pretix/base/services/placeholders.py:393
 #: pretix/base/templates/pretixbase/email/order_details.html:147
 msgid "View order details"
-msgstr "注文の詳細を表示します"
+msgstr "注文の詳細を表示する"
 
 #: pretix/base/notifications.py:234
 #, python-brace-format
@@ -6655,7 +6655,7 @@ msgstr "払い戻しをリクエストしました"
 #: pretix/base/notifications.py:300
 #, python-brace-format
 msgid "You have been requested to issue a refund for {order.code}."
-msgstr "{order.code}の返金手続きを依頼されました。"
+msgstr "{order.code}の返金手続きがリクエストされました。"
 
 #: pretix/base/payment.py:86
 msgctxt "payment"
@@ -11831,7 +11831,7 @@ msgstr "ここをクリックして、通知設定を表示および変更"
 
 #: pretix/base/templates/pretixbase/email/notification.html:60
 msgid "Click here disable all notifications immediately."
-msgstr "ここをクリックしてすぐにすべての通知を無効にしてください。"
+msgstr "ここをクリックして、すべての通知を直ちに無効にする。"
 
 #: pretix/base/templates/pretixbase/email/notification.txt:15
 msgid "Click here to view and change your notification settings:"
@@ -20196,7 +20196,7 @@ msgstr "<strong>plus</strong> %(rate)s%% %(taxname)s"
 #: pretix/presale/templates/pretixpresale/event/fragment_cart.html:409
 #, python-format
 msgid "incl. %(rate)s%% %(taxname)s"
-msgstr "%(rate)s%% %(taxname)sを含む"
+msgstr "%(taxname)s%(rate)s を含む"
 
 #: pretix/control/templates/pretixcontrol/items/question.html:6
 #: pretix/control/templates/pretixcontrol/items/question.html:9
@@ -31343,7 +31343,7 @@ msgstr "<strong>plus</strong> %(rate)s%% %(name)s"
 #: pretix/presale/templates/pretixpresale/event/voucher.html:366
 #, python-format
 msgid "incl. %(rate)s%% %(name)s"
-msgstr "%(rate)s%% %(name)s を含む"
+msgstr "%(name)s %(rate)sを含む"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_addon_choice.html:200
 #: pretix/presale/templates/pretixpresale/event/fragment_addon_choice.html:207
@@ -31564,7 +31564,7 @@ msgstr[0] "%(num)s 個の製品"
 #: pretix/presale/templates/pretixpresale/event/fragment_cart.html:465
 #, python-format
 msgid "incl. %(tax_sum)s taxes"
-msgstr "incl. %(tax_sum)s 税金"
+msgstr "税%(tax_sum)sを含む"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_cart.html:482
 #, python-format
@@ -31594,7 +31594,7 @@ msgstr "チェックアウトを続行します"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_cart_box.html:63
 msgid "Empty cart"
-msgstr "空のカート"
+msgstr "カートを空にする"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_cart_box.html:68
 #: pretix/presale/templates/pretixpresale/event/index.html:236
@@ -31876,7 +31876,7 @@ msgstr "%(item)sのフルサイズの画像を表示"
 #: pretix/presale/templates/pretixpresale/event/voucher.html:359
 #, python-format
 msgid "%(value)s incl. taxes"
-msgstr "%(value)s 税込"
+msgstr "税込%(value)s"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_product_list.html:197
 #: pretix/presale/templates/pretixpresale/event/fragment_product_list.html:350
@@ -32242,7 +32242,7 @@ msgstr "注文された商品を変更します"
 #: pretix/presale/templates/pretixpresale/event/order.html:290
 #: pretix/presale/templates/pretixpresale/event/position.html:34
 msgid "Change details"
-msgstr "変更の詳細"
+msgstr "詳細を変更"
 
 #: pretix/presale/templates/pretixpresale/event/order.html:262
 msgid ""
