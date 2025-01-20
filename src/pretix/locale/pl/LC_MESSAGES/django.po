@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-15 16:45+0000\n"
-"PO-Revision-Date: 2024-12-29 22:00+0000\n"
+"PO-Revision-Date: 2025-01-19 06:00+0000\n"
 "Last-Translator: Wiktor Przybylski <wikprzybylski@gmail.com>\n"
 "Language-Team: Polish <https://translate.pretix.eu/projects/pretix/pretix/pl/"
 ">\n"
@@ -94,7 +94,7 @@ msgstr "Włoski"
 
 #: pretix/_base_settings.py:97
 msgid "Japanese"
-msgstr ""
+msgstr "Japoński"
 
 #: pretix/_base_settings.py:98
 msgid "Latvian"
@@ -180,7 +180,7 @@ msgstr "Lista dozwolonych URI, przedzielona spacjami"
 
 #: pretix/api/models.py:47
 msgid "Allowed Post Logout URIs list, space separated"
-msgstr "Lista dozwolonych URI Post Logout, przedzielona spacjami"
+msgstr "Lista dozwolonych URI po wylogowaniu, przedzielona spacjami"
 
 #: pretix/api/models.py:51 pretix/base/models/customers.py:406
 #: pretix/plugins/paypal/payment.py:113 pretix/plugins/paypal2/payment.py:110
@@ -3079,10 +3079,6 @@ msgstr ""
 "Istnieje już konto z podanym adresem email. Proszę wprowadzić inny adres."
 
 #: pretix/base/forms/user.py:53
-#, fuzzy
-#| msgid ""
-#| "Please enter your current password if you want to change your email "
-#| "address or password."
 msgid ""
 "Please enter your current password if you want to change your email address "
 "or password."
@@ -4234,10 +4230,10 @@ msgid ""
 "you can also choose to use a random value. This will be used in URLs, order "
 "codes, invoice numbers, and bank transfer references."
 msgstr ""
-"Powinna być krótkie, zawierać tylko małe litery, cyfry, kropki i myśliniki "
+"Powinna być krótkie, zawierać tylko małe litery, cyfry, kropki i myślniki "
 "oraz powinna być unikalne pośród wszystkich wydarzeń. Polecane jest użycie "
-"skrótu lub daty krótsze niż 10 znaków który jest łatwy do zapamiętania, ale "
-"możliwe jest też użycie losowej wartośći. Użyta będzie w URLach, kodach "
+"skrótu lub daty krótszej niż 10 znaków który jest łatwy do zapamiętania, ale "
+"możliwe jest też użycie losowej wartości. Użyta będzie w URLach, kodach "
 "zamówień, identyfikatorach faktur i tytułach płatności."
 
 #: pretix/base/models/event.py:571 pretix/base/models/organizer.py:87
@@ -5179,7 +5175,7 @@ msgstr "Ten wariant nie będzie sprzedawany po podanej dacie."
 msgid "Sell on all sales channels the product is sold on"
 msgstr ""
 "Sprzedaj we wszystkich kanałach sprzedaży, w których sprzedawany jest ten "
-"produkt."
+"produkt"
 
 #: pretix/base/models/items.py:1219
 msgid ""
@@ -6205,11 +6201,9 @@ msgid "Standard rate"
 msgstr ""
 
 #: pretix/base/models/tax.py:152
-#, fuzzy
-#| msgid "Reduced ticket"
 msgctxt "tax_code"
 msgid "Reduced rate"
-msgstr "Bilet ulgowy"
+msgstr "Stawka ulgowa"
 
 #: pretix/base/models/tax.py:156
 msgctxt "tax_code"
@@ -6218,59 +6212,54 @@ msgid ""
 msgstr ""
 
 #: pretix/base/models/tax.py:164
-#, fuzzy
-#| msgid "Reverse charge"
 msgctxt "tax_code"
 msgid "Reverse charge"
 msgstr "Odwrotne obciążenie"
 
 #: pretix/base/models/tax.py:168
-#, fuzzy
-#| msgid "Tax rate"
 msgid "Tax free"
-msgstr "Stopa podatkowa"
+msgstr "Wolne od podatku"
 
 #: pretix/base/models/tax.py:171
 msgctxt "tax_code"
 msgid "Services outside of scope of tax"
-msgstr ""
+msgstr "Usługi nieopodatkowane"
 
 #: pretix/base/models/tax.py:174
 msgctxt "tax_code"
 msgid "Exempt from tax (no reason given)"
-msgstr ""
+msgstr "Zwolniony z podatku (bez podania przyczyny)"
 
 #: pretix/base/models/tax.py:177
 msgctxt "tax_code"
 msgid "Zero-rated goods"
-msgstr ""
+msgstr "Towary objęte stawką zerową"
 
 #: pretix/base/models/tax.py:180
 msgctxt "tax_code"
 msgid "Free export item, VAT not charged"
-msgstr ""
+msgstr "Bezpłatny przedmiot eksportowy, bez podatku VAT"
 
 #: pretix/base/models/tax.py:183
 msgctxt "tax_code"
 msgid "VAT exempt for EEA intra-community supply of goods and services"
 msgstr ""
+"Zwolnienie z podatku VAT dla wewnątrzwspólnotowej dostawy towarów i usług w "
+"obrębie EOG"
 
 #: pretix/base/models/tax.py:187
-#, fuzzy
-#| msgctxt "cookie_usage"
-#| msgid "Social features"
 msgid "Special cases"
-msgstr "Funkcje społecznościowe"
+msgstr "Specjalne przypadki"
 
 #: pretix/base/models/tax.py:189
 msgctxt "tax_code"
 msgid "Canary Islands general indirect tax"
-msgstr ""
+msgstr "Kanaryjski podatek pośredni"
 
 #: pretix/base/models/tax.py:190
 msgctxt "tax_code"
 msgid "Tax for production, services and importation in Ceuta and Melilla"
-msgstr ""
+msgstr "Podatek od produkcji, usług i importu w Ceucie i Melilli"
 
 #: pretix/base/models/tax.py:191
 msgctxt "tax_code"
@@ -6284,7 +6273,7 @@ msgstr ""
 #: pretix/base/models/tax.py:198
 msgctxt "tax_code"
 msgid "Exempt based on article 79, point c of Council Directive 2006/112/EC"
-msgstr ""
+msgstr "Zwolniony na podstawie artykułu 79, punktu c Dyrektywy Rady 2006/112/WE"
 
 #: pretix/base/models/tax.py:205 pretix/base/models/tax.py:218
 #: pretix/base/models/tax.py:244
@@ -6294,6 +6283,8 @@ msgid ""
 "Exempt based on article {article}, section {section} ({letter}) of Council "
 "Directive 2006/112/EC"
 msgstr ""
+"Zwolniony na podstawie artykułu {article}, sekcji {section} ({letter}) "
+"Dyrektywy Rady 2006/112/EC"
 
 #: pretix/base/models/tax.py:231
 #, python-brace-format
@@ -6302,31 +6293,33 @@ msgid ""
 "Exempt based on article {article}, section ({letter}) of Council Directive "
 "2006/112/EC"
 msgstr ""
+"Zwolniony na podstawie artykułu {article}, sekcji {letter} Dyrektywy Rady "
+"2006/112/EC"
 
 #: pretix/base/models/tax.py:252
 msgctxt "tax_code"
 msgid "Exempt based on article 309 of Council Directive 2006/112/EC"
-msgstr ""
+msgstr "Zwolniony na podstawie artykułu 309 dyrektywy Rady 2006/112/WE"
 
 #: pretix/base/models/tax.py:254
 msgctxt "tax_code"
 msgid "Intra-Community acquisition from second hand means of transport"
-msgstr ""
+msgstr "Nabycie wewnątrzwspólnotowe z używanych środków transportu"
 
 #: pretix/base/models/tax.py:256
 msgctxt "tax_code"
 msgid "Intra-Community acquisition of second hand goods"
-msgstr ""
+msgstr "Wewnątrzwspólnotowe nabycie towarów używanych"
 
 #: pretix/base/models/tax.py:258
 msgctxt "tax_code"
 msgid "Intra-Community acquisition of works of art"
-msgstr ""
+msgstr "Wewnątrzwspólnotowe nabycie dzieł sztuki"
 
 #: pretix/base/models/tax.py:260
 msgctxt "tax_code"
 msgid "Intra-Community acquisition of collectors items and antiques"
-msgstr ""
+msgstr "Wewnątrzwspólnotowe nabycie przedmiotów kolekcjonerskich i antyków"
 
 #: pretix/base/models/tax.py:262
 msgctxt "tax_code"
@@ -17591,7 +17584,7 @@ msgstr "Kod transakcji serwera"
 #: pretix/control/templates/pretixcontrol/boxoffice/payment.html:75
 #: pretix/control/templates/pretixcontrol/boxoffice/payment.html:91
 msgid "Payment reference"
-msgstr "Numer referencyjny płatności"
+msgstr "Tytuł płatności"
 
 #: pretix/control/templates/pretixcontrol/boxoffice/payment.html:78
 msgid "Payment Application"
@@ -17611,7 +17604,7 @@ msgstr "Identyfikator transakcji"
 #: pretix/plugins/banktransfer/templates/pretixplugins/banktransfer/control.html:32
 #: pretix/plugins/banktransfer/templates/pretixplugins/banktransfer/import_assign.html:33
 msgid "Reference"
-msgstr "Odnośnik"
+msgstr "Tytułem"
 
 #: pretix/control/templates/pretixcontrol/boxoffice/payment.html:100
 msgid "Terminal ID"
@@ -19931,8 +19924,8 @@ msgid ""
 "bank transfer references as an abbreviation to reference this event."
 msgstr ""
 "Będziemy również używać tego skrótu w niektórych miejscach, takich jak kody "
-"zamówień, numery faktur lub odniesienia do przelewów bankowych, aby odnieść "
-"się do tego wydarzenia."
+"zamówień, numery faktur lub tytuły przelewów bankowych, aby odnieść się do "
+"tego wydarzenia."
 
 #: pretix/control/templates/pretixcontrol/events/create_basics.html:32
 msgid ""
@@ -28269,7 +28262,7 @@ msgstr ""
 
 #: pretix/plugins/banktransfer/payment.py:161
 msgid "Do not include hyphens in the payment reference."
-msgstr "W numerze referencyjnym płatności nie należy umieszczać myślników."
+msgstr "W tytule płatności nie należy umieszczać myślników."
 
 #: pretix/plugins/banktransfer/payment.py:162
 msgid "This is required in some countries."
@@ -28277,11 +28270,11 @@ msgstr "Jest to wymagane w niektórych krajach."
 
 #: pretix/plugins/banktransfer/payment.py:166
 msgid "Include invoice number in the payment reference."
-msgstr "W numerze płatności należy podać numer faktury."
+msgstr "W tytule płatności należy podać numer faktury."
 
 #: pretix/plugins/banktransfer/payment.py:170
 msgid "Prefix for the payment reference"
-msgstr "Prefiks dla numeru referencyjnego płatności"
+msgstr "Prefiks dla numeru referencyjnego (tytułu) płatności"
 
 #: pretix/plugins/banktransfer/payment.py:174
 msgid "Additional text to show on pending orders"
@@ -29011,7 +29004,7 @@ msgstr "Nieprawidłowe dane wejściowe."
 
 #: pretix/plugins/banktransfer/views.py:489
 msgid "You need to select the column containing the payment reference."
-msgstr "Należy wybrać kolumnę zawierającą numer referencyjny płatności."
+msgstr "Należy wybrać kolumnę zawierającą numer referencyjny (tytuł) płatności."
 
 #: pretix/plugins/banktransfer/views.py:570
 msgid "No currency has been selected."
@@ -34073,13 +34066,12 @@ msgid "Calendar"
 msgstr "Kalendarz"
 
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:29
-#, fuzzy, python-format
-#| msgid "%(count)s elements"
+#, python-format
 msgid "%(count)s event"
 msgid_plural "%(count)s events"
-msgstr[0] "%(count)s elementów"
-msgstr[1] "%(count)s elementów"
-msgstr[2] "%(count)s elementów"
+msgstr[0] "%(count)s wydarzenie"
+msgstr[1] "%(count)s wydarzenia"
+msgstr[2] "%(count)s wydarzeń"
 
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:68
 #: pretix/presale/templates/pretixpresale/fragment_day_calendar.html:65
@@ -34401,13 +34393,12 @@ msgid "You don’t have any memberships in your account yet."
 msgstr "Na koncie użytkownika nie są przechowywane żadne członkostwa."
 
 #: pretix/presale/templates/pretixpresale/organizers/customer_orders.html:52
-#, fuzzy, python-format
-#| msgid "+ %(count)s invited"
+#, python-format
 msgid "%(counter)s item"
 msgid_plural "%(counter)s items"
-msgstr[0] "+ %(count)s zaproszonych"
-msgstr[1] "+ %(count)s zaproszonych"
-msgstr[2] "+ %(count)s zaproszonych"
+msgstr[0] "+ %(counter)s przedmiot"
+msgstr[1] "+ %(counter)s przedmioty"
+msgstr[2] "+ %(counter)s przedmiotów"
 
 #: pretix/presale/templates/pretixpresale/organizers/customer_orders.html:78
 #, fuzzy
