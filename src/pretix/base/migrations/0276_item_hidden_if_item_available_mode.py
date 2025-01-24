@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="item",
             name="hidden_if_item_available_mode",
-            field=models.CharField(default="hide", max_length=16, null=True),
+            field=models.CharField(default="hide", max_length=16),
         ),
     ]
