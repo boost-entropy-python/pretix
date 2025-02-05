@@ -28,7 +28,7 @@ classifiers = [
 dependencies = [
   "arabic-reshaper==3.0.0",  # Support for Arabic in reportlab
   "babel",
-  "BeautifulSoup4==4.12.*",
+  "BeautifulSoup4==4.13.*",
   "bleach==6.2.*",
   "celery==5.4.*",
   "chardet==5.2.*",
@@ -57,7 +57,7 @@ dependencies = [
   "djangorestframework==3.15.*",
   "dnspython==2.7.*",
   "drf_ujson2==1.7.*",
-  "geoip2==4.*",
+  "geoip2==5.*",
   "importlib_metadata==8.*",  # Polyfill, we can probably drop this once we require Python 3.10+
   "isoweek",
   "jsonschema",
@@ -89,7 +89,7 @@ dependencies = [
   "pyuca",
   "qrcode==8.0",
   "redis==5.2.*",
-  "reportlab==4.2.*",
+  "reportlab==4.3.*",
   "requests==2.31.*",
   "sentry-sdk==2.20.*",
   "sepaxml==2.6.*",
@@ -113,7 +113,7 @@ dev = [
   "fakeredis==2.26.*",
   "flake8==7.1.*",
   "freezegun",
-  "isort==5.13.*",
+  "isort==6.0.*",
   "pep8-naming==0.14.*",
   "potypo",
   "pytest-asyncio>=0.24",
