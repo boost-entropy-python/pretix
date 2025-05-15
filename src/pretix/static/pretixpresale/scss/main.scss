@@ -108,7 +108,22 @@ pre {
     font-size: $font-size-base;
 }
 
+/* make all links in textflow underlined */
+h1, h2, h3, h4, h5, h6, p, li {
+    a:not(.btn) {
+        text-decoration: underline;
+    }    
+}
 
+a.no-underline:link, nav li a:link {
+    text-decoration: none;
+}
+a.no-underline:hover, nav li a:hover {
+    text-decoration: underline;
+}
+.help-block a {
+    color: inherit;
+}
 
 
 /* See https://github.com/pretix/pretix/pull/761 */
@@ -594,14 +609,17 @@ h2 .label {
 }
 
 .event-list.full-width-list {
-    h3, p {
+    h3, h4, p {
         margin-top: 0;
         margin-bottom: 0;
     }
-    h3 {
+    h3, h4 {
         font-size: 1em;
         line-height: 1.25rem;
         font-weight: bold;
+    }
+    h4 small {
+        font-size: 85%;
     }
 }
 
