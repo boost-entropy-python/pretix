@@ -76,6 +76,7 @@ html {
     clip: auto;
 }
 #skip-to-main {
+    z-index: 9999;
     /* padding is needed to make focus-outline visible */
     padding: 8px;
     background-color: inherit;
@@ -156,6 +157,7 @@ button:focus, a:focus, .btn:focus, summary:focus, div:focus,
 button:active:focus, a:active:focus, .btn:active:focus, summary:active:focus, div:active:focus,
 button.active:focus, a.active:focus, .btn.active:focus,
 input:focus, .form-control:focus, .btn-checkbox:has(input:focus),
+input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus,
 .input-item-count-group:has(input:focus), .input-group-price:has(input:focus) {
     outline: 2px solid $link-hover-color;
     outline-offset: 2px;
