@@ -80,7 +80,7 @@ dependencies = [
   "psycopg2-binary",
   "pycountry",
   "pycparser==2.22",
-  "pycryptodome==3.22.*",
+  "pycryptodome==3.23.*",
   "pypdf==5.4.*",
   "python-bidi==0.6.*",  # Support for Arabic in reportlab
   "python-dateutil==2.9.*",
@@ -91,7 +91,7 @@ dependencies = [
   "redis==5.2.*",
   "reportlab==4.4.*",
   "requests==2.31.*",
-  "sentry-sdk==2.27.*",
+  "sentry-sdk==2.29.*",
   "sepaxml==2.6.*",
   "stripe==7.9.*",
   "text-unidecode==1.*",
