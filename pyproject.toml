@@ -51,7 +51,7 @@ dependencies = [
   "django-oauth-toolkit==2.3.*",
   "django-otp==1.6.*",
   "django-phonenumber-field==7.3.*",
-  "django-redis==5.4.*",
+  "django-redis==6.0.*",
   "django-scopes==2.0.*",
   "django-statici18n==2.6.*",
   "djangorestframework==3.16.*",
@@ -67,7 +67,7 @@ dependencies = [
   "markdown==3.8",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
   # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
   "mt-940==4.30.*",
-  "oauthlib==3.2.*",
+  "oauthlib==3.3.*",
   "openpyxl==3.1.*",
   "packaging",
   "paypalrestsdk==1.13.*",
@@ -91,7 +91,7 @@ dependencies = [
   "redis==5.2.*",
   "reportlab==4.4.*",
   "requests==2.31.*",
-  "sentry-sdk==2.29.*",
+  "sentry-sdk==2.30.*",
   "sepaxml==2.6.*",
   "stripe==7.9.*",
   "text-unidecode==1.*",
