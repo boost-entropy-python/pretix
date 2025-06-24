@@ -33,7 +33,7 @@ dependencies = [
   "celery==5.5.*",
   "chardet==5.2.*",
   "cryptography>=44.0.0",
-  "css-inline==0.14.*",
+  "css-inline==0.15.*",
   "defusedcsv>=1.1.0",
   "Django[argon2]==4.2.*,>=4.2.15",
   "django-bootstrap3==25.1",
@@ -64,7 +64,7 @@ dependencies = [
   "kombu==5.5.*",
   "libsass==0.23.*",
   "lxml",
-  "markdown==3.8",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
+  "markdown==3.8.2",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
   # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
   "mt-940==4.30.*",
   "oauthlib==3.3.*",
@@ -100,7 +100,7 @@ dependencies = [
   "ua-parser==1.0.*",
   "vat_moss_forked==2020.3.20.0.11.0",
   "vobject==0.9.*",
-  "webauthn==2.5.*",
+  "webauthn==2.6.*",
   "zeep==4.3.*"
 ]
 
@@ -111,7 +111,7 @@ dev = [
   "coverage",
   "coveralls",
   "fakeredis==2.30.*",
-  "flake8==7.2.*",
+  "flake8==7.3.*",
   "freezegun",
   "isort==6.0.*",
   "pep8-naming==0.15.*",
