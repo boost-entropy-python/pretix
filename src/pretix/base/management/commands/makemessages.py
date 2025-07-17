@@ -19,3 +19,17 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 #
+import re
+
+from django.core.management.commands import makemessages
+
+
+def is_valid_locale(locale):
+    return re.match(r"^[a-z]+$", locale) or re.match(r"^[a-z]+_[A-Z0-9].*$", locale)
+
+
+makemessages.is_valid_locale = is_valid_locale
+
+
+class Command(makemessages.Command):
+    pass
