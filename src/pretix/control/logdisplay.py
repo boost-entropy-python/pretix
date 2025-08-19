@@ -571,11 +571,11 @@ class CoreOrderLogEntryType(OrderLogEntryType):
 @log_entry_types.new_from_dict({
     'pretix.voucher.added': _('The voucher has been created.'),
     'pretix.voucher.sent': _('The voucher has been sent to {recipient}.'),
-    'pretix.voucher.added.waitinglist': _('The voucher has been created and sent to a person on the waiting list.'),
     'pretix.voucher.expired.waitinglist': _(
         'The voucher has been set to expire because the recipient removed themselves from the waiting list.'),
     'pretix.voucher.changed': _('The voucher has been changed.'),
     'pretix.voucher.deleted': _('The voucher has been deleted.'),
+    'pretix.voucher.added.waitinglist': _('The voucher has been sent to {email} through the waiting list.'),
 })
 class CoreVoucherLogEntryType(VoucherLogEntryType):
     pass
@@ -781,6 +781,25 @@ class CoreUserImpersonatedLogEntryType(UserImpersonatedLogEntryType):
 })
 class CoreLogEntryType(LogEntryType):
     pass
+
+
+@log_entry_types.new_from_dict({
+    'pretix.organizer.plugins.enabled': _('The plugin has been enabled.'),
+    'pretix.organizer.plugins.disabled': _('The plugin has been disabled.'),
+})
+class OrganizerPluginStateLogEntryType(LogEntryType):
+    object_link_wrapper = _('Plugin {val}')
+
+    def get_object_link_info(self, logentry) -> Optional[dict]:
+        if 'plugin' in logentry.parsed_data:
+            app = app_cache.get(logentry.parsed_data['plugin'])
+            if app and hasattr(app, 'PretixPluginMeta'):
+                return {
+                    'href': reverse('control:organizer.settings.plugins', kwargs={
+                        'organizer': logentry.event.organizer.slug,
+                    }) + '#plugin_' + logentry.parsed_data['plugin'],
+                    'val': app.PretixPluginMeta.name
+                }
 
 
 @log_entry_types.new_from_dict({
