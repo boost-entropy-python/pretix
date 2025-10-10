@@ -91,7 +91,7 @@ dependencies = [
   "redis==6.4.*",
   "reportlab==4.4.*",
   "requests==2.32.*",
-  "sentry-sdk==2.40.*",
+  "sentry-sdk==2.41.*",
   "sepaxml==2.6.*",
   "stripe==7.9.*",
   "text-unidecode==1.*",
@@ -107,10 +107,10 @@ dependencies = [
 [project.optional-dependencies]
 memcached = ["pylibmc"]
 dev = [
-  "aiohttp==3.12.*",
+  "aiohttp==3.13.*",
   "coverage",
   "coveralls",
-  "fakeredis==2.31.*",
+  "fakeredis==2.32.*",
   "flake8==7.3.*",
   "freezegun",
   "isort==6.1.*",
