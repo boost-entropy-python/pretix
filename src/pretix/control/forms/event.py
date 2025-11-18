@@ -42,7 +42,6 @@ import pycountry
 from django import forms
 from django.conf import settings
 from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
-from django.core.validators import MaxValueValidator
 from django.db.models import Prefetch, Q, prefetch_related_objects
 from django.forms import formset_factory, inlineformset_factory
 from django.urls import reverse
@@ -1000,8 +999,6 @@ class InvoiceSettingsForm(EventSettingsValidationMixin, SettingsForm):
         self.fields['invoice_generate_sales_channels'].choices = (
             (c.identifier, c.label) for c in event.organizer.sales_channels.all()
         )
-        self.fields['invoice_numbers_counter_length'].validators.append(MaxValueValidator(15))
-
         pps = [str(pp.verbose_name) for pp in event.get_payment_providers().values() if pp.requires_invoice_immediately]
         if pps:
             generate_paid_help_text = _('An invoice will be issued before payment if the customer selects one of the following payment methods: {list}').format(
@@ -1867,7 +1864,11 @@ class QuickSetupForm(I18nForm):
         self.fields['payment_banktransfer_bank_details'].required = False
         for f in self.fields.values():
             if 'data-required-if' in f.widget.attrs:
-                del f.widget.attrs['data-required-if']
+                f.widget.attrs['data-required-if'] += ",#id_payment_banktransfer__enabled"
+
+        self.fields['payment_banktransfer_bank_details'].widget.attrs["data-required-if"] = (
+            "#id_payment_banktransfer_bank_details_type_1,#id_payment_banktransfer__enabled"
+        )
 
     def clean(self):
         cleaned_data = super().clean()
