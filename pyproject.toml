@@ -3,7 +3,7 @@ name = "pretix"
 dynamic = ["version"]
 description = "Reinventing presales, one ticket at a time"
 readme = "README.rst"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = {file = "LICENSE"}
 keywords = ["tickets", "web", "shop", "ecommerce"]
 authors = [
@@ -29,7 +29,7 @@ dependencies = [
   "arabic-reshaper==3.0.0",  # Support for Arabic in reportlab
   "babel",
   "BeautifulSoup4==4.14.*",
-  "bleach==6.2.*",
+  "bleach==6.3.*",
   "celery==5.6.*",
   "chardet==5.2.*",
   "cryptography>=44.0.0",
@@ -37,8 +37,8 @@ dependencies = [
   "defusedcsv>=1.1.0",
   "dnspython==2.*",
   "Django[argon2]==4.2.*,>=4.2.26",
-  "django-bootstrap3==25.2",
-  "django-compressor==4.5.1",
+  "django-bootstrap3==26.1",
+  "django-compressor==4.6.0",
   "django-countries==8.2.*",
   "django-filter==25.1",
   "django-formset-js-improved==0.5.0.4",
@@ -50,13 +50,13 @@ dependencies = [
   "django-localflavor==5.0",
   "django-markup",
   "django-oauth-toolkit==2.3.*",
-  "django-otp==1.6.*",
-  "django-phonenumber-field==8.3.*",
+  "django-otp==1.7.*",
+  "django-phonenumber-field==8.4.*",
   "django-redis==6.0.*",
   "django-scopes==2.0.*",
   "django-statici18n==2.6.*",
   "djangorestframework==3.16.*",
-  "dnspython==2.7.*",
+  "dnspython==2.8.*",
   "drf_ujson2==1.7.*",
   "geoip2==5.*",
   "importlib_metadata==8.*",  # Polyfill, we can probably drop this once we require Python 3.10+
@@ -65,7 +65,7 @@ dependencies = [
   "kombu==5.6.*",
   "libsass==0.23.*",
   "lxml",
-  "markdown==3.9",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
+  "markdown==3.10",  # 3.3.5 requires importlib-metadata>=4.4, but django-bootstrap3 requires importlib-metadata<3.
   # We can upgrade markdown again once django-bootstrap3 upgrades or once we drop Python 3.6 and 3.7
   "mt-940==4.30.*",
   "oauthlib==3.3.*",
@@ -75,7 +75,7 @@ dependencies = [
   "paypal-checkout-serversdk==1.0.*",
   "PyJWT==2.10.*",
   "phonenumberslite==9.0.*",
-  "Pillow==11.3.*",
+  "Pillow==12.1.*",
   "pretix-plugin-build",
   "protobuf==6.33.*",
   "psycopg2-binary",
@@ -89,7 +89,7 @@ dependencies = [
   "pytz-deprecation-shim==0.1.*",
   "pyuca",
   "qrcode==8.2",
-  "redis==7.0.*",
+  "redis==7.1.*",
   "reportlab==4.4.*",
   "requests==2.32.*",
   "sentry-sdk==2.48.*",
@@ -113,7 +113,7 @@ dev = [
   "fakeredis==2.33.*",
   "flake8==7.3.*",
   "freezegun",
-  "isort==6.1.*",
+  "isort==7.0.*",
   "pep8-naming==0.15.*",
   "potypo",
   "pytest-asyncio>=0.24",
@@ -123,7 +123,7 @@ dev = [
   "pytest-mock==3.15.*",
   "pytest-sugar",
   "pytest-xdist==3.8.*",
-  "pytest==8.4.*",
+  "pytest==9.0.*",
   "responses",
 ]
 
