@@ -103,7 +103,10 @@ class IndexView(EventPermissionRequiredMixin, ChartContainingView, TemplateView)
                 day = o['datetime'].astimezone(tz).date()
                 ordered_by_day[day] = ordered_by_day.get(day, 0) + 1
             paid_by_day = {}
-            for o in oqs.filter(event=self.request.event, payment_date__isnull=False).values('payment_date'):
+            for o in oqs.filter(
+                event=self.request.event, payment_date__isnull=False,
+                status=Order.STATUS_PAID, all_positions__canceled=False
+            ).distinct().values('payment_date'):
                 day = o['payment_date'].astimezone(tz).date()
                 paid_by_day[day] = paid_by_day.get(day, 0) + 1
 
@@ -128,7 +131,7 @@ class IndexView(EventPermissionRequiredMixin, ChartContainingView, TemplateView)
         # Orders by product
         ctx['obp_data'] = cache.get('statistics_obp_data' + ckey)
         if not ctx['obp_data']:
-            opqs = OrderPosition.objects
+            opqs = OrderPosition.all
             if subevent:
                 opqs = opqs.filter(subevent=subevent)
             num_ordered = {
@@ -141,7 +144,7 @@ class IndexView(EventPermissionRequiredMixin, ChartContainingView, TemplateView)
             num_paid = {
                 p['item']: p['cnt']
                 for p in (opqs
-                          .filter(order__event=self.request.event, order__status=Order.STATUS_PAID)
+                          .filter(order__event=self.request.event, order__status=Order.STATUS_PAID, canceled=False)
                           .values('item')
                           .annotate(cnt=Count('id')).order_by())
             }
