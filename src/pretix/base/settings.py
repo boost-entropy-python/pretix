@@ -76,7 +76,7 @@ from pretix.base.validators import multimail_validate
 from pretix.control.forms import (
     ExtFileField, FontSelect, MultipleLanguagesWidget, SingleLanguageWidget,
 )
-from pretix.helpers.countries import CachedCountries
+from pretix.helpers.countries import CachedCountries, pycountry_add
 
 ROUNDING_MODES = (
     ('line', _('Compute taxes for every line individually')),
@@ -1224,6 +1224,15 @@ DEFAULTS = {
     'invoice_generate_sales_channels': {
         'default': json.dumps(['web']),
         'type': list
+    },
+    'invoice_generate_only_business': {
+        'default': 'False',
+        'type': bool,
+        'form_class': forms.BooleanField,
+        'serializer_class': serializers.BooleanField,
+        'form_kwargs': dict(
+            label=_("Only issue invoices to business customers"),
+        )
     },
     'invoice_address_from': {
         'default': '',
@@ -3927,7 +3936,7 @@ COUNTRIES_WITH_STATE_IN_ADDRESS = {
     'MX': (['State', 'Federal district', 'Federal entity'], 'short'),
     'US': (['State', 'Outlying area', 'District'], 'short'),
     'IT': (['Province', 'Free municipal consortium', 'Metropolitan city', 'Autonomous province',
-            'Free municipal consortium', 'Decentralized regional entity'], 'short'),
+            'Decentralized regional entity'], 'short'),
 }
 COUNTRY_STATE_LABEL = {
     # Countries in which the "State" field should not be called "State"
@@ -3935,6 +3944,8 @@ COUNTRY_STATE_LABEL = {
     'JP': pgettext_lazy('address', 'Prefecture'),
     'IT': pgettext_lazy('address', 'Province'),
 }
+# Workaround for https://github.com/pretix/pretix/issues/5796
+pycountry_add(pycountry.subdivisions, code="IT-AO", country_code="IT", name="Valle d'Aosta", parent="23", parent_code="IT-23", type="Province")
 
 settings_hierarkey = Hierarkey(attribute_name='settings')
 
