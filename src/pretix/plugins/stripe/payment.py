@@ -92,70 +92,89 @@ logger = logging.getLogger('pretix.plugins.stripe')
 # State of the payment methods
 #
 # Source: https://stripe.com/docs/payments/payment-methods/overview
-# Last Update: 2023-12-20
+# Last Update: 2026-06-12
 #
+# pretix Staff: Do not forget to enable/"On by default" newly added payment methods in
+# Stripe's managed payment methods configuration for the Stripe/pretix.eu connect platform.
+#
+# The categorization and order of payment methods is based on the list of the managed payment method configration
+# in the Stripe Dashboard.
+
 # Cards
 # - Credit and Debit Cards: ✓
-# - Apple, Google Pay: ✓
+#   * Cartes Bancaires: ✓
+#   * Korean cards: ✓
+#   * Japan installments: ✗
+#   * JCB: ✓
+#   * Meses sin intereses: ✗
 #
-# Bank debits
-# - ACH Debit: ✗
-# - Canadian PADs: ✗
-# - BACS Direct Debit: ✗
-# - SEPA Direct Debit: ✓
-# - BECS Direct Debit: ✗
+# Wallets
+# - Apple: ✓ (Cards)
+# - Google Pay: ✓ (Cards)
+# - Link: ✓ (PaymentRequestButton/Cards)
+# - Alipay: ✓
+# - Stablecoins and Crypto: ✗
+# - Kakao Pay: ✗
+# - Naver Pay: ✗
+# - MB Way: ✗
+# - Satis Pay: ✗
+# - WeChat Pay: ✓
+# - PAYCO: ✗
+# - PayPal: ✓ (No settings UI yet; incompatible with Connect+Direct Charges)
+# - Samsung pay: ✗
+# - MobilePay: ✓
+# - Revolut Pay: ✓
+# - Amazon Pay: ✗
+# - PayPay: ✗
+# - GrabPay: ✗
+# - Cash App Pay: ✗
+# - Secure Remote Commerce: ✗
 #
 # Bank redirects
 # - Bancontact: ✓
-# - BLIK: ✗
 # - EPS: ✓
-# - giropay: (deprecated)
 # - iDEAL: ✓
-# - P24: ✓
-# - Sofort: (deprecated)
-# - FPX: ✗
-# - PayNow: ✗
-# - UPI: ✗
-# - Netbanking: ✗
+# - Przelewy24: ✓
+# - BLIK: ✗
+# - Pay By Bank: ✓
 # - TWINT: ✓
 # - Wero: ✓ (No settings UI yet)
-#
-# Bank transfers
-# - ACH Bank Transfer: ✗
-# - SEPA Bank Transfer: ✗
-# - UK Bank Transfer: ✗
-# - Multibanco: ✗
-# - Furikomi (Japan): ✗
-# - Mexico Bank Transfer: ✗
+# - giropay: ✗ (deprecated)
+# - Sofort: ✗ (deprecated)
 #
 # Buy now, pay later
-# - Affirm: ✓
-# - Afterpay/Clearpay: ✗
+# - Billie: ✗
 # - Klarna: ✓
+# - Afterpay/Clearpay: ✗
 # - Zip: ✗
+# - Alma: ✗
+# - Affirm: ✓
+#
+# Bank debits
+# - SEPA Direct Debit: ✓
+# - ACH Direct Debit: ✗
+# - Australian BECS Direct Debit: ✗
+# - Canadian pre-authorized debits: ✗
+# - BACS Direct Debit: ✗
+# - FPX: ✗
+# - NZ BECS Direct Debit: ✗
+#
+# Bank transfers
+# - Bank Transfer: ✗
+#
+# Vouchers
+# - Multibanco: ✓
+# - Boleto: ✗
+# - Konbini: ✗
+# - OXXO: ✗
 #
 # Real-time payments
 # - Swish: ✓
+# - UPI: ✗
+# - Pix: ✗
+# - PayTo: ✗
 # - PayNow: ✗
 # - PromptPay: ✓
-# - Pix: ✗
-#
-# Vouchers
-# - Konbini: ✗
-# - OXXO: ✗
-# - Boleto: ✗
-#
-# Wallets
-# - Apple Pay: ✓ (Cards)
-# - Google Pay: ✓ (Cards)
-# - Secure Remote Commerce: ✗
-# - Link: ✓ (PaymentRequestButton)
-# - Cash App Pay: ✗
-# - PayPal: ✓ (No settings UI yet)
-# - MobilePay: ✓
-# - Alipay: ✓
-# - WeChat Pay: ✓
-# - GrabPay: ✓
 
 
 class StripeSettingsHolder(BasePaymentProvider):
@@ -1550,7 +1569,7 @@ class StripeGiropay(StripeRedirectWithAccountNamePaymentIntentMethod):
 class StripeIdeal(StripeRedirectMethod):
     identifier = 'stripe_ideal'
     verbose_name = _('iDEAL via Stripe')
-    public_name = _('iDEAL')
+    public_name = _('iDEAL | Wero')
     method = 'ideal'
     explanation = _(
         'iDEAL is an online payment method available to customers of Dutch banks. Please keep your online '
