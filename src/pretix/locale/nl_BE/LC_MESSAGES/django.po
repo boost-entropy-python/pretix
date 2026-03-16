@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-24 11:50+0000\n"
-"PO-Revision-Date: 2026-03-09 12:52+0000\n"
+"PO-Revision-Date: 2026-03-16 09:46+0000\n"
 "Last-Translator: Ruud Hendrickx <ruud@leckxicon.eu>\n"
 "Language-Team: Dutch (Belgium) <https://translate.pretix.eu/projects/pretix/"
 "pretix/nl_BE/>\n"
@@ -27095,26 +27095,36 @@ msgid ""
 "or even overlapping time slots, working with just one large check-in list "
 "will be easier."
 msgstr ""
+"U kunt ervoor kiezen om voor elke datum in uw reeks afzonderlijk een of meer "
+"check-in-lijsten toe te voegen, of om slechts één check-in-lijst voor al uw "
+"data te gebruiken en de toegang te beperken via check-in-regels. Welke "
+"aanpak beter is, hangt af van meerdere factoren, zoals het aantal datums in "
+"uw reeks. Voor een reeks met één of minder evenementdata per dag zijn "
+"afzonderlijke lijsten meestal handiger. Als u datums gebruikt om meerdere "
+"tijdvakken op dezelfde dag weer te geven, of zelfs overlappende tijdvakken, "
+"is het gemakkelijker om met slechts één grote check-in-lijst te werken."
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk.html:602
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:359
 #: pretix/control/templates/pretixcontrol/subevents/detail.html:245
 msgid "Add a new check-in list"
-msgstr ""
+msgstr "Nieuwe check-in-lijst toevoegen"
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:9
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:12
 msgctxt "subevent"
 msgid "Change multiple dates"
-msgstr ""
+msgstr "Meerdere datums wijzigen"
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:154
 msgid "Item prices"
-msgstr ""
+msgstr "Productprijzen"
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:197
 msgid "You selected a set of dates that currently have different quota setups."
 msgstr ""
+"U hebt een reeks datums geselecteerd waarvoor momenteel verschillende quota-"
+"instellingen gelden."
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:198
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:373
@@ -27122,126 +27132,137 @@ msgid ""
 "Using this option will <strong>delete all current quotas</strong> from "
 "<strong>all selected dates</strong>."
 msgstr ""
+"Als u deze optie gebruikt, worden <strong>alle huidige quota verwijderd</"
+"strong> van <strong>alle geselecteerde datums</strong>."
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:277
 msgid ""
 "You selected a set of dates that currently have different check-in list "
 "setups. You can therefore not change their check-in lists in bulk."
 msgstr ""
+"U hebt een reeks data geselecteerd waarvoor momenteel verschillende check-in-"
+"lijsten zijn ingesteld. U kunt daarom de check-in-lijsten niet in bulk "
+"wijzigen."
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:372
 msgid "Delete existing quotas"
-msgstr ""
+msgstr "Bestaande quota verwijderen"
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:374
 msgid "This cannot be reverted. Are you sure to proceed?"
-msgstr ""
+msgstr "Dit kan niet ongedaan worden gemaakt. Weet u zeker dat u wilt doorgaan?"
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:381
 msgid "Proceed"
-msgstr ""
+msgstr "Doorgaan"
 
 #: pretix/control/templates/pretixcontrol/subevents/delete.html:4
 #: pretix/control/templates/pretixcontrol/subevents/delete.html:6
 msgctxt "subevent"
 msgid "Delete date"
-msgstr ""
+msgstr "Datum verwijderen"
 
 #: pretix/control/templates/pretixcontrol/subevents/delete.html:9
 #, python-format
 msgid "Are you sure you want to delete the date <strong>%(subevent)s</strong>?"
 msgstr ""
+"Weet u zeker dat u de datum <strong>%(subevent)s</strong> wilt verwijderen?"
 
 #: pretix/control/templates/pretixcontrol/subevents/delete_bulk.html:4
 #: pretix/control/templates/pretixcontrol/subevents/delete_bulk.html:6
 msgctxt "subevent"
 msgid "Delete dates"
-msgstr ""
+msgstr "Datums verwijderen"
 
 #: pretix/control/templates/pretixcontrol/subevents/delete_bulk.html:10
 msgid "Are you sure you want to delete the following dates?"
-msgstr ""
+msgstr "Weet u zeker dat u de volgende datums wilt verwijderen?"
 
 #: pretix/control/templates/pretixcontrol/subevents/delete_bulk.html:20
 msgid ""
 "It is possible that some of the above dates can't be deleted if a plugin has "
 "data attached to them. In that case, they will be disabled instead."
 msgstr ""
+"Sommige van de genoemde datums kunnen mogelijk nog steeds niet verwijderd "
+"worden, als een plug-in gegevens heeft die eraan gekoppeld zijn. In dat "
+"geval worden de datums gedeactiveerd."
 
 #: pretix/control/templates/pretixcontrol/subevents/delete_bulk.html:27
 msgid ""
 "The following dates can't be deleted as they already have orders, but will "
 "be disabled instead."
 msgstr ""
+"De volgende datums kunnen niet verwijderd worden, omdat er al bestellingen "
+"aan verbonden zijn. In plaats hiervan zullen de datums uitgeschakeld worden."
 
 #: pretix/control/templates/pretixcontrol/subevents/detail.html:10
 msgctxt "subevent"
 msgid "Create date"
-msgstr ""
+msgstr "Datum aanmaken"
 
 #: pretix/control/templates/pretixcontrol/subevents/detail.html:279
 msgctxt "subevent"
 msgid "Date history"
-msgstr ""
+msgstr "Datumgeschiedenis"
 
 #: pretix/control/templates/pretixcontrol/subevents/fragment_unavail_mode_indicator.html:3
 #: pretix/control/templates/pretixcontrol/subevents/fragment_unavail_mode_indicator.html:5
 msgid "You can change this option in the variation settings."
-msgstr ""
+msgstr "U kunt deze optie wijzigen in de instellingen van de varianten."
 
 #: pretix/control/templates/pretixcontrol/subevents/fragment_unavail_mode_indicator.html:3
 #: pretix/control/templates/pretixcontrol/subevents/fragment_unavail_mode_indicator.html:5
 msgid "You can change this option in the product settings."
-msgstr ""
+msgstr "U kunt deze optie wijzigen in de productinstellingen."
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:11
 msgid "You haven't created any dates for this event series yet."
-msgstr ""
+msgstr "U hebt nog geen datums voor deze evenementenreeks aangemaakt."
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:18
 #: pretix/control/templates/pretixcontrol/subevents/index.html:72
 msgctxt "subevent"
 msgid "Create a new date"
-msgstr ""
+msgstr "Nieuwe datum aanmaken"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:21
 #: pretix/control/templates/pretixcontrol/subevents/index.html:75
 msgctxt "subevent"
 msgid "Create many new dates"
-msgstr ""
+msgstr "Meerdere nieuwe datums aanmaken"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:96
 #: pretix/plugins/reports/accountingreport.py:121
 msgid "Begin"
-msgstr ""
+msgstr "Begin"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:176
 msgid "Show orders"
-msgstr ""
+msgstr "Bestellingen weergeven"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:187
 msgctxt "subevent"
 msgid "Use as a template for a new date"
-msgstr ""
+msgstr "Als sjabloon voor een nieuwe datum gebruiken"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:192
 msgctxt "subevent"
 msgid "Use as a template for many new dates"
-msgstr ""
+msgstr "Als sjabloon voor meerdere nieuwe datums gebruiken"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:207
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:212
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:298
 msgid "Delete selected"
-msgstr ""
+msgstr "Geselecteerde verwijderen"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:214
 msgid "Activate selected"
-msgstr ""
+msgstr "Geselecteerde activeren"
 
 #: pretix/control/templates/pretixcontrol/subevents/index.html:217
 msgid "Deactivate selected"
-msgstr ""
+msgstr "Geselecteerde deactiveren"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_add.html:4
 #: pretix/control/templates/pretixcontrol/user/2fa_add.html:6
@@ -27250,160 +27271,172 @@ msgstr ""
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_webauthn.html:6
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_webauthn.html:8
 msgid "Add a two-factor authentication device"
-msgstr ""
+msgstr "Twee-factor-authenticatieapparaat toevoegen"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:8
 msgid "To set up this device, please follow the following steps:"
-msgstr ""
+msgstr "Volg de onderstaande stappen om dit apparaat in te stellen:"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:12
 msgid "Download the Google Authenticator application to your phone:"
-msgstr ""
+msgstr "Download de Google Authenticator-app op uw telefoon:"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:17
 msgid "Android (Google Play)"
-msgstr ""
+msgstr "Android (Google Play)"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:23
 msgid "Android (F-Droid)"
-msgstr ""
+msgstr "Android (F-Droid)"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:28
 msgid "iOS (iTunes)"
-msgstr ""
+msgstr "iOS (iTunes)"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:33
 msgid "Blackberry (Link via Google)"
-msgstr ""
+msgstr "Blackberry (link via Google)"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:39
 msgid "Add a new account to the app by scanning the following barcode:"
-msgstr ""
+msgstr "Voeg een nieuw account aan de app toe door de volgende code te scannen:"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:43
 msgid "Can't scan the barcode?"
-msgstr ""
+msgstr "Kunt u de code niet scannen?"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:49
 msgid "Use the \"provide a key\" option of your authenticator app."
-msgstr ""
+msgstr "Gebruik de optie 'sleutel invoeren' van de authenticator-app."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:52
 msgid "In \"Account name\", type your login name for pretix."
-msgstr ""
+msgstr "Voer in \"Accountnaam\" uw loginnaam voor pretix in."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:55
 msgid "In \"Secret\"/\"Account Key\", enter the following code:"
-msgstr ""
+msgstr "Voer onder \"Sleutel\" de volgende code in:"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:60
 msgid "copy"
-msgstr ""
+msgstr "kopiëren"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:68
 msgid ""
 "If present, make sure \"Time-based\"/\"TOTP\" and 6 digit codes are selected."
 msgstr ""
+"Wanneer u hierom gevraagd wordt, selecteert u 'Op tijd gebaseerd' of 'TOTP' "
+"met 6-cijferige codes."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:74
 msgid "Enter the displayed code here:"
-msgstr ""
+msgstr "Voer de getoonde code hier in:"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_totp.html:83
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_webauthn.html:19
 msgid "Require second factor for future logins"
-msgstr ""
+msgstr "Tweede factor voor toekomstige aanmeldingen vereisen"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_webauthn.html:11
 msgid ""
 "Please connect your WebAuthn device. If it has a button, touch it now. You "
 "might have to unplug the device and plug it back in again."
 msgstr ""
+"Sluit uw WebAuthn-apparaat aan. Als het een knop heeft, druk die dan nu in. "
+"U moet mogelijk het apparaat ontkoppelen en weer aansluiten."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_confirm_webauthn.html:26
 msgid "Device registration failed."
-msgstr ""
+msgstr "Het registreren van het apparaat is mislukt."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_delete.html:4
 #: pretix/control/templates/pretixcontrol/user/2fa_delete.html:6
 msgid "Delete a two-factor authentication device"
-msgstr ""
+msgstr "Twee-factor-authenticatieapparaat verwijderen"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_delete.html:9
 #, python-format
 msgid ""
 "Are you sure you want to delete the authentication device \"%(device)s\"?"
 msgstr ""
+"Weet u zeker dat u het authenticatieapparaat \"%(device)s\" wilt verwijderen?"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_delete.html:12
 msgid "You will no longer be able to use this device to log in to pretix."
 msgstr ""
+"U zult dit apparaat niet meer kunnen gebruiken om in te loggen bij pretix."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_delete.html:14
 msgid ""
 "If this is the only device connected to your account, we will disable two-"
 "factor authentication."
 msgstr ""
+"Als dit het enige apparaat is dat verbonden is met uw account, zullen we "
+"twee-factor-authenticatie uitschakelen."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_disable.html:4
 #: pretix/control/templates/pretixcontrol/user/2fa_disable.html:6
 msgid "Disable two-factor authentication"
-msgstr ""
+msgstr "Twee-factor-authenticatie uitschakelen"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_disable.html:10
 msgid "Do you really want to disable two-factor authentication?"
-msgstr ""
+msgstr "Wilt u echt twee-factor-authenticatie uitschakelen?"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_disable.html:13
 msgid "You will no longer require a second device to log in to your account."
-msgstr ""
+msgstr "U hebt geen tweede apparaat meer nodig om in te loggen op uw account."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_enable.html:4
 #: pretix/control/templates/pretixcontrol/user/2fa_enable.html:6
 msgid "Enable two-factor authentication"
-msgstr ""
+msgstr "Twee-factor-authenticatie inschakelen"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_enable.html:10
 msgid "Do you really want to enable two-factor authentication?"
-msgstr ""
+msgstr "Wilt u echt twee-factor-authenticatie inschakelen?"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_enable.html:13
 msgid ""
 "You will no longer be able to log in to pretix without one of your "
 "configured devices."
 msgstr ""
+"U kunt niet meer inloggen bij pretix zonder een van uw geconfigureerde "
+"apparaten."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_enable.html:14
 msgid ""
 "Please make sure to print out or copy the emergency tokens and store them in "
 "a safe place."
 msgstr ""
+"Zorg ervoor dat u de noodtokens print of kopieert en opslaat op een veilige "
+"plaats."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_leaveteams.html:4
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:4
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:6
 #: pretix/control/templates/pretixcontrol/user/settings.html:73
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Twee-factor-authenticatie"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_leaveteams.html:6
 msgid "Leave teams that require two-factor authentication"
-msgstr ""
+msgstr "Teams die twee-factor-authenticatie vereisen verlaten"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_leaveteams.html:10
 msgid "Do you really want to leave the following teams?"
-msgstr ""
+msgstr "Weet u zeker dat u de volgende teams wilt verlaten?"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_leaveteams.html:15
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:38
 #: pretix/control/templates/pretixcontrol/users/form.html:71
 #, python-format
 msgid "Team \"%(team)s\" of organizer \"%(organizer)s\""
-msgstr ""
+msgstr "Team \"%(team)s\" van organisator \"%(organizer)s\""
 
 #: pretix/control/templates/pretixcontrol/user/2fa_leaveteams.html:26
 msgid "Leave"
-msgstr ""
+msgstr "Verlaten"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:8
 msgid ""
@@ -27412,20 +27445,26 @@ msgid ""
 "but also an additional token that is generated e.g. by an app on your "
 "smartphone or a hardware token generator and that changes on a regular basis."
 msgstr ""
+"Twee-factor-authenticatie is een manier om uw account extra te beveiligen. "
+"Als u deze functie inschakelt, hebt u niet alleen uw wachtwoord nodig om in "
+"te loggen, maar ook een extra token dat wordt gegenereerd door bijvoorbeeld "
+"een app op uw smartphone of een hardwaretokengenerator en dat regelmatig "
+"verandert."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:19
 msgid "Obligatory usage of two-factor authentication"
-msgstr ""
+msgstr "Verplicht gebruik van twee-factor-authenticatie"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:25
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:73
 msgid "This system enforces the usage of two-factor authentication!"
-msgstr ""
+msgstr "Dit systeem verplicht het gebruik van twee-factor-authenticatie!"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:29
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:75
 msgid "As an administrator, you need to use two-factor authentication."
 msgstr ""
+"Als beheerder moet u verplicht gebruik maken van twee-factor-authenticatie."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:33
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:77
@@ -27433,50 +27472,53 @@ msgid ""
 "You are part of one or more organizer teams that require you to use two-"
 "factor authentication."
 msgstr ""
+"U maakt deel uit van één of meerdere teams waarin het verplicht is om twee-"
+"factor-authenticatie te gebruiken."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:47
 msgid "Please set up at least one device below."
-msgstr ""
+msgstr "Stel hieronder ten minste één apparaat in."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:49
 msgid "Please activate two-factor authentication using the button below."
-msgstr ""
+msgstr "Activeer twee-factor-authenticatie met de knop hieronder."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:53
 #, python-format
 msgid "Leave team instead"
 msgid_plural "Leave %(count)s teams instead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Verlaat in plaats daarvan het team"
+msgstr[1] "Verlaat in plaats daarvan %(count)s teams"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:67
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:94
 msgid "Two-factor status"
-msgstr ""
+msgstr "Twee-factor-status"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:87
 msgid "Two-factor authentication is currently enabled."
-msgstr ""
+msgstr "Twee-factor-authenticatie is momenteel ingeschakeld."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:103
 msgid "Two-factor authentication is currently disabled."
-msgstr ""
+msgstr "Twee-factor-authenticatie is momenteel uitgeschakeld."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:106
 msgid "To enable it, you need to configure at least one device below."
 msgstr ""
+"Om het in te schakelen moet u hieronder minstens één apparaat instellen."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:113
 msgid "Registered devices"
-msgstr ""
+msgstr "Geregistreerde apparaten"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:136
 msgid "Add a new device"
-msgstr ""
+msgstr "Nieuw apparaat toevoegen"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:143
 msgid "Emergency tokens"
-msgstr ""
+msgstr "Noodtokens"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:147
 msgid ""
@@ -27484,49 +27526,57 @@ msgid ""
 "to log in. We recommend to store them in a safe place, e.g. printed out or "
 "in a password manager. Every token can be used at most once."
 msgstr ""
+"Als u geen toegang meer hebt tot uw apparaten, kunt u een van de volgende "
+"noodtokens gebruiken om in te loggen. We raden u aan om ze op een veilige "
+"plek op te slaan, bijvoorbeeld uitgeprint of in een wachtwoordmanager. Ieder "
+"token kan één keer gebruikt worden."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:155
 #, python-format
 msgid "You generated your emergency tokens on %(generation_date_time)s."
-msgstr ""
+msgstr "U hebt uw noodtokens gegenereerd op %(generation_date_time)s."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:161
 msgid "You don't have any emergency tokens yet."
-msgstr ""
+msgstr "U hebt nog geen noodtokens."
 
 #: pretix/control/templates/pretixcontrol/user/2fa_main.html:166
 msgid "Generate new emergency tokens"
-msgstr ""
+msgstr "Nieuwe noodtokens genereren"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_regenemergency.html:4
 #: pretix/control/templates/pretixcontrol/user/2fa_regenemergency.html:6
 msgid "Regenerate emergency codes"
-msgstr ""
+msgstr "Noodtokens opnieuw genereren"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_regenemergency.html:10
 msgid "Do you really want to regenerate your emergency codes?"
-msgstr ""
+msgstr "Wilt u echt nieuwe noodtokens genereren?"
 
 #: pretix/control/templates/pretixcontrol/user/2fa_regenemergency.html:13
 msgid "The old codes will no longer work."
-msgstr ""
+msgstr "De oude codes zullen niet meer werken."
 
 #: pretix/control/templates/pretixcontrol/user/change_email.html:4
 #: pretix/control/templates/pretixcontrol/user/change_email.html:8
 msgid "Change login email address"
-msgstr ""
+msgstr "Loginadres wijzigen"
 
 #: pretix/control/templates/pretixcontrol/user/change_email.html:13
 msgid ""
 "This changes the email address used to login to your account, as well as "
 "where we send email notifications."
 msgstr ""
+"Hierdoor verandert het e-mailadres dat u gebruikt om in te loggen op uw "
+"account, evenals het adres waarnaar we e-mailmeldingen sturen."
 
 #: pretix/control/templates/pretixcontrol/user/change_email.html:18
 msgid ""
 "We will send a confirmation code to your new email address, which you need "
 "to enter in the next step to confirm the email address is correct."
 msgstr ""
+"We sturen een bevestigingscode naar uw nieuwe e-mailadres. Die code moet u "
+"in de volgende stap invoeren om te bevestigen dat het e-mailadres correct is."
 
 #: pretix/control/templates/pretixcontrol/user/change_password.html:4
 #: pretix/control/templates/pretixcontrol/user/change_password.html:8
@@ -27534,73 +27584,73 @@ msgstr ""
 #: pretix/control/templates/pretixcontrol/user/settings.html:67
 #: pretix/presale/templates/pretixpresale/organizers/customer_base.html:28
 msgid "Change password"
-msgstr ""
+msgstr "Wachtwoord wijzigen"
 
 #: pretix/control/templates/pretixcontrol/user/confirmation_code_dialog.html:4
 #: pretix/control/templates/pretixcontrol/user/confirmation_code_dialog.html:8
 msgid "Enter confirmation code"
-msgstr ""
+msgstr "Bevestigingscode invoeren"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:4
 #: pretix/control/templates/pretixcontrol/user/notifications.html:6
 msgid "Notification settings"
-msgstr ""
+msgstr "Meldingsinstellingen"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:16
 msgid "Notifications are turned on according to the settings below."
-msgstr ""
+msgstr "Meldingen worden ingeschakeld volgens de instellingen hieronder."
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:25
 msgid "All notifications are turned off globally."
-msgstr ""
+msgstr "Alle meldingen zijn uitgeschakeld."
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:33
 msgid "Choose event"
-msgstr ""
+msgstr "Evenement kiezen"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:37
 msgid "All my events"
-msgstr ""
+msgstr "Al mijn evenementen"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:45
 msgid "Save your modifications before switching events."
-msgstr ""
+msgstr "Sla uw wijzigingen op voordat u van evenement wisselt."
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:52
 msgid "Choose notifications to get"
-msgstr ""
+msgstr "Kies de meldingen die u wilt ontvangen"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:56
 msgid "Notification type"
-msgstr ""
+msgstr "Meldingstype"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:57
 msgid "Email notification"
-msgstr ""
+msgstr "E-mailmelding"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:70
 msgid "Global"
-msgstr ""
+msgstr "Globaal"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:70
 #: pretix/control/templates/pretixcontrol/user/notifications.html:72
 #: pretix/control/templates/pretixcontrol/user/settings.html:38
 msgid "On"
-msgstr ""
+msgstr "Aan"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:70
 #: pretix/control/templates/pretixcontrol/user/notifications.html:71
 #: pretix/control/templates/pretixcontrol/user/settings.html:42
 msgid "Off"
-msgstr ""
+msgstr "Uit"
 
 #: pretix/control/templates/pretixcontrol/user/notifications.html:75
 msgid "You have no permission to receive this notification"
-msgstr ""
+msgstr "U hebt geen toestemming om deze melding te ontvangen"
 
 #: pretix/control/templates/pretixcontrol/user/notifications_disable.html:4
 msgid "Disable notifications"
-msgstr ""
+msgstr "E-mailmeldingen uitschakelen"
 
 #: pretix/control/templates/pretixcontrol/user/reauth.html:12
 #, python-format
@@ -27608,25 +27658,29 @@ msgid ""
 "We just want to make sure it's really you. Please re-authenticate with "
 "'%(login_provider)s'."
 msgstr ""
+"We willen zeker zijn dat u het bent. Meld u opnieuw aan met '%"
+"(login_provider)s'."
 
 #: pretix/control/templates/pretixcontrol/user/reauth.html:14
 msgid ""
 "We just want to make sure it's really you. Please re-enter your password to "
 "continue."
 msgstr ""
+"We willen zeker zijn dat u het bent. Voer uw wachtwoord opnieuw in om door "
+"te gaan."
 
 #: pretix/control/templates/pretixcontrol/user/reauth.html:26
 msgid "Alternatively, you can use your WebAuthn device."
-msgstr ""
+msgstr "U kunt ook uw WebAuthn-apparaat gebruiken."
 
 #: pretix/control/templates/pretixcontrol/user/reauth.html:40
 msgid "Log in as someone else"
-msgstr ""
+msgstr "Log in als iemand anders"
 
 #: pretix/control/templates/pretixcontrol/user/settings.html:4
 #: pretix/control/templates/pretixcontrol/user/settings.html:24
 msgid "Account settings"
-msgstr ""
+msgstr "Accountinstellingen"
 
 #: pretix/control/templates/pretixcontrol/user/settings.html:9
 msgid ""
@@ -27634,50 +27688,53 @@ msgid ""
 "confirm your email address using a confirmation code we will send to your "
 "email address."
 msgstr ""
+"Uw e-mailadres is nog niet bevestigd. Om uw account te beveiligen, moet u uw "
+"e-mailadres bevestigen met de bevestigingscode die we naar uw e-mailadres "
+"zullen sturen."
 
 #: pretix/control/templates/pretixcontrol/user/settings.html:18
 msgid "Send confirmation email"
-msgstr ""
+msgstr "Bevestigingsmail sturen"
 
 #: pretix/control/templates/pretixcontrol/user/settings.html:53
 msgid "Login settings"
-msgstr ""
+msgstr "Aanmeldinstellingen"
 
 #: pretix/control/templates/pretixcontrol/user/settings.html:78
 msgid "Change two-factor settings"
-msgstr ""
+msgstr "Twee-factor-instellingen wijzigen"
 
 #: pretix/control/templates/pretixcontrol/user/settings.html:93
 msgid "Show applications"
-msgstr ""
+msgstr "Applicaties weergeven"
 
 #: pretix/control/templates/pretixcontrol/user/settings.html:102
 msgid "Show account history"
-msgstr ""
+msgstr "Accountgeschiedenis weergeven"
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_edit.html:4
 msgid "Staff session"
-msgstr ""
+msgstr "Beheerderssessie"
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_edit.html:6
 msgid "Session notes"
-msgstr ""
+msgstr "Sessienotities"
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_edit.html:17
 msgid "Audit log"
-msgstr ""
+msgstr "Auditlogboek"
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_edit.html:30
 msgid "Method"
-msgstr ""
+msgstr "Methode"
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_edit.html:31
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_edit.html:32
 msgid "On behalf of"
-msgstr ""
+msgstr "Namens"
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_start.html:8
 msgid ""
@@ -27685,96 +27742,99 @@ msgid ""
 "Everything you do in that session will be logged and you will later be asked "
 "to fill in a comment on what you did in your session for later reference."
 msgstr ""
+"Om deze actie uit te voeren moet u een beheerderssessie starten. Alles wat u "
+"in die sessie doet, zal worden bijgehouden en u zult worden gevraagd om een "
+"uitleg in te vullen over wat u in uw sessie heeft gedaan."
 
 #: pretix/control/templates/pretixcontrol/user/staff_session_start.html:18
 msgid "Start session"
-msgstr ""
+msgstr "Sessie starten"
 
 #: pretix/control/templates/pretixcontrol/users/anonymize.html:4
 #: pretix/control/templates/pretixcontrol/users/anonymize.html:6
 msgid "Anonymize user"
-msgstr ""
+msgstr "Gebruiker anonimiseren"
 
 #: pretix/control/templates/pretixcontrol/users/anonymize.html:11
 msgid "Disable and anonymize user"
-msgstr ""
+msgstr "Gebruiker uitschakelen en anonimiseren"
 
 #: pretix/control/templates/pretixcontrol/users/create.html:4
 #: pretix/control/templates/pretixcontrol/users/create.html:6
 msgid "Create user"
-msgstr ""
+msgstr "Gebruiker aanmaken"
 
 #: pretix/control/templates/pretixcontrol/users/create.html:11
 #: pretix/control/templates/pretixcontrol/users/form.html:32
 msgid "Base settings"
-msgstr ""
+msgstr "Basisinstellingen"
 
 #: pretix/control/templates/pretixcontrol/users/create.html:18
 #: pretix/control/templates/pretixcontrol/users/form.html:40
 msgid "Log-in settings"
-msgstr ""
+msgstr "Aanmeldingsinstellingen"
 
 #: pretix/control/templates/pretixcontrol/users/form.html:11
 msgid "Send password reset email"
-msgstr ""
+msgstr "Mail voor wachtwoordherstel sturen"
 
 #: pretix/control/templates/pretixcontrol/users/form.html:17
 msgid "Generate 2FA emergency token"
-msgstr ""
+msgstr "2FA-noodtoken genereren"
 
 #: pretix/control/templates/pretixcontrol/users/form.html:22
 msgid "Impersonate user"
-msgstr ""
+msgstr "Als gebruiker weergeven"
 
 #: pretix/control/templates/pretixcontrol/users/form.html:42
 msgid "Authentication backend"
-msgstr ""
+msgstr "Authenticatiemechanisme"
 
 #: pretix/control/templates/pretixcontrol/users/form.html:66
 msgid "Team memberships"
-msgstr ""
+msgstr "Teamlidmaatschappen"
 
 #: pretix/control/templates/pretixcontrol/users/form.html:90
 msgid "User history"
-msgstr ""
+msgstr "Gebruikersgeschiedenis"
 
 #: pretix/control/templates/pretixcontrol/users/form.html:99
 msgid "User created."
-msgstr ""
+msgstr "Gebruiker aangemaakt."
 
 #: pretix/control/templates/pretixcontrol/users/index.html:35
 msgid "Create a new user"
-msgstr ""
+msgstr "Nieuwe gebruiker aanmaken"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:7
 msgid "Create multiple vouchers"
-msgstr ""
+msgstr "Meerdere vouchers aanmaken"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:12
 msgid "Voucher codes"
-msgstr ""
+msgstr "Vouchercodes"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:17
 msgid "Prefix (optional)"
-msgstr ""
+msgstr "Prefix (optioneel)"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:21
 msgctxt "number_of_things"
 msgid "Number"
-msgstr ""
+msgstr "Aantal"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:25
 msgid "Generate random codes"
-msgstr ""
+msgstr "Willekeurige codes genereren"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:29
 msgid "Copy codes"
-msgstr ""
+msgstr "Codes kopiëren"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:39
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:39
 msgid "Voucher details"
-msgstr ""
+msgstr "Vouchergegevens"
 
 #: pretix/control/templates/pretixcontrol/vouchers/bulk.html:56
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:82
@@ -27783,38 +27843,46 @@ msgid ""
 "quota for this voucher above, the product can still be unavailable to the "
 "voucher holder if another quota associated with the product is sold out!"
 msgstr ""
+"Als u 'elk product' kiest voor een specifiek quotum en ervoor kiest om quota "
+"voor deze voucher hierboven te reserveren, kan het product nog steeds niet "
+"beschikbaar zijn voor de voucherhouder als een ander quotum dat aan het "
+"product gekoppeld is, uitverkocht is!"
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete.html:4
 #: pretix/control/templates/pretixcontrol/vouchers/delete.html:6
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:133
 msgid "Delete voucher"
-msgstr ""
+msgstr "Voucher verwijderen"
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete.html:9
 #, python-format
 msgid ""
 "Are you sure you want to delete the voucher <strong>%(voucher)s</strong>?"
 msgstr ""
+"Weet u zeker dat u de voucher <strong>%(voucher)s</strong> wilt verwijderen?"
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete_bulk.html:4
 #: pretix/control/templates/pretixcontrol/vouchers/delete_bulk.html:6
 msgid "Delete vouchers"
-msgstr ""
+msgstr "Vouchers verwijderen"
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete_bulk.html:10
 msgid "Are you sure you want to delete the following vouchers?"
-msgstr ""
+msgstr "Weet u zeker dat u de volgende vouchers wilt verwijderen?"
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete_bulk.html:21
 msgid ""
 "The following vouchers can't be deleted as they already have been redeemed, "
 "but they will be set to fully redeemed instead."
 msgstr ""
+"De volgende vouchers kunnen niet verwijderd worden, omdat ze al ingewisseld "
+"zijn. In plaats daarvan zullen de vouchers op volledig ingewisseld ingesteld "
+"worden."
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete_carts.html:4
 #: pretix/control/templates/pretixcontrol/vouchers/delete_carts.html:6
 msgid "Delete carts"
-msgstr ""
+msgstr "Winkelwagentjes verwijderen"
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete_carts.html:9
 #, python-format
@@ -27822,6 +27890,8 @@ msgid ""
 "Are you sure you want to delete any cart positions with voucher "
 "<strong>%(voucher)s</strong>?"
 msgstr ""
+"Weet u zeker dat u alle posities in winkelwagentjes met de voucher <strong>%"
+"(voucher)s</strong> wilt verwijderen?"
 
 #: pretix/control/templates/pretixcontrol/vouchers/delete_carts.html:10
 msgid ""
@@ -27829,15 +27899,19 @@ msgid ""
 "a purchase. This can be really confusing. Only use this if you know that the "
 "session is no longer in use."
 msgstr ""
+"Hierdoor worden producten stilzwijgend verwijderd uit het winkelwagentje van "
+"een gebruiker die op dat moment een aankoop doet. Dat kan erg verwarrend "
+"zijn. Gebruik deze functie alleen als u zeker weet dat de sessie niet meer "
+"in gebruik is."
 
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:11
 msgid "This voucher already has been used. It is not recommended to modify it."
-msgstr ""
+msgstr "Deze voucher is al gebruikt. Het is niet aanbevolen om hem te wijzigen."
 
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:15
 #, python-format
 msgid "Order %(code)s"
-msgstr ""
+msgstr "Bestelling %(code)s"
 
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:23
 #, python-format
@@ -27845,18 +27919,20 @@ msgid ""
 "This voucher is currently used in %(number)s cart sessions and might not be "
 "free to use until the cart sessions expire."
 msgstr ""
+"Deze voucher is momenteel in gebruik in %(number)s winkelwagensessies en kan "
+"hierom mogelijk niet gebruikt worden tot deze winkelwagensessies verlopen."
 
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:28
 msgid "Remove cart positions"
-msgstr ""
+msgstr "Posities in het winkelwagentje verwijderen"
 
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:43
 msgid "Voucher link"
-msgstr ""
+msgstr "Voucher-link"
 
 #: pretix/control/templates/pretixcontrol/vouchers/detail.html:116
 msgid "Voucher history"
-msgstr ""
+msgstr "Vouchergeschiedenis"
 
 #: pretix/control/templates/pretixcontrol/vouchers/import_process.html:6
 #: pretix/control/templates/pretixcontrol/vouchers/import_process.html:8
@@ -27865,81 +27941,85 @@ msgstr ""
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:81
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:94
 msgid "Import vouchers"
-msgstr ""
+msgstr "Vouchers importeren"
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:10
 msgid ""
 "Vouchers allow you to assign tickets to specific persons for a lower price. "
 "They also enable you to reserve some quota for your very special guests."
 msgstr ""
+"Met vouchers kunt u bepaalde personen goedkopere tickets toewijzen of "
+"plaatsen in het quotum reserveren voor belangrijke gasten."
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:67
 msgid "Your search did not match any vouchers."
-msgstr ""
+msgstr "Uw zoekopdracht leverde geen vouchers op."
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:69
 msgid "You haven't created any vouchers yet."
-msgstr ""
+msgstr "U hebt nog geen vouchers aangemaakt."
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:77
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:88
 msgid "Create a new voucher"
-msgstr ""
+msgstr "Nieuwe voucher aanmaken"
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:79
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:91
 msgid "Create multiple new vouchers"
-msgstr ""
+msgstr "Meerdere nieuwe vouchers aanmaken"
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:98
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:142
 msgid "Download list"
-msgstr ""
+msgstr "Lijst downloaden"
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:119
 msgid "Redemptions"
-msgstr ""
+msgstr "Inwisselingen"
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:124
 msgid "Expiry"
-msgstr ""
+msgstr "Verloopdatum"
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:183
 #, python-format
 msgid "Any product in quota \"%(quota)s\""
-msgstr ""
+msgstr "Elk product in het quotum “%(quota)s”"
 
 #: pretix/control/templates/pretixcontrol/vouchers/index.html:197
 msgid "Use as a template for new vouchers"
-msgstr ""
+msgstr "Als sjabloon voor nieuwe vouchers gebruiken"
 
 #: pretix/control/templates/pretixcontrol/vouchers/tags.html:4
 #: pretix/control/templates/pretixcontrol/vouchers/tags.html:6
 msgid "Voucher tags"
-msgstr ""
+msgstr "Vouchertags"
 
 #: pretix/control/templates/pretixcontrol/vouchers/tags.html:8
 msgid ""
 "If you add a \"tag\" to a voucher, you can here see statistics on their "
 "usage."
 msgstr ""
+"Als u een tag aan een voucher toevoegt, kunt u er hier gebruiksstatistieken "
+"van zien."
 
 #: pretix/control/templates/pretixcontrol/vouchers/tags.html:32
 msgid "You haven't added any tags to vouchers yet."
-msgstr ""
+msgstr "U hebt nog geen tags aan vouchers toegevoegd."
 
 #: pretix/control/templates/pretixcontrol/vouchers/tags.html:43
 msgid "Redeemed vouchers"
-msgstr ""
+msgstr "Ingewisselde vouchers"
 
 #: pretix/control/templates/pretixcontrol/vouchers/tags.html:57
 msgid "Empty tag"
-msgstr ""
+msgstr "Lege tag"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/delete.html:4
 #: pretix/control/templates/pretixcontrol/waitinglist/delete.html:6
 msgid "Delete entry"
-msgstr ""
+msgstr "Inschrijving verwijderen"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/delete.html:9
 #, python-format
@@ -27947,21 +28027,25 @@ msgid ""
 "Are you sure you want to delete the following waiting list entry "
 "<strong>%(entry)s</strong>?"
 msgstr ""
+"Weet u zeker dat u de volgende inschrijving op de wachtlijst wilt "
+"verwijderen: <strong>%(entry)s</strong>?"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/delete_bulk.html:4
 #: pretix/control/templates/pretixcontrol/waitinglist/delete_bulk.html:6
 msgid "Delete entries"
-msgstr ""
+msgstr "Inschrijvingen verwijderen"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/delete_bulk.html:10
 msgid "Are you sure you want to delete the following entries?"
-msgstr ""
+msgstr "Weet u zeker dat u de volgende inschrijvingen wilt verwijderen?"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/delete_bulk.html:21
 msgid ""
 "The following entries can't be deleted as they already have a voucher "
 "attached."
 msgstr ""
+"De volgende inschrijvingen kunnen niet verwijderd worden, omdat er al een "
+"voucher aan toegewezen is."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/edit.html:4
 #: pretix/control/templates/pretixcontrol/waitinglist/edit.html:6
@@ -27974,22 +28058,30 @@ msgid ""
 "The waiting list is disabled, so if the event is sold out, people cannot add "
 "themselves to this list. If you want to enable it, go to the event settings."
 msgstr ""
+"De wachtlijst is uitgeschakeld. Dus als het evenement uitverkocht is, kunnen "
+"mensen zich niet op deze lijst plaatsen. Als u de wachtlijst wilt "
+"inschakelen, ga dan naar de evenementinstellingen."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:21
 msgid ""
 "The waiting list is no longer active for this event. The waiting list no "
 "longer affects quotas and no longer notifies waiting users."
 msgstr ""
+"Voor dit evenement is de wachtlijst niet meer actief. De wachtlijst heeft "
+"geen invloed meer op quota en stelt gebruikers niet langer op de hoogte."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:26
 msgid ""
 "According to your event settings, sold out products are hidden from "
 "customers. This way, customers will not be able to discover the waiting list."
 msgstr ""
+"Volgens uw evenementinstellingen worden uitverkochte producten niet "
+"weergegeven. Dit heeft tot gevolg dat klanten de wachtlijst niet kunnen "
+"vinden."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:36
 msgid "Send vouchers"
-msgstr ""
+msgstr "Vouchers versturen"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:42
 msgid ""
@@ -27999,12 +28091,19 @@ msgid ""
 "capacity is available, so don't worry if entries do not disappear here "
 "immediately. If you want, you can also send them out manually right now."
 msgstr ""
+"U hebt ingesteld dat er automatisch vouchers verstuurd worden naar de "
+"personen op deze lijst die al het langst wachten, zodra er plaats vrijkomt. "
+"Als er net plaats is vrijgekomen, kan het tot een half uur duren voordat de "
+"vouchers verstuurd worden. Als u wilt, kunt u ze echter ook meteen handmatig "
+"versturen."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:51
 msgid ""
 "Currently, no vouchers will be sent since your event is not live or is not "
 "selling tickets."
 msgstr ""
+"Momenteel zullen er geen vouchers verzonden worden, omdat uw evenement niet "
+"live is of geen tickets verkoopt."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:56
 msgid ""
@@ -28014,14 +28113,20 @@ msgid ""
 "quota is available) or you can press the big button below this text to send "
 "out as many vouchers as currently possible to the persons who waited longest."
 msgstr ""
+"U hebt ingesteld dat vouchers <strong>niet</strong> automatisch verstuurd "
+"worden. U kunt de vouchers één voor één versturen in een door u te kiezen "
+"volgorde door te klikken op de knoppen naast een rij in deze tabel (als er "
+"voldoende quotum beschikbaar is), of u kunt op de grote knop onder deze "
+"tekst klikken om zo veel mogelijk vouchers te versturen naar diegenen die "
+"het langst hebben gewacht."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:77
 msgid "Send as many vouchers as possible"
-msgstr ""
+msgstr "Zoveel mogelijk vouchers versturen"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:86
 msgid "Sales estimate"
-msgstr ""
+msgstr "Omzetraming"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:89
 #, python-format
@@ -28030,30 +28135,37 @@ msgid ""
 "waiting list in, you could sell tickets worth an additional "
 "<strong>%(amount)s</strong>."
 msgstr ""
+"Als u genoeg ruimte kunt maken op uw evenement om alle personen op de "
+"wachtlijst te kunnen plaatsen, kunt u tickets verkopen ter waarde van een "
+"extra <strong>%(amount)s</strong>."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:113
 msgid "Successfully redeemed"
-msgstr ""
+msgstr "Inwisseling gelukt"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:170
 msgid "On the list since"
-msgstr ""
+msgstr "Op de wachtlijst sinds"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:216
 msgid ""
 "This entry has a modified priority. The higher this number is, the earlier "
 "this person will be assigned a voucher."
 msgstr ""
+"Deze inschrijving heeft een aangepaste prioriteit. Hoe hoger het getal, hoe "
+"eerder deze persoon een voucher ontvangt."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:233
 msgid ""
 "For safety reasons, the waiting list does not run if the quota is set to "
 "unlimited."
 msgstr ""
+"Om veiligheidsredenen wordt de wachtlijst niet uitgevoerd als het quotum "
+"onbeperkt is."
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:235
 msgid "Quota unlimited"
-msgstr ""
+msgstr "Quotum onbeperkt"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:241
 #, python-format
@@ -28063,30 +28175,34 @@ msgid ""
 "available\n"
 "                                        "
 msgstr ""
+"\n"
+"                                            Wachten, product %(num)sx "
+"beschikbaar\n"
+"                                        "
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:247
 msgid "Waiting, product unavailable"
-msgstr ""
+msgstr "Wachten, product niet beschikbaar"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:257
 msgid "Send a voucher"
-msgstr ""
+msgstr "Voucher versturen"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:264
 msgid "Move to the top of the list"
-msgstr ""
+msgstr "Helemaal naar boven verplaatsen"
 
 #: pretix/control/templates/pretixcontrol/waitinglist/index.html:268
 msgid "Move to the end of the list"
-msgstr ""
+msgstr "Helemaal naar onderen verplaatsen"
 
 #: pretix/control/templatetags/hierarkey_form.py:68
 msgid "Currently set on organizer level"
-msgstr ""
+msgstr "Momenteel geconfigureerd op organisatorniveau"
 
 #: pretix/control/templatetags/hierarkey_form.py:68
 msgid "Currently set on global level"
-msgstr ""
+msgstr "Momenteel geconfigureerd op globaal niveau"
 
 #: pretix/control/templatetags/hierarkey_form.py:71
 msgid ""
@@ -28095,6 +28211,10 @@ msgid ""
 "go to the organizer settings to change them for all your events or you can "
 "unlock them to change them for this event individually."
 msgstr ""
+"Deze instellingen worden momenteel op organisatorniveau beheerd. Zo kunt u "
+"ze eenvoudig voor al uw evenementen tegelijk wijzigen. U kunt ze ofwel voor "
+"alle evenementen tegelijk wijzigen, ofwel de instellingen ontgrendelen en ze "
+"per evenement afzonderlijk aanpassen."
 
 #: pretix/control/templatetags/hierarkey_form.py:75
 msgid ""
@@ -28103,26 +28223,30 @@ msgid ""
 "global settings to change them for all your organizers or you can unlock "
 "them to change them for this event individually."
 msgstr ""
+"Deze instellingen worden momenteel op globaal niveau beheerd. Zo kunt u ze "
+"eenvoudig voor al uw organisatoren tegelijk wijzigen. U kunt ze ofwel voor "
+"alle organisatoren tegelijk wijzigen, ofwel ontgrendelen en voor elke "
+"organisator afzonderlijk aanpassen."
 
 #: pretix/control/templatetags/hierarkey_form.py:79
 msgid "Unlock"
-msgstr ""
+msgstr "Ontgrendelen"
 
 #: pretix/control/templatetags/hierarkey_form.py:80
 msgid "Go to organizer settings"
-msgstr ""
+msgstr "Ga naar de organisatorinstellingen"
 
 #: pretix/control/templatetags/hierarkey_form.py:80
 msgid "Go to global settings"
-msgstr ""
+msgstr "Ga naar de globale instellingen"
 
 #: pretix/control/views/__init__.py:166
 msgid "That page number is not an integer"
-msgstr ""
+msgstr "Dit paginanummer is geen getal"
 
 #: pretix/control/views/__init__.py:168
 msgid "That page number is less than 1"
-msgstr ""
+msgstr "Dat paginanummer is kleiner dan 1"
 
 #: pretix/control/views/auth.py:248
 msgid ""
@@ -28130,6 +28254,8 @@ msgid ""
 "address bar and make sure it is correct and that the link has not been used "
 "before."
 msgstr ""
+"U hebt een ongeldige link gebruikt. Kopieer de link uit uw e-mail naar de "
+"adresbalk en controleer of hij correct is en nog niet eerder gebruikt."
 
 #: pretix/control/views/auth.py:254
 #, python-brace-format
@@ -28137,16 +28263,18 @@ msgid ""
 "You cannot accept the invitation for \"{}\" as you already are part of this "
 "team."
 msgstr ""
+"U kunt de uitnodiging voor \"{}\" niet accepteren, omdat u al lid van dit "
+"team bent."
 
 #: pretix/control/views/auth.py:271
 #, python-brace-format
 msgid "You are now part of the team \"{}\"."
-msgstr ""
+msgstr "U bent nu lid van het team \"{}\"."
 
 #: pretix/control/views/auth.py:302
 #, python-brace-format
 msgid "Welcome to pretix! You are now part of the team \"{}\"."
-msgstr ""
+msgstr "Welkom bij pretix! U bent nu lid van het team \"{}\"."
 
 #: pretix/control/views/auth.py:360
 msgid ""
@@ -28154,12 +28282,17 @@ msgid ""
 "email containing further instructions. Please note that we will send at most "
 "one email every 24 hours."
 msgstr ""
+"Als het adres gekoppeld is aan een geldig account, zullen we u een e-mail "
+"sturen met verdere instructies. Let op: we sturen ten hoogste één e-mail per "
+"24 uur."
 
 #: pretix/control/views/auth.py:363
 msgid ""
 "If the address is registered to valid account, then we have sent you an "
 "email containing further instructions."
 msgstr ""
+"Als het adres gekoppeld is aan een geldig account, zullen we u een e-mail "
+"sturen met verdere instructies."
 
 #: pretix/control/views/auth.py:383
 msgid ""
@@ -28167,42 +28300,48 @@ msgid ""
 "address into your address bar. Please note that the link is only valid for "
 "three days and that the link can only be used once."
 msgstr ""
+"U hebt op een ongeldige link geklikt. Controleer of u het volledige adres in "
+"uw adresbalk hebt gekopieerd. Let op: de link is maar drie dagen geldig en "
+"kan maar één keer gebruikt worden."
 
 #: pretix/control/views/auth.py:386
 msgid "We were unable to find the user you requested a new password for."
 msgstr ""
+"De gebruiker waarvoor u een nieuw wachtwoord wilt aanvragen, is niet bekend."
 
 #: pretix/control/views/auth.py:424
 msgid "You can now login using your new password."
-msgstr ""
+msgstr "U kunt nu inloggen met uw nieuwe wachtwoord."
 
 #: pretix/control/views/auth.py:476
 msgid "Please try again."
-msgstr ""
+msgstr "Probeer het opnieuw."
 
 #: pretix/control/views/auth.py:542
 msgid "A recovery code for two-factor authentification was used to log in."
 msgstr ""
+"Er is een herstelcode voor twee-factor-authenticatie gebruikt om in te "
+"loggen."
 
 #: pretix/control/views/auth.py:558
 msgid "Invalid code, please try again."
-msgstr ""
+msgstr "Ongeldige code, probeer het opnieuw."
 
 #: pretix/control/views/checkin.py:281
 msgid "The selected check-ins have been reverted."
-msgstr ""
+msgstr "De gekozen check-ins zijn teruggedraaid."
 
 #: pretix/control/views/checkin.py:283
 msgid "The selected tickets have been marked as checked out."
-msgstr ""
+msgstr "De geselecteerde tickets zijn aangemerkt als uitgecheckt."
 
 #: pretix/control/views/checkin.py:285
 msgid "The selected tickets have been marked as checked in."
-msgstr ""
+msgstr "De geselecteerde tickets zijn aangemerkt als ingecheckt."
 
 #: pretix/control/views/checkin.py:374
 msgid "The new check-in list has been created."
-msgstr ""
+msgstr "De nieuwe check-in-lijst is aangemaakt."
 
 #: pretix/control/views/checkin.py:381 pretix/control/views/checkin.py:441
 #: pretix/control/views/discounts.py:134 pretix/control/views/discounts.py:182
@@ -28228,14 +28367,16 @@ msgstr ""
 #: pretix/plugins/ticketoutputpdf/views.py:132
 msgid "We could not save your changes. See below for details."
 msgstr ""
+"De wijzigingen konden niet worden opgeslagen. Zie hieronder voor meer "
+"informatie."
 
 #: pretix/control/views/checkin.py:420 pretix/control/views/checkin.py:457
 msgid "The requested list does not exist."
-msgstr ""
+msgstr "De gevraagde lijst bestaat niet."
 
 #: pretix/control/views/checkin.py:466
 msgid "The selected list has been deleted."
-msgstr ""
+msgstr "De gekozen lijst is verwijderd."
 
 #: pretix/control/views/dashboards.py:114
 msgid "Attendees (ordered)"
@@ -28248,71 +28389,73 @@ msgstr "Deelnemers (betaald)"
 #: pretix/control/views/dashboards.py:136
 #, python-brace-format
 msgid "Total revenue ({currency})"
-msgstr ""
+msgstr "Totale omzet ({currency})"
 
 #: pretix/control/views/dashboards.py:147
 msgid "Active products"
-msgstr ""
+msgstr "Actieve producten"
 
 #: pretix/control/views/dashboards.py:212
 msgid "available to give to people on waiting list"
-msgstr ""
+msgstr "beschikbaar om aan mensen op de wachtlijst te geven"
 
 #: pretix/control/views/dashboards.py:222
 msgid "total waiting list length"
-msgstr ""
+msgstr "lengte van de wachtlijst"
 
 #: pretix/control/views/dashboards.py:251
 #, python-brace-format
 msgid "{quota} left"
-msgstr ""
+msgstr "{quota} over"
 
 #: pretix/control/views/dashboards.py:271
 msgid "Your ticket shop is"
-msgstr ""
+msgstr "Uw ticketwinkel is"
 
 #: pretix/control/views/dashboards.py:271
 msgid "Click here to change"
-msgstr ""
+msgstr "Klik hier om te wijzigen"
 
 #: pretix/control/views/dashboards.py:272
 msgid "live"
-msgstr ""
+msgstr "live"
 
 #: pretix/control/views/dashboards.py:273
 msgid "live and in test mode"
-msgstr ""
+msgstr "live en in testmodus"
 
 #: pretix/control/views/dashboards.py:274
 msgid "not yet public"
-msgstr ""
+msgstr "nog niet openbaar"
 
 #: pretix/control/views/dashboards.py:275
 msgid "in private test mode"
-msgstr ""
+msgstr "in privétestmodus"
 
 #: pretix/control/views/dashboards.py:303
 #, python-brace-format
 msgid "Present – {list}"
-msgstr ""
+msgstr "Aanwezig - {list}"
 
 #: pretix/control/views/dashboards.py:321
 msgid "Welcome to pretix!"
-msgstr ""
+msgstr "Welkom bij pretix!"
 
 #: pretix/control/views/dashboards.py:327
 msgid "Get started with our setup tool"
-msgstr ""
+msgstr "Ga aan de slag met onze instelhulp"
 
 #: pretix/control/views/dashboards.py:328
 msgid ""
 "To start selling tickets, you need to create products or quotas. The fastest "
 "way to create this is to use our setup tool."
 msgstr ""
+"Om tickets te verkopen, moet u producten en quota aanmaken. De snelste "
+"manier is onze tool voor het opzetten van evenementen."
 
 #: pretix/control/views/dashboards.py:330
 msgid "Set up event"
-msgstr ""
+msgstr "Een evenement aanmaken"
 
 #: pretix/control/views/dashboards.py:539
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:111
@@ -28321,7 +28464,7 @@ msgstr ""
 #: pretix/presale/templates/pretixpresale/fragment_week_calendar.html:80
 #: pretix/presale/views/widget.py:474
 msgid "Sale over"
-msgstr ""
+msgstr "Verkoop afgelopen"
 
 #: pretix/control/views/dashboards.py:541
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:119
@@ -28329,147 +28472,162 @@ msgstr ""
 #: pretix/presale/templates/pretixpresale/fragment_week_calendar.html:88
 #: pretix/presale/views/widget.py:485
 msgid "Soon"
-msgstr ""
+msgstr "Binnenkort"
 
 #: pretix/control/views/dashboards.py:566
 #, python-brace-format
 msgid "{num} order"
 msgid_plural "{num} orders"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} bestelling"
+msgstr[1] "{num} bestellingen"
 
 #: pretix/control/views/datasync.py:82 pretix/control/views/datasync.py:113
 msgid "The sync job has been set to run as soon as possible."
 msgstr ""
+"De synchronisatie wordt op het eerstvolgende beschikbare moment uitgevoerd."
 
 #: pretix/control/views/datasync.py:90 pretix/control/views/datasync.py:104
 msgid ""
 "The sync job could not be found. It may have been processed in the meantime."
 msgstr ""
+"De synchronisatieopdracht is niet gevonden. Mogelijk is deze inmiddels "
+"verwerkt."
 
 #: pretix/control/views/datasync.py:93 pretix/control/views/datasync.py:107
 msgid "The sync job is already in progress."
-msgstr ""
+msgstr "De synchronisatieopdracht loopt al."
 
 #: pretix/control/views/datasync.py:96
 msgid "The sync job has been canceled."
-msgstr ""
+msgstr "De synchronisatieopdracht is geannuleerd."
 
 #: pretix/control/views/datasync.py:144
 msgid "The selected jobs have been set to run as soon as possible."
 msgstr ""
+"De geselecteerde opdrachten worden op het eerst mogelijke moment uitgevoerd."
 
 #: pretix/control/views/datasync.py:147
 msgid "The selected jobs have been canceled."
-msgstr ""
+msgstr "De geselecteerde opdrachten zijn geannuleerd."
 
 #: pretix/control/views/discounts.py:67 pretix/control/views/discounts.py:109
 #: pretix/control/views/discounts.py:214
 msgid "The requested discount does not exist."
-msgstr ""
+msgstr "De gevraagde korting bestaat niet."
 
 #: pretix/control/views/discounts.py:77
 msgid "The selected discount has been deleted."
-msgstr ""
+msgstr "De geselecteerde korting is verwijderd."
 
 #: pretix/control/views/discounts.py:85
 msgid "The selected discount has been deactivated."
-msgstr ""
+msgstr "De geselecteerde korting is uitgeschakeld."
 
 #: pretix/control/views/discounts.py:176
 msgid "The new discount has been created."
-msgstr ""
+msgstr "De nieuwe korting is aangemaakt."
 
 #: pretix/control/views/discounts.py:227
 msgid "The order of discounts has been updated."
-msgstr ""
+msgstr "De volgorde van kortingen is bijgewerkt."
 
 #: pretix/control/views/discounts.py:260 pretix/control/views/item.py:192
 #: pretix/control/views/item.py:404 pretix/control/views/item.py:538
 #: pretix/control/views/organizer.py:2595
 #: pretix/control/views/organizer.py:3656
 msgid "Some of the provided object ids are invalid."
-msgstr ""
+msgstr "Sommige van de opgegeven object-ID's zijn ongeldig."
 
 #: pretix/control/views/discounts.py:263
 msgid "Not all discounts have been selected."
-msgstr ""
+msgstr "Niet alle kortingen zijn geselecteerd."
 
 #: pretix/control/views/event.py:453
 msgid ""
 "You do not have sufficient permission to enable plugins that need to be "
 "enabled for the entire organizer account."
 msgstr ""
+"U beschikt niet over voldoende rechten om plug-ins te activeren die voor het "
+"hele organisatorenaccount ingeschakeld moeten zijn."
 
 #: pretix/control/views/event.py:472 pretix/control/views/organizer.py:714
 #, python-brace-format
 msgid "The plugin {} is now active, you can configure it here:"
-msgstr ""
+msgstr "De plug-in {} is nu geactiveerd. U kunt hem hier configureren:"
 
 #: pretix/control/views/event.py:481 pretix/control/views/organizer.py:723
 #, python-brace-format
 msgid "The plugin {} is now active."
-msgstr ""
+msgstr "De plug-in {} is nu geactiveerd."
 
 #: pretix/control/views/event.py:546
 msgid ""
 "This payment provider does not exist or the respective plugin is disabled."
 msgstr ""
+"Deze betaalwijze bestaat niet of de bijbehorende plug-in is uitgeschakeld."
 
 #: pretix/control/views/event.py:838 pretix/control/views/organizer.py:357
 #: pretix/control/views/vouchers.py:561
 msgid "invalid item"
-msgstr ""
+msgstr "ongeldig item"
 
 #: pretix/control/views/event.py:925
 #, python-format
 msgid "Your order: %(code)s"
-msgstr ""
+msgstr "Uw bestelling: %(code)s"
 
 #: pretix/control/views/event.py:934
 msgid "Unknown email renderer."
-msgstr ""
+msgstr "Onbekende e-mailrenderer."
 
 #: pretix/control/views/event.py:950 pretix/control/views/orders.py:684
 #: pretix/presale/views/order.py:1162 pretix/presale/views/order.py:1169
 msgid "You requested an invalid ticket output type."
-msgstr ""
+msgstr "U hebt een ongeldig uitvoertype geselecteerd."
 
 #: pretix/control/views/event.py:1098
 msgid "Your shop is live now!"
-msgstr ""
+msgstr "Uw winkel is nu live!"
 
 #: pretix/control/views/event.py:1106
 msgid "We've taken your shop down. You can re-enable it whenever you want!"
 msgstr ""
+"We hebben uw winkel offline gehaald. U kunt hem opnieuw inschakelen wanneer "
+"u dit wilt!"
 
 #: pretix/control/views/event.py:1114
 msgid "Your shop is now in test mode!"
-msgstr ""
+msgstr "Uw winkel staat nu in testmodus!"
 
 #: pretix/control/views/event.py:1131
 msgid ""
 "An order could not be deleted as some constraints (e.g. data created by plug-"
 "ins) do not allow it."
 msgstr ""
+"Deze bestelling kon niet verwijderd worden, omdat bepaalde omstandigheden "
+"(bijvoorbeeld door plug-ins gegenereerde gegevens) dit niet toestaan."
 
 #: pretix/control/views/event.py:1137
 msgid "We've disabled test mode for you. Let's sell some real tickets!"
 msgstr ""
+"We hebben de testmodus voor u uitgeschakeld. Veel succes met de echte "
+"ticketverkoop!"
 
 #: pretix/control/views/event.py:1159
 msgid "This event can not be deleted."
-msgstr ""
+msgstr "Dit evenement kan niet verwijderd worden."
 
 #: pretix/control/views/event.py:1182
 msgid "The event has been deleted."
-msgstr ""
+msgstr "Het evenement is verwijderd."
 
 #: pretix/control/views/event.py:1185
 msgid ""
 "The event could not be deleted as some constraints (e.g. data created by "
 "plug-ins) do not allow it."
 msgstr ""
+"Dit evenement kon niet verwijderd worden, omdat bepaalde omstandigheden "
+"(bijvoorbeeld door plug-ins gegenereerde gegevens) dit niet toestaan."
 
 #: pretix/control/views/event.py:1201
 #, python-brace-format
