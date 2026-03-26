@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-17 14:05+0000\n"
-"PO-Revision-Date: 2026-02-10 16:49+0000\n"
-"Last-Translator: Michele Pagnozzi <michele.pagnozzi@gmail.com>\n"
+"PO-Revision-Date: 2026-03-26 06:00+0000\n"
+"Last-Translator: Pietro Isotti <isottipietro@gmail.com>\n"
 "Language-Team: Italian <https://translate.pretix.eu/projects/pretix/pretix/"
 "it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #: pretix/_base_settings.py:87
 msgid "English"
@@ -412,9 +412,8 @@ msgstr ""
 
 #: pretix/api/serializers/organizer.py:482
 #: pretix/control/views/organizer.py:1039
-#, fuzzy
 msgid "Account invitation"
-msgstr "Informazioni account modificate"
+msgstr "Invito account"
 
 #: pretix/api/serializers/organizer.py:503
 #: pretix/control/views/organizer.py:1138
@@ -656,22 +655,16 @@ msgid "Customer account anonymized"
 msgstr "Account del cliente anonimizzato"
 
 #: pretix/api/webhooks.py:470
-#, fuzzy
-#| msgid "Gift card code"
 msgid "Gift card added"
-msgstr "Codice carta regalo"
+msgstr "Carta regalo aggiunta"
 
 #: pretix/api/webhooks.py:474
-#, fuzzy
-#| msgid "Gift card code"
 msgid "Gift card modified"
-msgstr "Codice carta regalo"
+msgstr "Carta regalo modificata"
 
 #: pretix/api/webhooks.py:478
-#, fuzzy
-#| msgid "Gift card transactions"
 msgid "Gift card used in transaction"
-msgstr "Transazioni con carta regalo"
+msgstr "Carta regalo usata nella transazione"
 
 #: pretix/base/addressvalidation.py:100 pretix/base/addressvalidation.py:103
 #: pretix/base/addressvalidation.py:108 pretix/base/forms/questions.py:1054
@@ -1237,7 +1230,7 @@ msgstr "Caricamento dei file di risposta alle domande"
 #: pretix/plugins/reports/exporters.py:666
 msgctxt "export_category"
 msgid "Order data"
-msgstr "Dati dell'ordine"
+msgstr "Data dell'ordine"
 
 #: pretix/base/exporters/answers.py:56
 msgid ""
@@ -2590,16 +2583,12 @@ msgid "Voucher"
 msgstr "Voucher"
 
 #: pretix/base/exporters/orderlist.py:655
-#, fuzzy
-#| msgid "Voucher deleted"
 msgid "Voucher budget usage"
-msgstr "Buono eliminato"
+msgstr "Utilizzo budget del buono"
 
 #: pretix/base/exporters/orderlist.py:656
-#, fuzzy
-#| msgid "Voucher"
 msgid "Voucher tag"
-msgstr "Voucher"
+msgstr "Voucher tag"
 
 #: pretix/base/exporters/orderlist.py:657
 msgid "Pseudonymization ID"
@@ -3418,39 +3407,34 @@ msgid "Street and Number"
 msgstr "Indirizzo e numero civico"
 
 #: pretix/base/forms/questions.py:893
-#, fuzzy, python-brace-format
-#| msgid "Please enter a shorter name."
+#, python-brace-format
 msgid "Please enter a date between {min} and {max}."
-msgstr "Per favore inserisci un nome più breve."
+msgstr "Per favore inserisci una data inclusa tra {min} e {max}."
 
 #: pretix/base/forms/questions.py:899
-#, fuzzy, python-brace-format
-#| msgid "Please enter a valid sales channel."
+#, python-brace-format
 msgid "Please enter a date no earlier than {min}."
-msgstr "Inserire un canale di vendita valido."
+msgstr "Per favore inserisci una data successiva a {min}."
 
 #: pretix/base/forms/questions.py:904
-#, fuzzy, python-brace-format
-#| msgid "Please enter a shorter name."
+#, python-brace-format
 msgid "Please enter a date no later than {max}."
-msgstr "Per favore inserisci un nome più breve."
+msgstr "Per favore inserisci una data precedente a {max}."
 
 #: pretix/base/forms/questions.py:942
 #, python-brace-format
 msgid "Please enter a date and time between {min} and {max}."
-msgstr ""
+msgstr "Per favore inserisci data e orario compresi tra {min} e {max}."
 
 #: pretix/base/forms/questions.py:948
-#, fuzzy, python-brace-format
-#| msgid "Please enter a valid sales channel."
+#, python-brace-format
 msgid "Please enter a date and time no earlier than {min}."
-msgstr "Inserire un canale di vendita valido."
+msgstr "Per favore inserisci data e orario successivi a {min}."
 
 #: pretix/base/forms/questions.py:953
-#, fuzzy, python-brace-format
-#| msgid "Please enter the correct result."
+#, python-brace-format
 msgid "Please enter a date and time no later than {max}."
-msgstr "Per favore inserisci il risultato corretto."
+msgstr "Per favore inserisci data e orario precedenti a {max}."
 
 #: pretix/base/forms/questions.py:1172
 msgid ""
@@ -5339,7 +5323,6 @@ msgstr "trasmesso"
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mail.html:44
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:145
 #: pretix/plugins/sendmail/models.py:51
-#, fuzzy
 msgid "failed"
 msgstr "fallito"
 
@@ -6449,13 +6432,13 @@ msgstr "Fine"
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mail.html:38
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:139
 msgid "queued"
-msgstr ""
+msgstr "in coda"
 
 #: pretix/base/models/mail.py:53
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mail.html:40
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:141
 msgid "being sent"
-msgstr ""
+msgstr "invio in corso"
 
 #: pretix/base/models/mail.py:54
 #, fuzzy
@@ -6467,25 +6450,25 @@ msgstr "Voce in lista d'attesa"
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mail.html:48
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:149
 msgid "withheld"
-msgstr ""
+msgstr "trattenuto"
 
 #: pretix/base/models/mail.py:57
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mail.html:50
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:151
 msgid "aborted"
-msgstr ""
+msgstr "annullato"
 
 #: pretix/base/models/mail.py:58
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mail.html:52
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:153
 msgid "sent"
-msgstr ""
+msgstr "inviato"
 
 #: pretix/base/models/mail.py:59
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mail.html:46
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:147
 msgid "bounced"
-msgstr ""
+msgstr "rimbalzato"
 
 #: pretix/base/models/memberships.py:44
 #: pretix/presale/templates/pretixpresale/organizers/customer_memberships.html:28
@@ -6689,7 +6672,7 @@ msgstr "confermato"
 #: pretix/base/models/orders.py:1734
 msgctxt "payment_state"
 msgid "canceled"
-msgstr "annullato"
+msgstr "cancellato"
 
 #: pretix/base/models/orders.py:1735
 msgctxt "payment_state"
@@ -8519,7 +8502,7 @@ msgstr "Filtra per stato"
 #: pretix/base/permissions.py:233
 msgctxt "permission_level"
 msgid "View all"
-msgstr ""
+msgstr "Vedi tutto"
 
 #: pretix/base/permissions.py:234
 #, fuzzy
@@ -8530,11 +8513,11 @@ msgstr "Filtra per stato"
 #: pretix/base/permissions.py:235
 msgctxt "permission_level"
 msgid "View all and change"
-msgstr ""
+msgstr "Vedi e modifica tutto"
 
 #: pretix/base/permissions.py:236
 msgid "Includes the ability to cancel and refund individual orders."
-msgstr ""
+msgstr "Include il permesso di cancellare e rimborsare ordini individuali."
 
 #: pretix/base/permissions.py:238
 msgid "Also includes related objects like the waiting list."
@@ -8625,7 +8608,7 @@ msgstr "Piano dei posti a sedere"
 #: pretix/base/permissions.py:327 pretix/control/navigation.py:712
 #: pretix/control/templates/pretixcontrol/organizers/outgoing_mails.html:8
 msgid "Outgoing emails"
-msgstr ""
+msgstr "Email in uscita"
 
 #: pretix/base/plugins.py:138
 #: pretix/control/templates/pretixcontrol/event/quick_setup.html:132
@@ -16579,19 +16562,19 @@ msgstr "Salva modifiche"
 
 #: pretix/control/forms/rrule.py:35
 msgid "year(s)"
-msgstr ""
+msgstr "anno/i"
 
 #: pretix/control/forms/rrule.py:36
 msgid "month(s)"
-msgstr "mese(i)"
+msgstr "mese/i"
 
 #: pretix/control/forms/rrule.py:37
 msgid "week(s)"
-msgstr "settimana (e)"
+msgstr "settimana/e"
 
 #: pretix/control/forms/rrule.py:38
 msgid "day(s)"
-msgstr ""
+msgstr "giorno/i"
 
 #: pretix/control/forms/rrule.py:43
 msgid "Interval"
@@ -16628,7 +16611,7 @@ msgstr ""
 #: pretix/control/forms/rrule.py:111 pretix/control/forms/rrule.py:150
 #: pretix/presale/templates/pretixpresale/fragment_calendar_nav.html:20
 msgid "Day"
-msgstr ""
+msgstr "Giorno"
 
 #: pretix/control/forms/rrule.py:113 pretix/control/forms/rrule.py:152
 msgid "Weekend day"
@@ -18914,7 +18897,7 @@ msgstr ""
 #: pretix/presale/templates/pretixpresale/postmessage.html:27
 #: pretix/presale/templates/pretixpresale/waiting.html:42
 msgid "If this takes longer than a few minutes, please contact us."
-msgstr ""
+msgstr "Se questa operazione richiede alcuni minuti, si prega di contattarci."
 
 #: pretix/control/templates/pretixcontrol/boxoffice/payment.html:4
 #: pretix/control/templates/pretixcontrol/organizers/devices.html:75
@@ -20687,8 +20670,6 @@ msgid "Payment reminder"
 msgstr ""
 
 #: pretix/control/templates/pretixcontrol/event/mail.html:108
-#, fuzzy
-#| msgid "Payment confirmed"
 msgid "Payment failed"
 msgstr "Pagamento rifiutato"
 
@@ -20739,7 +20720,7 @@ msgstr ""
 #: pretix/control/templates/pretixcontrol/event/payment.html:78
 msgctxt "unit"
 msgid "days"
-msgstr ""
+msgstr "giorni"
 
 #: pretix/control/templates/pretixcontrol/event/payment_provider.html:13
 #: pretix/control/templates/pretixcontrol/events/create_base.html:24
@@ -21616,7 +21597,7 @@ msgstr ""
 #: pretix/control/templates/pretixcontrol/fragment_quota_box_paid.html:3
 #, python-format
 msgid "Currently available: %(num)s"
-msgstr ""
+msgstr "Attualmente disponibili: %(num)s"
 
 #: pretix/control/templates/pretixcontrol/global_license.html:8
 msgid ""
@@ -22863,12 +22844,13 @@ msgstr ""
 #: pretix/presale/templates/pretixpresale/event/order.html:483
 #: pretix/presale/templates/pretixpresale/event/order_cancel.html:7
 msgid "Cancel order"
-msgstr ""
+msgstr "Elimina ordine"
 
 #: pretix/control/templates/pretixcontrol/order/cancel.html:12
 #: pretix/control/templates/pretixcontrol/order/deny.html:11
 msgid "Do you really want to cancel this order? You cannot revert this action."
 msgstr ""
+"Vuoi davvero eliminare questo ordine? Questa azione non può essere annullata."
 
 #: pretix/control/templates/pretixcontrol/order/cancel.html:16
 msgid ""
@@ -22887,12 +22869,12 @@ msgstr ""
 #: pretix/control/templates/pretixcontrol/order/cancel.html:51
 #: pretix/presale/templates/pretixpresale/event/order_cancel.html:220
 msgid "Yes, cancel order"
-msgstr ""
+msgstr "Si, elimina ordine"
 
 #: pretix/control/templates/pretixcontrol/order/cancellation_request_delete.html:4
 #: pretix/control/templates/pretixcontrol/order/cancellation_request_delete.html:8
 msgid "Ignore cancellation request"
-msgstr ""
+msgstr "Ignora la richiesta di cancellazione"
 
 #: pretix/control/templates/pretixcontrol/order/cancellation_request_delete.html:10
 msgid ""
@@ -23002,9 +22984,8 @@ msgid ""
 msgstr ""
 
 #: pretix/control/templates/pretixcontrol/order/change.html:220
-#, fuzzy
 msgid "Ticket block"
-msgstr "Codice biglietto"
+msgstr "Biglietto bloccato"
 
 #: pretix/control/templates/pretixcontrol/order/change.html:226
 msgid "Blocked due to external constraints"
@@ -26182,7 +26163,7 @@ msgstr ""
 #: pretix/control/templates/pretixcontrol/subevents/bulk.html:10
 msgctxt "subevent"
 msgid "Create multiple dates"
-msgstr ""
+msgstr "Crea date multiple"
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk.html:35
 #: pretix/control/templates/pretixcontrol/subevents/bulk.html:146
@@ -26275,10 +26256,9 @@ msgstr ""
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:9
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:12
-#, fuzzy
 msgctxt "subevent"
 msgid "Change multiple dates"
-msgstr "Solo ordini pagati"
+msgstr "Cambia date multiple"
 
 #: pretix/control/templates/pretixcontrol/subevents/bulk_edit.html:154
 msgid "Item prices"
@@ -33293,10 +33273,9 @@ msgstr ""
 
 #: pretix/presale/forms/renderers.py:66
 #: pretix/presale/templates/pretixpresale/event/fragment_voucher_form.html:14
-#, fuzzy
 msgctxt "form"
 msgid "required"
-msgstr "Carrello scaduto"
+msgstr "obbligatorio"
 
 #: pretix/presale/ical.py:87 pretix/presale/ical.py:146
 #: pretix/presale/ical.py:182
@@ -34002,7 +33981,7 @@ msgstr ""
 #: pretix/presale/templates/pretixpresale/event/fragment_availability.html:25
 #: pretix/presale/templates/pretixpresale/event/fragment_product_list.html:91
 msgid "FULLY BOOKED"
-msgstr ""
+msgstr "TUTTO PRENOTATO"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_availability.html:37
 #: pretix/presale/templates/pretixpresale/event/fragment_product_list.html:101
@@ -34514,7 +34493,7 @@ msgstr ""
 #: pretix/presale/templates/pretixpresale/event/fragment_quota_left.html:4
 #, python-format
 msgid "%(num)s currently available"
-msgstr ""
+msgstr "%(num)s attualmente disponibili"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_subevent_calendar.html:5
 #: pretix/presale/templates/pretixpresale/event/fragment_subevent_calendar_week.html:5
@@ -34751,18 +34730,14 @@ msgstr ""
 "completo."
 
 #: pretix/presale/templates/pretixpresale/event/order.html:56
-#, fuzzy
-#| msgid ""
-#| "Please bookmark or save the link to this exact page if you want to access "
-#| "your order later. We also sent you an email containing the link to the "
-#| "address you specified."
 msgid ""
 "Please bookmark or save the link to this exact page if you want to access "
 "your order later. We also sent you an email to the address you specified "
 "containing the link to this page."
 msgstr ""
-"Salva questa pagina nei preferiti se vuoi accedervi in seguito. Ti abbiamo "
-"anche inviato una email contenente il link a questa pagina."
+"Salva questa pagina nei preferiti se vuoi accedere al tuo ordine in seguito. "
+"Ti abbiamo anche inviato una email all'indirizzo che hai indicato contenente "
+"il link a questa pagina."
 
 #: pretix/presale/templates/pretixpresale/event/order.html:60
 #, fuzzy
@@ -34877,7 +34852,7 @@ msgstr "Riferimento Interno"
 #: pretix/presale/templates/pretixpresale/event/order.html:354
 msgctxt "action"
 msgid "Change or cancel your order"
-msgstr ""
+msgstr "Modifica o cancella il tuo ordine"
 
 #: pretix/presale/templates/pretixpresale/event/order.html:356
 #, fuzzy
@@ -34887,10 +34862,9 @@ msgid "Change your order"
 msgstr "Cambia ordine"
 
 #: pretix/presale/templates/pretixpresale/event/order.html:358
-#, fuzzy
 msgctxt "action"
 msgid "Cancel your order"
-msgstr "Solo ordini pagati"
+msgstr "Cancella il tuo ordine"
 
 #: pretix/presale/templates/pretixpresale/event/order.html:366
 msgid ""
@@ -34984,7 +34958,7 @@ msgstr ""
 
 #: pretix/presale/templates/pretixpresale/event/order.html:472
 msgid "You can cancel this order using the following button."
-msgstr ""
+msgstr "Puoi cancellare questo ordine usando il bottone di seguito."
 
 #: pretix/presale/templates/pretixpresale/event/order_cancel.html:11
 #, python-format
@@ -35271,7 +35245,7 @@ msgstr "Devi selezionare almeno %(number)s prodotti."
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist.html:5
 msgid "Add me to the waiting list"
-msgstr ""
+msgstr "Aggiungimi alla lista d'attesa"
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist.html:22
 #, python-format
@@ -35280,6 +35254,10 @@ msgid ""
 "waiting list. If we notify you, you'll have %(hours)s hours time to buy a "
 "ticket until we assign it to the next person on the list."
 msgstr ""
+"Se i biglietti dovessero tornare disponibili, informeremo le prime persone "
+"in lista d'attesa. Se ti avvisiamo, avrai %(hours)s ore di tempo per "
+"acquistare un biglietto prima che venga assegnato alla persona successiva in "
+"lista."
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist.html:28
 msgid ""
@@ -35287,6 +35265,9 @@ msgid ""
 "you need to add yourself to the waiting list multiple times. There is no "
 "guarantee that you will receive a certain number of tickets."
 msgstr ""
+"Tieni presente che riceverai un solo biglietto. Se hai bisogno di più "
+"biglietti, dovrai iscriverti alla lista d'attesa più volte. Non è garantito "
+"che riceverai un numero esatto di biglietti."
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist.html:32
 msgid ""
@@ -35295,6 +35276,10 @@ msgid ""
 "email addresses. There is no guarantee that you will receive a certain "
 "number of tickets."
 msgstr ""
+"Tieni presente che riceverai un solo biglietto. Se hai bisogno di più "
+"biglietti, dovrai iscriverti alla lista d'attesa più volte utilizzando "
+"indirizzi email diversi. Non è garantito che riceverai un numero esatto di "
+"biglietti."
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist.html:38
 msgid ""
@@ -35302,15 +35287,17 @@ msgid ""
 "been added to the waiting list. We will only contact you once a spot opens "
 "up."
 msgstr ""
+"<strong>Non</strong> riceverai un'email di conferma dopo essere stato "
+"aggiunto alla lista d'attesa. Ti contatteremo solo quando si libererà un "
+"posto."
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist.html:44
 msgid "Add me to the list"
-msgstr ""
+msgstr "Aggiungimi alla lista"
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist_remove.html:5
-#, fuzzy
 msgid "Remove me from the waiting list"
-msgstr "Informazioni dell'ordine modificate"
+msgstr "Cancellami dalla lista d'attesa"
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist_remove.html:9
 msgid ""
@@ -35320,10 +35307,9 @@ msgid ""
 msgstr ""
 
 #: pretix/presale/templates/pretixpresale/event/waitinglist_remove.html:16
-#, fuzzy
 msgctxt "waitinglist"
 msgid "Yes, remove my ticket"
-msgstr "Aggiungi o rimuovi biglietti"
+msgstr "Si, cancella i miei biglietti"
 
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:7
 msgid "Calendar"
@@ -35347,9 +35333,8 @@ msgstr "(continua)"
 #: pretix/presale/templates/pretixpresale/fragment_event_list_status.html:14
 #: pretix/presale/templates/pretixpresale/fragment_week_calendar.html:58
 #: pretix/presale/views/widget.py:440
-#, fuzzy
 msgid "Few tickets left"
-msgstr "Abilita formato biglietti"
+msgstr "Pochi biglietti rimasti"
 
 #: pretix/presale/templates/pretixpresale/fragment_calendar.html:92
 #: pretix/presale/templates/pretixpresale/fragment_day_calendar.html:97
@@ -35397,10 +35382,9 @@ msgid "iCal"
 msgstr "iCal"
 
 #: pretix/presale/templates/pretixpresale/fragment_day_calendar.html:25
-#, fuzzy
 msgctxt "day calendar"
 msgid "Single events"
-msgstr "Prezzo netto"
+msgstr "Singoli eventi"
 
 #: pretix/presale/templates/pretixpresale/fragment_day_calendar.html:79
 msgctxt "timerange"
@@ -35790,7 +35774,7 @@ msgstr "Ripeti la nuova password"
 
 #: pretix/presale/templates/pretixpresale/organizers/index.html:11
 msgid "Event list"
-msgstr ""
+msgstr "Lista eventi"
 
 #: pretix/presale/templates/pretixpresale/organizers/index.html:35
 msgid "Past events"
@@ -35801,10 +35785,9 @@ msgid "Upcoming events"
 msgstr "Prossimi eventi"
 
 #: pretix/presale/templates/pretixpresale/organizers/index.html:56
-#, fuzzy
 msgctxt "subevent"
 msgid "Multiple dates"
-msgstr "Solo ordini pagati"
+msgstr "Date multiple"
 
 #: pretix/presale/templates/pretixpresale/organizers/index.html:105
 msgid "No archived events found."
@@ -36147,6 +36130,8 @@ msgid ""
 "You cannot add yourself to the waiting list as this product is currently "
 "available."
 msgstr ""
+"Non puoi aggiungerti alla lista d'attesa in quanto questo prodotto è "
+"attualmente disponibile."
 
 #: pretix/presale/views/waiting.py:180
 #, python-brace-format
