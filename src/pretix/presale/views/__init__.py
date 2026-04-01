@@ -70,18 +70,21 @@ def cached_invoice_address(request):
             # do not create a session, if we don't have a session we also don't have an invoice address ;)
             request._checkout_flow_invoice_address = InvoiceAddress()
             return request._checkout_flow_invoice_address
-        cs = cart_session(request)
-        iapk = cs.get('invoice_address')
-        if not iapk:
+        cs = cart_session(request, create=False)
+        if cs is None:
             request._checkout_flow_invoice_address = InvoiceAddress()
         else:
-            try:
-                with scopes_disabled():
-                    request._checkout_flow_invoice_address = InvoiceAddress.objects.get(
-                        pk=iapk, order__isnull=True
-                    )
-            except InvoiceAddress.DoesNotExist:
+            iapk = cs.get('invoice_address')
+            if not iapk:
                 request._checkout_flow_invoice_address = InvoiceAddress()
+            else:
+                try:
+                    with scopes_disabled():
+                        request._checkout_flow_invoice_address = InvoiceAddress.objects.get(
+                            pk=iapk, order__isnull=True
+                        )
+                except InvoiceAddress.DoesNotExist:
+                    request._checkout_flow_invoice_address = InvoiceAddress()
     return request._checkout_flow_invoice_address
 
 
@@ -111,6 +114,12 @@ class CartMixin:
         return cached_invoice_address(self.request)
 
     def get_cart(self, answers=False, queryset=None, order=None, downloads=False, payments=None):
+        if not self.request.session.session_key and not order:
+            # The user has not even a session ID yet, so they can't have a cart and we can save a lot of work
+            return {
+                'positions': [],
+                # Other keys are not used on non-checkout pages
+            }
         if queryset is not None:
             prefetch = []
             if answers:
@@ -166,7 +175,8 @@ class CartMixin:
         else:
             fees = []
 
-        if not order:
+        if not order and lcp:
+            # Do not re-round for empty cart (useless) or confirmed order (incorrect)
             apply_rounding(self.request.event.settings.tax_rounding, self.invoice_address, self.request.event.currency, [*lcp, *fees])
 
         total = sum([c.price for c in lcp]) + sum([f.value for f in fees])
@@ -277,6 +287,12 @@ class CartMixin:
         }
 
     def current_selected_payments(self, positions, fees, invoice_address, *, warn=False):
+        from pretix.presale.views.cart import get_or_create_cart_id
+
+        if not get_or_create_cart_id(self.request, create=False):
+            # No active cart ID, no payments there
+            return []
+
         raw_payments = copy.deepcopy(self.cart_session.get('payments', []))
         fees = [f for f in fees if f.fee_type != OrderFee.FEE_TYPE_PAYMENT]  # we re-compute these here
 
