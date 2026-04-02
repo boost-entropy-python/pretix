@@ -40,6 +40,7 @@ from pretix.base.models import (
     CachedFile, Device, Event, Organizer, ScheduledEventExport, TeamAPIToken,
     User, cachedfile_name,
 )
+from pretix.base.models.auth import UserWithStaffSession
 from pretix.base.models.exports import ScheduledOrganizerExport
 from pretix.base.services.mail import mail
 from pretix.base.services.tasks import (
@@ -214,7 +215,7 @@ def init_event_exporters(event, user=None, token=None, device=None, request=None
         exporter: BaseExporter = response(
             event=event,
             organizer=event.organizer,
-            permission_holder=token or device or user,
+            permission_holder=token or device or (UserWithStaffSession(user) if staff_session else user),
             **kwargs
         )
 
@@ -251,7 +252,7 @@ def init_organizer_exporters(
             exporter: BaseExporter = response(
                 event=Event.objects.none(),
                 organizer=organizer,
-                permission_holder=token or device or user,
+                permission_holder=token or device or (UserWithStaffSession(user) if staff_session else user),
                 **kwargs,
             )
 
@@ -308,7 +309,7 @@ def init_organizer_exporters(
             exporter: BaseExporter = response(
                 event=_event_list_cache[permission_name],
                 organizer=organizer,
-                permission_holder=token or device or user,
+                permission_holder=token or device or (UserWithStaffSession(user) if staff_session else user),
                 **kwargs,
             )
 

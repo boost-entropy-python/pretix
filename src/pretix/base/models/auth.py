@@ -705,6 +705,18 @@ class User(AbstractBaseUser, PermissionsMixin, LoggingMixin):
         return self.teams.exists()
 
 
+class UserWithStaffSession:
+    # Wrapper around a User object with a staff session, implementing the PermissionHolder Protocol
+    def __init__(self, user):
+        self.user = user
+
+    def has_event_permission(self, organizer, event, perm_name=None, request=None, session_key=None) -> bool:
+        return True
+
+    def has_organizer_permission(self, organizer, perm_name=None, request=None):
+        return True
+
+
 class UserKnownLoginSource(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE, related_name="known_login_sources")
     agent_type = models.CharField(max_length=255, null=True, blank=True)
