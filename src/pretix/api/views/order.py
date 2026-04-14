@@ -1308,7 +1308,7 @@ class EventOrderPositionViewSet(OrderPositionViewSetMixin, viewsets.ModelViewSet
         ftype, ignored = mimetypes.guess_type(answer.file.name)
         return FileResponse(
             answer.file,
-            filename='{}-{}-{}-{}"'.format(
+            filename='{}-{}-{}-{}'.format(
                 self.request.event.slug.upper(),
                 pos.order.code,
                 pos.positionid,
@@ -2000,7 +2000,7 @@ class InvoiceViewSet(viewsets.ReadOnlyModelViewSet):
 
         return FileResponse(
             invoice.file.file,
-            filename='{}.pdf"'.format(invoice.number),
+            filename='{}.pdf'.format(invoice.number),
             as_attachment=True,
             content_type='application/pdf'
         )
