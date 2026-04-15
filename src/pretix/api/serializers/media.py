@@ -31,7 +31,9 @@ from pretix.api.serializers.order import OrderPositionSerializer
 from pretix.api.serializers.organizer import (
     CustomerSerializer, GiftCardSerializer,
 )
-from pretix.base.models import Order, OrderPosition, ReusableMedium
+from pretix.base.models import (
+    Device, Order, OrderPosition, ReusableMedium, TeamAPIToken,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +82,7 @@ class ReusableMediaSerializer(I18nAwareModelSerializer):
             )
 
         if 'linked_orderposition' in self.context['request'].query_params.getlist('expand'):
-            # No additional permission check performed, documented limitation of the permission system
-            # Would get to complex/unusable otherwise since the permission depends on the event
+            # Permission Check performed in to_representation
             self.fields['linked_orderposition'] = NestedOrderPositionSerializer(read_only=True)
         else:
             self.fields['linked_orderposition'] = serializers.PrimaryKeyRelatedField(
@@ -116,6 +117,27 @@ class ReusableMediaSerializer(I18nAwareModelSerializer):
                     {'identifier': _('A medium with the same identifier and type already exists in your organizer account.')}
                 )
         return data
+
+    def to_representation(self, instance):
+        r = super().to_representation(instance)
+        request = self.context.get('request')
+        # late permission evaluations for checks that depend on the actual linked events
+        expand_nested = self.context['request'].query_params.getlist('expand')
+        perm_holder = request.auth if isinstance(request.auth, (Device, TeamAPIToken)) else request.user
+        if 'linked_orderposition' in expand_nested:
+            if instance.linked_orderposition is not None:
+                event = instance.linked_orderposition.order.event
+                if not perm_holder.has_event_permission(event.organizer, event, 'event.orders:read', request):
+                    r['linked_orderposition'] = {'id': instance.linked_orderposition.id}
+
+        if 'linked_giftcard.owner_ticket' in expand_nested:
+            gc = instance.linked_giftcard
+            if gc is not None and gc.owner_ticket is not None:
+                event = gc.owner_ticket.order.event
+                if not perm_holder.has_event_permission(event.organizer, event, 'event.orders:read', request):
+                    r['linked_giftcard']['owner_ticket'] = {'id': instance.linked_giftcard.owner_ticket.id}
+
+        return r
 
     class Meta:
         model = ReusableMedium
