@@ -90,7 +90,7 @@ from pretix.base.settings import (
     COUNTRIES_WITH_STATE_IN_ADDRESS, COUNTRY_STATE_LABEL,
     PERSON_NAME_SALUTATIONS, PERSON_NAME_SCHEMES, PERSON_NAME_TITLE_GROUPS,
 )
-from pretix.base.templatetags.rich_text import rich_text
+from pretix.base.templatetags.rich_text import URL_RE, rich_text
 from pretix.base.timemachine import time_machine_now
 from pretix.control.forms import (
     ExtFileField, ExtValidationMixin, SizeValidationMixin, SplitDateTimeField,
@@ -227,9 +227,15 @@ class NamePartsFormField(forms.MultiValueField):
                     # bots.
                     r'^[^$€/%§{}<>~]*$',
                     message=_('Please do not use special characters in names.')
+                ),
+                RegexValidator(
+                    URL_RE,
+                    inverse_match=True,
+                    message=_('Please do not use special characters in names.')
                 )
             ]
         }
+        self.max_length = defaults['max_length']
         self.scheme_name = kwargs.pop('scheme')
         self.titles = kwargs.pop('titles')
         self.scheme = PERSON_NAME_SCHEMES.get(self.scheme_name)
@@ -287,7 +293,7 @@ class NamePartsFormField(forms.MultiValueField):
         if self.require_all_fields and not all(v for v in value):
             raise forms.ValidationError(self.error_messages['incomplete'], code='required')
 
-        if sum(len(v) for v in value.values() if v) > 250:
+        if sum(len(v) for v in value.values() if v) > (self.max_length or 250):
             raise forms.ValidationError(_('Please enter a shorter name.'), code='max_length')
 
         if value.get("salutation") == "empty":
