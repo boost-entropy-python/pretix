@@ -515,6 +515,7 @@ MIDDLEWARE = [
     'pretix.control.middleware.AuditLogMiddleware',
     'pretix.base.middleware.LocaleMiddleware',
     'pretix.base.middleware.SecurityMiddleware',
+    'pretix.base.middleware.RejectInvalidInputMiddleware',
     'pretix.presale.middleware.EventMiddleware',
     'pretix.api.middleware.ApiScopeMiddleware',
 ]
