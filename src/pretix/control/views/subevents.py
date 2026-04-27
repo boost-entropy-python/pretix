@@ -540,20 +540,31 @@ class SubEventUpdate(EventPermissionRequiredMixin, SubEventEditorMixin, UpdateVi
             # TODO: LogEntry?
 
         messages.success(self.request, _('Your changes have been saved.'))
-        if form.has_changed() or any(f.has_changed() for f in self.plugin_forms):
-            data = {
-                k: form.cleaned_data.get(k) for k in form.changed_data
-            }
-            for f in self.plugin_forms:
-                data.update({
-                    k: (f.cleaned_data.get(k).name
-                        if isinstance(f.cleaned_data.get(k), File)
-                        else f.cleaned_data.get(k))
-                    for k in f.changed_data
-                })
+
+        change_data = {
+            k: (form.cleaned_data.get(k).name
+                if isinstance(form.cleaned_data.get(k), File)
+                else form.cleaned_data.get(k))
+            for k in form.changed_data
+        }
+        meta_changed = {}
+        for f in self.meta_forms:
+            if f.has_changed():
+                meta_changed[f.property.name] = f.cleaned_data["value"]
+        if meta_changed:
+            change_data['meta_data'] = meta_changed
+        for f in self.plugin_forms:
+            change_data.update({
+                k: (f.cleaned_data.get(k).name
+                    if isinstance(f.cleaned_data.get(k), File)
+                    else f.cleaned_data.get(k))
+                for k in f.changed_data
+            })
+        if change_data:
             self.object.log_action(
-                'pretix.subevent.changed', user=self.request.user, data=data
+                'pretix.subevent.changed', user=self.request.user, data=change_data
             )
+
         for f in self.plugin_forms:
             f.subevent = self.object
             f.save()
@@ -628,6 +639,14 @@ class SubEventCreate(SubEventEditorMixin, EventPermissionRequiredMixin, CreateVi
                     else f.cleaned_data.get(k))
                 for k in f.cleaned_data
             })
+
+        meta_changed = {}
+        for f in self.meta_forms:
+            if f.has_changed():
+                meta_changed[f.property.name] = f.cleaned_data["value"]
+        if meta_changed:
+            data['meta_data'] = meta_changed
+
         form.instance.log_action('pretix.subevent.added', data=dict(data), user=self.request.user)
 
         self.save_formset(form.instance)
@@ -916,6 +935,35 @@ class SubEventBulkCreate(SubEventEditorMixin, EventPermissionRequiredMixin, Asyn
 
             if len(subevents) > 100_000:
                 raise ValidationError(_('Please do not create more than 100.000 dates at once.'))
+
+        if form.cleaned_data.get("skip_if_overlap") and subevents:
+            def overlaps(a_from, a_to, b_from, b_to):
+                if a_from == b_from:
+                    return True
+                if a_from > b_from:
+                    # a starts after b
+                    # check if it starts before b ends
+                    return b_to and a_from < b_to
+                # a starts before b
+                # check if it ends before b starts
+                return a_to and a_to > b_from
+
+            date_min = min(se.date_from for se in subevents)
+            date_max = max(se.date_to or se.date_from for se in subevents)
+            dates_existing = list(self.request.event.subevents.annotate(
+                date_fromto=Coalesce('date_to', 'date_from'),
+            ).filter(
+                date_from__lte=date_max,
+                date_fromto__gte=date_min,
+            ).values('date_from', 'date_to'))
+            subevents = [
+                se for se in subevents if not any(
+                    overlaps(se.date_from, se.date_to, other['date_from'], other['date_to'])
+                    for other in dates_existing
+                )
+            ]
+            if not subevents:
+                raise ValidationError(_('All dates would be skipped because they conflict with existing dates.'))
 
         for i, se in enumerate(subevents):
             se.save(clear_cache=False)

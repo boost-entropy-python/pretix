@@ -316,7 +316,7 @@ def nav_context_list(request):
         page = 1
 
     qs_events = request.user.get_events_with_any_permission(request).filter(
-        Q(name__icontains=i18ncomp(query)) | Q(slug__icontains=query)
+        Q(name__icontains=i18ncomp(query)) | Q(slug__icontains=query) | Q(domain__domainname__iexact=query)
     ).annotate(
         min_from=Min('subevents__date_from'),
         max_from=Max('subevents__date_from'),
@@ -331,7 +331,7 @@ def nav_context_list(request):
     else:
         qs_orga = Organizer.objects.filter(pk__in=request.user.teams.values_list('organizer', flat=True))
     if query:
-        qs_orga = qs_orga.filter(Q(name__icontains=query) | Q(slug__icontains=query))
+        qs_orga = qs_orga.filter(Q(name__icontains=query) | Q(slug__icontains=query) | Q(domains__domainname__iexact=query))
     qs_orga = qs_orga.annotate(
         n_events=Count("events")
     ).order_by("-n_events")
@@ -619,7 +619,7 @@ def checkinlist_select2(request, **kwargs):
 
     qs = request.event.checkin_lists.select_related('subevent').filter(
         qf
-    ).order_by('name')
+    ).order_by('subevent__date_from', 'name', 'pk')
 
     total = qs.count()
     pagesize = 20
