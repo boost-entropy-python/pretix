@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 14:06+0000\n"
+"POT-Creation-Date: 2026-04-28 09:04+0000\n"
 "PO-Revision-Date: 2025-05-16 17:00+0000\n"
 "Last-Translator: bstramsek <stramsek.borut+pretix-translate@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.pretix.eu/projects/pretix/pretix-"
@@ -685,13 +685,13 @@ msgstr "Pripravljam sporočilo …"
 msgid "Unknown error."
 msgstr "Neznana napaka."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:309
+#: pretix/static/pretixcontrol/js/ui/main.js:310
 #, fuzzy
 #| msgid "Your color has great contrast and is very easy to read!"
 msgid "Your color has great contrast and will provide excellent accessibility."
 msgstr "Vaša barva ima dober kontrast in je lepo čitljiva!"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:313
+#: pretix/static/pretixcontrol/js/ui/main.js:314
 #, fuzzy
 #| msgid "Your color has decent contrast and is probably good-enough to read!"
 msgid ""
@@ -699,46 +699,46 @@ msgid ""
 "requirements."
 msgstr "Vaša barva ima zadovoljiv kontrast in je berljiva!"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:317
+#: pretix/static/pretixcontrol/js/ui/main.js:318
 msgid ""
 "Your color has insufficient contrast to white. Accessibility of your site "
 "will be impacted."
 msgstr ""
 
-#: pretix/static/pretixcontrol/js/ui/main.js:445
-#: pretix/static/pretixcontrol/js/ui/main.js:465
+#: pretix/static/pretixcontrol/js/ui/main.js:446
+#: pretix/static/pretixcontrol/js/ui/main.js:466
 msgid "Search query"
 msgstr ""
 
-#: pretix/static/pretixcontrol/js/ui/main.js:463
+#: pretix/static/pretixcontrol/js/ui/main.js:464
 msgid "All"
 msgstr "Vse"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:464
+#: pretix/static/pretixcontrol/js/ui/main.js:465
 msgid "None"
 msgstr "Nič"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:468
+#: pretix/static/pretixcontrol/js/ui/main.js:469
 msgid "Selected only"
 msgstr ""
 
-#: pretix/static/pretixcontrol/js/ui/main.js:841
+#: pretix/static/pretixcontrol/js/ui/main.js:842
 msgid "Enter page number between 1 and %(max)s."
 msgstr ""
 
-#: pretix/static/pretixcontrol/js/ui/main.js:844
+#: pretix/static/pretixcontrol/js/ui/main.js:845
 msgid "Invalid page number."
 msgstr ""
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1002
+#: pretix/static/pretixcontrol/js/ui/main.js:1003
 msgid "Use a different name internally"
 msgstr "Uporabite drugo interno ime"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1042
+#: pretix/static/pretixcontrol/js/ui/main.js:1043
 msgid "Click to close"
 msgstr "Kliknite za zapiranje"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1123
+#: pretix/static/pretixcontrol/js/ui/main.js:1124
 msgid "You have unsaved changes!"
 msgstr ""
 

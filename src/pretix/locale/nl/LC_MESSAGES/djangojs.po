@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 14:06+0000\n"
+"POT-Creation-Date: 2026-04-28 09:04+0000\n"
 "PO-Revision-Date: 2026-03-18 12:23+0000\n"
 "Last-Translator: Ruud Hendrickx <ruud@leckxicon.eu>\n"
 "Language-Team: Dutch <https://translate.pretix.eu/projects/pretix/pretix-js/"
@@ -645,13 +645,13 @@ msgstr "Bezig met het genereren van berichten …"
 msgid "Unknown error."
 msgstr "Onbekende fout."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:309
+#: pretix/static/pretixcontrol/js/ui/main.js:310
 msgid "Your color has great contrast and will provide excellent accessibility."
 msgstr ""
 "Uw kleur heeft een goed contrast en zal zorgen voor een uitstekende "
 "toegankelijkheid."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:313
+#: pretix/static/pretixcontrol/js/ui/main.js:314
 msgid ""
 "Your color has decent contrast and is sufficient for minimum accessibility "
 "requirements."
@@ -659,7 +659,7 @@ msgstr ""
 "Uw kleur heeft een redelijk contrast en is voldoende voor de minimale "
 "toegankelijkheidseisen."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:317
+#: pretix/static/pretixcontrol/js/ui/main.js:318
 msgid ""
 "Your color has insufficient contrast to white. Accessibility of your site "
 "will be impacted."
@@ -667,40 +667,40 @@ msgstr ""
 "Uw kleur heeft onvoldoende contrast met wit. Dit heeft invloed op de "
 "toegankelijkheid van uw website."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:445
-#: pretix/static/pretixcontrol/js/ui/main.js:465
+#: pretix/static/pretixcontrol/js/ui/main.js:446
+#: pretix/static/pretixcontrol/js/ui/main.js:466
 msgid "Search query"
 msgstr "Zoekopdracht"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:463
+#: pretix/static/pretixcontrol/js/ui/main.js:464
 msgid "All"
 msgstr "Allemaal"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:464
+#: pretix/static/pretixcontrol/js/ui/main.js:465
 msgid "None"
 msgstr "Geen"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:468
+#: pretix/static/pretixcontrol/js/ui/main.js:469
 msgid "Selected only"
 msgstr "Alleen geselecteerde"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:841
+#: pretix/static/pretixcontrol/js/ui/main.js:842
 msgid "Enter page number between 1 and %(max)s."
 msgstr "Voer een paginanummer tussen 1 en %(max)s in."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:844
+#: pretix/static/pretixcontrol/js/ui/main.js:845
 msgid "Invalid page number."
 msgstr "Ongeldig paginanummer."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1002
+#: pretix/static/pretixcontrol/js/ui/main.js:1003
 msgid "Use a different name internally"
 msgstr "Gebruik intern een andere naam"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1042
+#: pretix/static/pretixcontrol/js/ui/main.js:1043
 msgid "Click to close"
 msgstr "Klik om te sluiten"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1123
+#: pretix/static/pretixcontrol/js/ui/main.js:1124
 msgid "You have unsaved changes!"
 msgstr "Sommige wijzigingen zijn nog niet opgeslagen!"
 

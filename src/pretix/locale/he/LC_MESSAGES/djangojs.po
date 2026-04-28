@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 14:06+0000\n"
+"POT-Creation-Date: 2026-04-28 09:04+0000\n"
 "PO-Revision-Date: 2026-02-09 21:00+0000\n"
 "Last-Translator: roi belotsercovsky <rbelotsercovsky@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.pretix.eu/projects/pretix/pretix-js/"
@@ -638,56 +638,56 @@ msgstr "יוצר הודעות…"
 msgid "Unknown error."
 msgstr "שגיאה לא ידועה."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:309
+#: pretix/static/pretixcontrol/js/ui/main.js:310
 msgid "Your color has great contrast and will provide excellent accessibility."
 msgstr "לצבע שלך יש ניגודיות מצויינת ויאפשר נגישות טובה."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:313
+#: pretix/static/pretixcontrol/js/ui/main.js:314
 msgid ""
 "Your color has decent contrast and is sufficient for minimum accessibility "
 "requirements."
 msgstr "לצבע שלך יש ניגודיות סבירה ומתאים לדרישות הנגישות המינימליות."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:317
+#: pretix/static/pretixcontrol/js/ui/main.js:318
 msgid ""
 "Your color has insufficient contrast to white. Accessibility of your site "
 "will be impacted."
 msgstr "לצבע שלך יש ניגודיות חלשה מדי ביחד לצבע לבן. נגישות האתר תיפגע."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:445
-#: pretix/static/pretixcontrol/js/ui/main.js:465
+#: pretix/static/pretixcontrol/js/ui/main.js:446
+#: pretix/static/pretixcontrol/js/ui/main.js:466
 msgid "Search query"
 msgstr "שאילתת חיפוש"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:463
+#: pretix/static/pretixcontrol/js/ui/main.js:464
 msgid "All"
 msgstr "הכל"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:464
+#: pretix/static/pretixcontrol/js/ui/main.js:465
 msgid "None"
 msgstr "כלום"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:468
+#: pretix/static/pretixcontrol/js/ui/main.js:469
 msgid "Selected only"
 msgstr "שנבחרו בלבד"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:841
+#: pretix/static/pretixcontrol/js/ui/main.js:842
 msgid "Enter page number between 1 and %(max)s."
 msgstr "הכנס מספר דף בין 1 ל %(max)s."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:844
+#: pretix/static/pretixcontrol/js/ui/main.js:845
 msgid "Invalid page number."
 msgstr "מספר דף לא תקין."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1002
+#: pretix/static/pretixcontrol/js/ui/main.js:1003
 msgid "Use a different name internally"
 msgstr "השתמש בשם אחר לצורך פנימי"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1042
+#: pretix/static/pretixcontrol/js/ui/main.js:1043
 msgid "Click to close"
 msgstr "לחץ לסגירה"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1123
+#: pretix/static/pretixcontrol/js/ui/main.js:1124
 msgid "You have unsaved changes!"
 msgstr "יש לך שינויים שלא נשמרו!"
 

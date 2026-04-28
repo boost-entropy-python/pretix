@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 14:06+0000\n"
+"POT-Creation-Date: 2026-04-28 09:04+0000\n"
 "PO-Revision-Date: 2025-12-14 00:00+0000\n"
 "Last-Translator: Lachlan Struthers <lachlan.struthers@om.org>\n"
 "Language-Team: Albanian <https://translate.pretix.eu/projects/pretix/pretix-"
@@ -667,13 +667,13 @@ msgstr "Duke prodhuar mesazhe …"
 msgid "Unknown error."
 msgstr "Gabim i panjohur."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:309
+#: pretix/static/pretixcontrol/js/ui/main.js:310
 msgid "Your color has great contrast and will provide excellent accessibility."
 msgstr ""
 "Ngjyra juaj ka kontrast shumë të mirë dhe do të ofrojë aksesueshmëri të "
 "shkëlqyer."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:313
+#: pretix/static/pretixcontrol/js/ui/main.js:314
 msgid ""
 "Your color has decent contrast and is sufficient for minimum accessibility "
 "requirements."
@@ -681,7 +681,7 @@ msgstr ""
 "Ngjyra juaj ka kontrast të mirë dhe përmbush kërkesat minimale të "
 "aksesueshmërisë."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:317
+#: pretix/static/pretixcontrol/js/ui/main.js:318
 msgid ""
 "Your color has insufficient contrast to white. Accessibility of your site "
 "will be impacted."
@@ -689,40 +689,40 @@ msgstr ""
 "Ngjyra juaj nuk ka kontrast të mjaftueshëm me të bardhën. Kjo mund të "
 "ndikojë në aksesueshmërinë e faqes suaj."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:445
-#: pretix/static/pretixcontrol/js/ui/main.js:465
+#: pretix/static/pretixcontrol/js/ui/main.js:446
+#: pretix/static/pretixcontrol/js/ui/main.js:466
 msgid "Search query"
 msgstr "Kërkim"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:463
+#: pretix/static/pretixcontrol/js/ui/main.js:464
 msgid "All"
 msgstr "Të gjitha"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:464
+#: pretix/static/pretixcontrol/js/ui/main.js:465
 msgid "None"
 msgstr "Asnjë"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:468
+#: pretix/static/pretixcontrol/js/ui/main.js:469
 msgid "Selected only"
 msgstr "Vetëm të zghedhura"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:841
+#: pretix/static/pretixcontrol/js/ui/main.js:842
 msgid "Enter page number between 1 and %(max)s."
 msgstr "Shkruani numrin e faqes midis 1 dhe %(max)s."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:844
+#: pretix/static/pretixcontrol/js/ui/main.js:845
 msgid "Invalid page number."
 msgstr "Numër faqe i pavlefshëm."
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1002
+#: pretix/static/pretixcontrol/js/ui/main.js:1003
 msgid "Use a different name internally"
 msgstr "Përdorni një emër tjetër brenda sistemit"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1042
+#: pretix/static/pretixcontrol/js/ui/main.js:1043
 msgid "Click to close"
 msgstr "Shtypni për të mbyllur"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1123
+#: pretix/static/pretixcontrol/js/ui/main.js:1124
 msgid "You have unsaved changes!"
 msgstr "Ju keni ndryshime të paruajtur!"
 

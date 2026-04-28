@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-17 14:06+0000\n"
+"POT-Creation-Date: 2026-04-28 09:04+0000\n"
 "PO-Revision-Date: 2026-03-23 21:00+0000\n"
 "Last-Translator: Hijiri Umemoto <hijiri@umemoto.org>\n"
 "Language-Team: Japanese <https://translate.pretix.eu/projects/pretix/pretix-"
@@ -643,13 +643,13 @@ msgstr "メッセージを作成中…"
 msgid "Unknown error."
 msgstr "不明なエラー。"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:309
+#: pretix/static/pretixcontrol/js/ui/main.js:310
 msgid "Your color has great contrast and will provide excellent accessibility."
 msgstr ""
 "選択した色は素晴らしいコントラストを持ち、優れたアクセシビリティを提供しま"
 "す。"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:313
+#: pretix/static/pretixcontrol/js/ui/main.js:314
 msgid ""
 "Your color has decent contrast and is sufficient for minimum accessibility "
 "requirements."
@@ -657,7 +657,7 @@ msgstr ""
 "選択した色は適切なコントラストを持ち、最小限のアクセシビリティ要件に十分で"
 "す。"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:317
+#: pretix/static/pretixcontrol/js/ui/main.js:318
 msgid ""
 "Your color has insufficient contrast to white. Accessibility of your site "
 "will be impacted."
@@ -665,40 +665,40 @@ msgstr ""
 "選択した色は白に対して十分なコントラストがありません。サイトのアクセシビリ"
 "ティに影響します。"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:445
-#: pretix/static/pretixcontrol/js/ui/main.js:465
+#: pretix/static/pretixcontrol/js/ui/main.js:446
+#: pretix/static/pretixcontrol/js/ui/main.js:466
 msgid "Search query"
 msgstr "検索クエリ"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:463
+#: pretix/static/pretixcontrol/js/ui/main.js:464
 msgid "All"
 msgstr "全て"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:464
+#: pretix/static/pretixcontrol/js/ui/main.js:465
 msgid "None"
 msgstr "なし"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:468
+#: pretix/static/pretixcontrol/js/ui/main.js:469
 msgid "Selected only"
 msgstr "選択したもののみ"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:841
+#: pretix/static/pretixcontrol/js/ui/main.js:842
 msgid "Enter page number between 1 and %(max)s."
 msgstr "1以上%(max)s以下のページ番号を入力。"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:844
+#: pretix/static/pretixcontrol/js/ui/main.js:845
 msgid "Invalid page number."
 msgstr "無効なページ番号。"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1002
+#: pretix/static/pretixcontrol/js/ui/main.js:1003
 msgid "Use a different name internally"
 msgstr "内部で別の名前を使用する"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1042
+#: pretix/static/pretixcontrol/js/ui/main.js:1043
 msgid "Click to close"
 msgstr "クリックして閉じる"
 
-#: pretix/static/pretixcontrol/js/ui/main.js:1123
+#: pretix/static/pretixcontrol/js/ui/main.js:1124
 msgid "You have unsaved changes!"
 msgstr "保存されていない変更があります！"
 
