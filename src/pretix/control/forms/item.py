@@ -574,7 +574,7 @@ class ItemCreateForm(I18nModelForm):
                 instance.bundles.create(bundled_item=b.bundled_item, bundled_variation=b.bundled_variation,
                                         count=b.count, designated_price=b.designated_price)
             for pt in self.cleaned_data['copy_from'].program_times.all():
-                instance.program_times.create(start=pt.start, end=pt.end)
+                instance.program_times.create(start=pt.start, end=pt.end, location=pt.location)
 
             item_copy_data.send(sender=self.event, source=self.cleaned_data['copy_from'], target=instance)
 
@@ -1354,6 +1354,10 @@ class ItemProgramTimeForm(I18nModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['end'].widget.attrs['data-date-after'] = '#id_{prefix}-start_0'.format(prefix=self.prefix)
+        self.fields['location'].widget.attrs['rows'] = '3'
+        self.fields['location'].widget.attrs['placeholder'] = _(
+            'Sample Conference Center, Heidelberg, Germany'
+        )
 
     class Meta:
         model = ItemProgramTime
@@ -1361,6 +1365,7 @@ class ItemProgramTimeForm(I18nModelForm):
         fields = [
             'start',
             'end',
+            'location'
         ]
         field_classes = {
             'start': forms.SplitDateTimeField,
