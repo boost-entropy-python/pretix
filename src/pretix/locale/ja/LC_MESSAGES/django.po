@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-28 09:03+0000\n"
-"PO-Revision-Date: 2026-04-20 08:07+0000\n"
+"PO-Revision-Date: 2026-05-12 06:34+0000\n"
 "Last-Translator: Yasunobu YesNo Kawaguchi <kawaguti@gmail.com>\n"
 "Language-Team: Japanese <https://translate.pretix.eu/projects/pretix/pretix/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: pretix/_base_settings.py:87
 msgid "English"
@@ -4441,7 +4441,7 @@ msgstr "全ての製品（新規に作成されたものを含む）"
 #: pretix/base/models/checkin.py:56 pretix/plugins/badges/exporters.py:436
 #: pretix/plugins/checkinlists/exporters.py:854
 msgid "Limit to products"
-msgstr "商品の上限"
+msgstr "対象製品を限定"
 
 #: pretix/base/models/checkin.py:60
 msgid ""
@@ -6896,8 +6896,8 @@ msgstr "免税輸出品目、VAT非課税"
 msgctxt "tax_code"
 msgid "VAT exempt for EEA intra-community supply of goods and services"
 msgstr ""
-"EEA（欧州経済領域）域内事業者間取引における商品・サービス供給のVAT(付加価値"
-"税）免税"
+"EEA(欧州経済領域)域内事業者間取引における物品・サービス供給のVAT(付加価値税)"
+"免税"
 
 #: pretix/base/models/tax.py:186
 msgid "Special cases"
@@ -7144,10 +7144,10 @@ msgid ""
 "usages in some cases can be lower than this limit, e.g. in case of "
 "cancellations."
 msgstr ""
-"複数（1を超える値）に設定した場合、バウチャーは初回使用時にこの数の製品と引き"
-"換える必要があります。その後の使用では、より少ない数の製品にも使用できます。"
-"ただし、キャンセルなどの場合には、合計使用回数がこの制限を下回ることがありま"
-"す。"
+"1より大きい値を設定すると、バウチャーを最初に使用する際に、この数の製品に対し"
+"て引き換える必要があります。2回目以降の使用では、これより少ない数の製品に対し"
+"ても使用できます。この場合、キャンセルなどにより、合計の使用回数がこの上限を"
+"下回ることがある点にご注意ください。"
 
 #: pretix/base/models/vouchers.py:217
 msgid ""
@@ -8059,10 +8059,8 @@ msgstr ""
 "2x アドオン2"
 
 #: pretix/base/pdf.py:383
-#, fuzzy
-#| msgid "List of Add-Ons"
 msgid "List of Checked-In Add-Ons"
-msgstr "アドオンのリスト"
+msgstr "チェックイン済みアドオン一覧"
 
 #: pretix/base/pdf.py:390 pretix/control/forms/filter.py:1537
 #: pretix/control/forms/filter.py:1539
@@ -9019,10 +9017,8 @@ msgid "Czech National Bank"
 msgstr "チェコ国立銀行"
 
 #: pretix/base/services/currencies.py:41
-#, fuzzy
-#| msgid "Czech National Bank"
 msgid "National Bank of Poland"
-msgstr "チェコ国立銀行"
+msgstr "ポーランド国立銀行"
 
 #: pretix/base/services/export.py:95 pretix/base/services/export.py:155
 msgid ""
@@ -10068,14 +10064,10 @@ msgid ""
 msgstr "チェコ国立銀行の日次レートに基づいて、請求書の金額がCZK以外の場合。"
 
 #: pretix/base/settings.py:577 pretix/base/settings.py:586
-#, fuzzy
-#| msgid ""
-#| "Based on Czech National Bank daily rates, whenever the invoice amount is "
-#| "not in CZK."
 msgid ""
 "Based on National Bank of Poland daily rates, whenever the invoice amount is "
 "not in PLN."
-msgstr "チェコ国立銀行の日次レートに基づいて、請求書の金額がCZK以外の場合。"
+msgstr "ポーランド国立銀行の日次レートに基づいて、請求書の金額がPLN以外の場合。"
 
 #: pretix/base/settings.py:597
 msgid "Require invoice address"
@@ -15956,10 +15948,8 @@ msgid "Allow to overbook quotas when performing this operation"
 msgstr "この操作を実行する際にクォータの超過予約を許可する"
 
 #: pretix/control/forms/orders.py:335
-#, fuzzy
-#| msgid "Number of orders"
 msgid "Number of products to add"
-msgstr "注文数"
+msgstr "追加する製品の数"
 
 #: pretix/control/forms/orders.py:344
 msgid "Add-on to"
@@ -15991,10 +15981,8 @@ msgstr ""
 "さい"
 
 #: pretix/control/forms/orders.py:441
-#, fuzzy
-#| msgid "You can not select the same seat multiple times."
 msgid "You can not choose a seat when adding multiple products at once."
-msgstr "同じ席を複数回選択することはできません。"
+msgstr "複数の製品を同時に追加する場合、座席を選択することはできません。"
 
 #: pretix/control/forms/orders.py:478 pretix/control/forms/orders.py:482
 #: pretix/control/forms/orders.py:510 pretix/control/forms/orders.py:552
@@ -16596,7 +16584,7 @@ msgstr "週末の日"
 #: pretix/control/forms/subevents.py:106
 msgctxt "subevent"
 msgid "Skip dates that overlap with any existing date"
-msgstr ""
+msgstr "既存の日付と重複する日付をスキップする"
 
 #: pretix/control/forms/subevents.py:109
 msgctxt "subevent"
@@ -16606,6 +16594,9 @@ msgid ""
 "This respects even inactive dates and works best if all dates have both a "
 "start and end time."
 msgstr ""
+"これは、すべての日付が同じ場所で行われ、既存の特別イベントと競合して重複した"
+"日付が作成されない場合に有用です。これは、非アクティブな日付さえも尊重し、す"
+"べての日付に開始時刻と終了時刻の両方がある場合に最も効果的です。"
 
 #: pretix/control/forms/subevents.py:128
 msgid "Keep the current values"
@@ -22963,12 +22954,11 @@ msgid ""
 "total number of tickets sold and the number of a specific ticket type at the "
 "same time."
 msgstr ""
-"製品を実際に利用可能にするには、クォータも必要です。クォータは、pretixが製品"
-"のインスタンスをいくつ販売するかを定義します。これにより、イベントが無制限の"
-"参加者を受け入れることができるか、参加者数が制限されるかを設定できます。より"
-"複雑な要件を満たすために、製品を複数のクォータに割り当てることができます。例"
-"えば、販売されるチケットの総数と特定のチケット種別の数を同時に制限したい場合"
-"などです。"
+"製品を実際に販売可能にするには、クォータも必要です。クォータは、製品をどれだ"
+"けpretixが販売するかを定義します。これにより、イベントの参加者数を無制限にす"
+"るか、人数を制限するかを設定できます。1つの製品を複数のクォータに割り当てるこ"
+"とで、より複雑な要件にも対応できます。たとえば、販売するチケットの総数と特定"
+"のチケット種別の数を同時に制限したい場合などです。"
 
 #: pretix/control/templates/pretixcontrol/items/quotas.html:25
 msgid "Your search did not match any quotas."
@@ -23685,7 +23675,7 @@ msgid ""
 "this product was part of the discount calculation for a different product in "
 "this order."
 msgstr ""
-"自動割引によりこの商品の価格が引き下げられたか、同じ注文内の別の商品に対する"
+"自動割引によりこの製品の価格が引き下げられたか、同じ注文内の別の製品に対する"
 "割引計算の対象になっています。"
 
 #: pretix/control/templates/pretixcontrol/order/index.html:496
@@ -29425,7 +29415,7 @@ msgstr "一度に10万以上の日付を作成しないでください。"
 
 #: pretix/control/views/subevents.py:966
 msgid "All dates would be skipped because they conflict with existing dates."
-msgstr ""
+msgstr "すべての日付は、既存の日付と衝突するため、スキップされます。"
 
 #: pretix/control/views/subevents.py:1102
 #, python-brace-format
@@ -34613,7 +34603,7 @@ msgid ""
 "changed because they are not on sale:"
 msgstr ""
 "このアドオンカテゴリで選択された製品の中には、現在セール対象外のため変更でき"
-"ない商品があります："
+"ない製品があります:"
 
 #: pretix/presale/templates/pretixpresale/event/fragment_addon_choice.html:392
 msgid "There are no add-ons available for this product."
