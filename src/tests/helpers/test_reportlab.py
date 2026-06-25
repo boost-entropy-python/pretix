@@ -19,18 +19,32 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 #
-from django.apps import AppConfig
+import pytest
+from django.core.exceptions import SuspiciousFileOperation
+from reportlab.platypus import Paragraph
 
 
-class PretixHelpersConfig(AppConfig):
-    name = 'pretix.helpers'
-    label = 'pretixhelpers'
+def test_http_access_disabled(monkeypatch):
+    def guard(*args, **kwargs):
+        pytest.fail("No internet wanted!")
 
-    def ready(self):
-        from .monkeypatching import monkeypatch_all_at_ready
-        monkeypatch_all_at_ready()
+    monkeypatch.setattr('socket.socket', guard)
 
-        # Ensure reportlab does not make any calls to the internet or the local disk
-        from reportlab import rl_config
-        rl_config.trustedHosts = []
-        rl_config.trustedSchemes = ['data']
+    with pytest.raises(SuspiciousFileOperation, match="should not be reading images from disk"):
+        Paragraph(
+            '<img src="https://static.pretix.cloud/static/pretixeu/img/opengraph.png"/>',
+        )
+
+
+def test_file_access_disabled_scheme(monkeypatch):
+    with pytest.raises(SuspiciousFileOperation, match="should not be reading images from disk"):
+        Paragraph(
+            '<img src="file:///etc/passwd" />',
+        )
+
+
+def test_file_access_disabled_direct(monkeypatch):
+    with pytest.raises(SuspiciousFileOperation, match="should not be reading images from disk"):
+        Paragraph(
+            '<img src="/etc/passwd" />',
+        )

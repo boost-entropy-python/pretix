@@ -19,18 +19,15 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 #
-from django.apps import AppConfig
+import logging
+
+from django import template
+from django.utils.html import format_html
+
+register = template.Library()
+logger = logging.getLogger(__name__)
 
 
-class PretixHelpersConfig(AppConfig):
-    name = 'pretix.helpers'
-    label = 'pretixhelpers'
-
-    def ready(self):
-        from .monkeypatching import monkeypatch_all_at_ready
-        monkeypatch_all_at_ready()
-
-        # Ensure reportlab does not make any calls to the internet or the local disk
-        from reportlab import rl_config
-        rl_config.trustedHosts = []
-        rl_config.trustedSchemes = ['data']
+@register.filter
+def wrap_in(content, tag_name):
+    return format_html(f'<{tag_name}>{{}}</{tag_name}>', content)
