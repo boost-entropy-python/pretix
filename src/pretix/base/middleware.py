@@ -229,8 +229,8 @@ def _parse_csp(header):
 
 VALID_CSP_DIRECTIVES = [
     "child-src", "connect-src", "default-src", "fenced-frame-src", "font-src", "form-action", "frame-src", "img-src",
-    "manifest-src", "media-src", "object-src", "prefetch-src", "script-src", "script-src-elem", "script-src-attr",
-    "style-src", "style-src-elem", "style-src-attr", "worker-src",
+    "manifest-src", "media-src", "object-src", "prefetch-src", "report-uri", "script-src", "script-src-elem",
+    "script-src-attr", "style-src", "style-src-elem", "style-src-attr", "worker-src",
 ]
 
 CSP_ILLEGAL_CHARS = re.compile(r'[\s,;]')
@@ -266,21 +266,7 @@ def _merge_csp(a, b):
 
 
 class SecurityMiddleware(MiddlewareMixin):
-    CSP_EXEMPT = (
-        '/api/v1/docs/',
-    )
-
     def process_response(self, request, resp):
-        def nested_dict_values(d):
-            for v in d.values():
-                if isinstance(v, dict):
-                    yield from nested_dict_values(v)
-                else:
-                    if isinstance(v, str):
-                        yield v
-
-        url = resolve(request.path_info)
-
         if settings.DEBUG and resp.status_code >= 400:
             # Don't use CSP on debug error page as it breaks of Django's fancy error
             # pages
@@ -291,18 +277,15 @@ class SecurityMiddleware(MiddlewareMixin):
         # https://github.com/pretix/pretix/issues/765
         resp['P3P'] = 'CP=\"ALL DSP COR CUR ADM TAI OUR IND COM NAV INT\"'
 
-        img_src = []
-        gs = global_settings_object(request)
-        if gs.settings.leaflet_tiles:
-            img_src.append(gs.settings.leaflet_tiles[:gs.settings.leaflet_tiles.index("/", 10)].replace("{s}", "*"))
+        if not getattr(resp, '_csp_ignore', False):
+            resp['Content-Security-Policy'] = _render_csp(self._build_csp(request, resp))
+        elif 'Content-Security-Policy' in resp:
+            del resp['Content-Security-Policy']
 
-        font_src = set()
-        if hasattr(request, 'event'):
-            for font in get_fonts(request.event, pdf_support_required=False).values():
-                for path in list(nested_dict_values(font)):
-                    font_location = urlparse(path)
-                    if font_location.scheme and font_location.netloc:
-                        font_src.add('{}://{}'.format(font_location.scheme, font_location.netloc))
+        return resp
+
+    def _build_csp(self, request, resp):
+        url = resolve(request.path_info)
 
         h = {
             'default-src': ["{static}"],
@@ -311,8 +294,8 @@ class SecurityMiddleware(MiddlewareMixin):
             'frame-src': ['{static}'],
             'style-src': ["{static}", "{media}"],
             'connect-src': ["{dynamic}", "{media}"],
-            'img-src': ["{static}", "{media}", "data:"] + img_src,
-            'font-src': ["{static}"] + list(font_src),
+            'img-src': ["{static}", "{media}", "data:"],
+            'font-src': ["{static}"],
             'media-src': ["{static}", "data:"],
             # form-action is not only used to match on form actions, but also on URLs
             # form-actions redirect to. In the context of e.g. payment providers or
@@ -320,6 +303,13 @@ class SecurityMiddleware(MiddlewareMixin):
             # this. However, we'll restrict it to HTTPS.
             'form-action': ["{dynamic}", "https:"] + (['http:'] if settings.SITE_URL.startswith('http://') else []),
         }
+
+        gs = global_settings_object(request)
+        if gs.settings.leaflet_tiles:
+            h['img-src'].append(gs.settings.leaflet_tiles[:gs.settings.leaflet_tiles.index("/", 10)].replace("{s}", "*"))
+
+        if hasattr(request, 'event'):
+            h['font-src'] += list(self._get_font_origins(request.event))
 
         if settings.VITE_DEV_MODE:
             h['script-src'] += ["http://localhost:5173", "ws://localhost:5173"]
@@ -332,6 +322,7 @@ class SecurityMiddleware(MiddlewareMixin):
             if not settings.VITE_DEV_MODE:
                 # can't have 'unsafe-inline' and nonce at the same time
                 h['style-src'].append(nonce)
+
         # Only include pay.google.com for wallet detection purposes on the Payment selection page
         if (
                 url.url_name == "event.order.pay.change" or
@@ -340,10 +331,13 @@ class SecurityMiddleware(MiddlewareMixin):
             h['script-src'].append('https://pay.google.com')
             h['frame-src'].append('https://pay.google.com')
             h['connect-src'].append('https://google.com/pay')
+
         if settings.LOG_CSP:
             h['report-uri'] = ["/csp_report/"]
+
         if 'Content-Security-Policy' in resp:
             _merge_csp(h, _parse_csp(resp['Content-Security-Policy']))
+
         if settings.CSP_ADDITIONAL_HEADER:
             _merge_csp(h, _parse_csp(settings.CSP_ADDITIONAL_HEADER))
 
@@ -375,14 +369,27 @@ class SecurityMiddleware(MiddlewareMixin):
                     domain = '%s:%d' % (domain, siteurlsplit.port)
                 placeholders["{dynamic}"].append(domain)
 
-        if request.path not in self.CSP_EXEMPT and not getattr(resp, '_csp_ignore', False):
-            for k, v in h.items():
-                h[k] = sorted(set(result for part in v for result in placeholders.get(part, [part])))
-            resp['Content-Security-Policy'] = _render_csp(h)
-        elif 'Content-Security-Policy' in resp:
-            del resp['Content-Security-Policy']
+        for k, v in h.items():
+            h[k] = sorted(set(result for part in v for result in placeholders.get(part, [part])))
 
-        return resp
+        return h
+
+    def _get_font_origins(self, event):
+        def nested_dict_values(d):
+            for v in d.values():
+                if isinstance(v, dict):
+                    yield from nested_dict_values(v)
+                else:
+                    if isinstance(v, str):
+                        yield v
+
+        font_src = set()
+        for font in get_fonts(event, pdf_support_required=False).values():
+            for path in list(nested_dict_values(font)):
+                font_location = urlparse(path)
+                if font_location.scheme and font_location.netloc:
+                    font_src.add('{}://{}'.format(font_location.scheme, font_location.netloc))
+        return font_src
 
 
 class RejectInvalidInputMiddleware(MiddlewareMixin):
