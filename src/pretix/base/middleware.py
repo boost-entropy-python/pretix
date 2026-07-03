@@ -20,6 +20,8 @@
 # <https://www.gnu.org/licenses/>.
 #
 from collections import OrderedDict
+import logging
+import re
 from urllib.parse import urlparse, urlsplit
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
@@ -42,6 +44,8 @@ from pretix.multidomain.urlreverse import (
     get_event_domain, get_organizer_domain,
 )
 from pretix.presale.style import get_fonts
+
+logger = logging.getLogger(__name__)
 
 _supported = None
 
@@ -223,7 +227,26 @@ def _parse_csp(header):
     return h
 
 
+VALID_CSP_DIRECTIVES = [
+    "child-src", "connect-src", "default-src", "fenced-frame-src", "font-src", "form-action", "frame-src", "img-src",
+    "manifest-src", "media-src", "object-src", "prefetch-src", "script-src", "script-src-elem", "script-src-attr",
+    "style-src", "style-src-elem", "style-src-attr", "worker-src",
+]
+
+CSP_ILLEGAL_CHARS = re.compile(r'[\s,;]')
+
+
+def _sanitize_csp(h):
+    for k, v in h.items():
+        if k not in VALID_CSP_DIRECTIVES:
+            raise ValueError("Invalid CSP directive " + k)
+        if any(CSP_ILLEGAL_CHARS.search(el) for el in v):
+            logger.warning("Stripping invalid component from CSP: %r", h)
+            h[k] = [el for el in v if not CSP_ILLEGAL_CHARS.search(el)]
+
+
 def _render_csp(h):
+    _sanitize_csp(h)
     return "; ".join(k + ' ' + ' '.join(v) for k, v in h.items() if v)
 
 
@@ -324,20 +347,22 @@ class SecurityMiddleware(MiddlewareMixin):
         if settings.CSP_ADDITIONAL_HEADER:
             _merge_csp(h, _parse_csp(settings.CSP_ADDITIONAL_HEADER))
 
-        staticdomain = "'self'"
-        dynamicdomain = "'self'"
-        mediadomain = "'self'"
+        placeholders = {
+            "{static}": ["'self'"],
+            "{dynamic}": ["'self'"],
+            "{media}": ["'self'"],
+        }
         if settings.MEDIA_URL.startswith('http'):
-            mediadomain += " " + settings.MEDIA_URL[:settings.MEDIA_URL.find('/', 9)]
+            placeholders["{media}"].append(settings.MEDIA_URL[:settings.MEDIA_URL.find('/', 9)])
         if settings.STATIC_URL.startswith('http'):
-            staticdomain += " " + settings.STATIC_URL[:settings.STATIC_URL.find('/', 9)]
+            placeholders["{static}"].append(settings.STATIC_URL[:settings.STATIC_URL.find('/', 9)])
         if settings.SITE_URL.startswith('http'):
             if settings.SITE_URL.find('/', 9) > 0:
-                staticdomain += " " + settings.SITE_URL[:settings.SITE_URL.find('/', 9)]
-                dynamicdomain += " " + settings.SITE_URL[:settings.SITE_URL.find('/', 9)]
+                placeholders["{static}"].append(settings.SITE_URL[:settings.SITE_URL.find('/', 9)])
+                placeholders["{dynamic}"].append(settings.SITE_URL[:settings.SITE_URL.find('/', 9)])
             else:
-                staticdomain += " " + settings.SITE_URL
-                dynamicdomain += " " + settings.SITE_URL
+                placeholders["{static}"].append(settings.SITE_URL)
+                placeholders["{dynamic}"].append(settings.SITE_URL)
 
         if hasattr(request, 'organizer') and request.organizer:
             if hasattr(request, 'event') and request.event:
@@ -348,13 +373,11 @@ class SecurityMiddleware(MiddlewareMixin):
                 siteurlsplit = urlsplit(settings.SITE_URL)
                 if siteurlsplit.port and siteurlsplit.port not in (80, 443):
                     domain = '%s:%d' % (domain, siteurlsplit.port)
-                dynamicdomain += " " + domain
+                placeholders["{dynamic}"].append(domain)
 
         if request.path not in self.CSP_EXEMPT and not getattr(resp, '_csp_ignore', False):
-            resp['Content-Security-Policy'] = _render_csp(h).format(static=staticdomain, dynamic=dynamicdomain,
-                                                                    media=mediadomain)
             for k, v in h.items():
-                h[k] = sorted(set(' '.join(v).format(static=staticdomain, dynamic=dynamicdomain, media=mediadomain).split(' ')))
+                h[k] = sorted(set(result for part in v for result in placeholders.get(part, [part])))
             resp['Content-Security-Policy'] = _render_csp(h)
         elif 'Content-Security-Policy' in resp:
             del resp['Content-Security-Policy']
