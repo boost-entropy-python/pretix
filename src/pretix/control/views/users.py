@@ -316,7 +316,8 @@ class UserImpersonateStopView(LoginRequiredMixin, View):
 
         staff_session.logs.create(
             method='(NOTE)',
-            url=f'Stop impersonating user #{hijacked.pk} (request session {prev_session_key[:8]}, staff session {staff_session_key[:8]} -> {request.session.session_key[:8]})',
+            url=f'Stop impersonating user #{hijacked.pk} (request session {prev_session_key[:8]}, '
+                f'staff session {staff_session_key[:8]} -> {request.session.session_key[:8]})',
         )
 
         request.user.log_action('pretix.control.auth.user.impersonate_stopped',
