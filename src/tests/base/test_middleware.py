@@ -170,3 +170,25 @@ def test_merge_csp():
     assert _render_csp(h) == (
         "default-src 'self'; script-src 'self'; style-src 'self' 'self' 'unsafe-inline'; form-action 'self' https:; connect-src 'self' 'self' https://example.com"
     )
+
+
+def test_roundtrip_csp():
+    from pretix.base.middleware import _parse_csp, _merge_csp, _render_csp
+
+    prod_csp = "default-src 'self' https://pretix.eu https://static.pretix.cloud; script-src 'self' 'sha256-+tmFggeXIPOAC2UgcQ3LW/gPHTkwyWg3/D6FOJ5BHGo=' 'unsafe-eval' https://matomo.rami.io https://pretix.eu https://static.pretix.cloud https://support.rami.io; object-src 'none'; frame-src 'self' https://matomo.rami.io https://pretix.eu https://static.pretix.cloud https://support.rami.io https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' data: https://cdn.pretix.cloud https://pretix.eu https://static.pretix…rt.rami.io; connect-src 'self' https://cdn.pretix.cloud https://matomo.rami.io https://pretix.eu https://static.pretix.cloud https://support.rami.io ws://support.rami.io; img-src 'self' data: https://cdn.pretix.cloud https://matomo.rami.io https://pretix.eu https://static.pretix.cloud https://support.rami.io; font-src 'self' https://pretix.eu https://static.pretix.cloud; media-src 'self' data: https://cdn.pretix.cloud https://pretix.eu https://static.pretix.cloud; form-action 'self' https: https://pretix.eu"
+    h = _parse_csp(prod_csp)
+    _merge_csp(h, _parse_csp(prod_csp))
+    assert _render_csp(h) == prod_csp
+
+
+def test_sanitize_csp():
+    from pretix.base.middleware import _render_csp
+
+    h = {
+        'style-src': ["'self'", "https://example.com", "https://example.org https://attack.example.net", "https://\fexample.org",
+                      "https://\texample.org", "https://example.org;script-src https://example.org", ],
+        'script-src': ["'self'"],
+    }
+    assert _render_csp(h) == (
+        "style-src 'self' https://example.com; script-src 'self'"
+    )
