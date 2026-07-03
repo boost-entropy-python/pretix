@@ -126,3 +126,47 @@ class LocaleDeterminationTest(TestCase):
         response = c.get('/dummy/dummy/')
         language = response['Content-Language']
         self.assertEqual(language, 'en')
+
+
+def test_render_csp():
+    from pretix.base.middleware import _render_csp
+
+    assert _render_csp({}) == ""
+    assert _render_csp({'default-src': ["'self'"]}) == "default-src 'self'"
+
+    h = {
+        'default-src': ["'self'"],
+        'script-src': ["'self'"],
+        'object-src': ["'none'"],
+        'frame-src': ["'self'"],
+        'style-src': ["'self'", "'self'"],
+        'connect-src': ["'self'", "'self'"],
+        'img-src': ["'self'", "'self'", "data:"],
+        'font-src': ["'self'"],
+        'media-src': ["'self'", "data:"],
+        'form-action': ["'self'", "https:"],
+    }
+    assert _render_csp(h) == (
+        "default-src 'self'; script-src 'self'; object-src 'none'; frame-src 'self'; style-src 'self' 'self'; "
+        "connect-src 'self' 'self'; img-src 'self' 'self' data:; font-src 'self'; media-src 'self' data:; form-action 'self' https:"
+    )
+
+
+def test_merge_csp():
+    from pretix.base.middleware import _parse_csp, _merge_csp, _render_csp
+
+    h = {
+        'default-src': ["'self'"],
+        'script-src': ["'self'"],
+        'style-src': ["'self'", "'self'"],
+        'form-action': ["'self'", "https:"],
+        'connect-src': ["'self'", "'self'"],
+    }
+    assert _render_csp(h) == (
+        "default-src 'self'; script-src 'self'; style-src 'self' 'self'; form-action 'self' https:; connect-src 'self' 'self'"
+    )
+
+    _merge_csp(h, _parse_csp("style-src 'unsafe-inline'; connect-src https://example.com"))
+    assert _render_csp(h) == (
+        "default-src 'self'; script-src 'self'; style-src 'self' 'self' 'unsafe-inline'; form-action 'self' https:; connect-src 'self' 'self' https://example.com"
+    )
