@@ -19,9 +19,9 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 #
-from collections import OrderedDict
 import logging
 import re
+from collections import OrderedDict
 from urllib.parse import urlparse, urlsplit
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
