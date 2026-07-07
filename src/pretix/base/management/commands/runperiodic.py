@@ -40,8 +40,8 @@ from django.core.cache import cache
 from django.core.management.base import BaseCommand
 from django.db import close_old_connections
 from django.dispatch.dispatcher import NO_RECEIVERS
-
 from django_querytagger.tagging import with_tag
+
 from pretix.helpers.periodic import SKIPPED
 
 from ...signals import periodic_task
