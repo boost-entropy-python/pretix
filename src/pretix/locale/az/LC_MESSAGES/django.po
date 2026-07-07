@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 15:48+0000\n"
+"POT-Creation-Date: 2026-07-07 09:30+0000\n"
 "PO-Revision-Date: 2024-12-11 01:00+0000\n"
 "Last-Translator: Neriman Memmedli <nerim4n@pm.me>\n"
 "Language-Team: Azerbaijani <https://translate.pretix.eu/projects/pretix/"
@@ -10198,6 +10198,17 @@ msgid "We'll show this publicly to allow attendees to contact you."
 msgstr ""
 
 #: pretix/base/settings.py pretix/control/forms/event.py
+msgid "Contact URL"
+msgstr ""
+
+#: pretix/base/settings.py pretix/control/forms/event.py
+msgid ""
+"If you set this, the footer contact link will point here instead of using "
+"the email address above. Please note that you still need to add a contact "
+"email address that will be shared with all emails you send."
+msgstr ""
+
+#: pretix/base/settings.py pretix/control/forms/event.py
 msgid "Imprint URL"
 msgstr ""
 
@@ -17548,8 +17559,9 @@ msgid ""
 "\n"
 "    %(code)s\n"
 "\n"
-"Don't share this code with anyone. The %(instance)s team will never ask you "
-"for it.\n"
+"Don't share this code with anyone unless you want to authorize them to use "
+"this address for this purpose. The %(instance)s team will never ask you for "
+"it.\n"
 "\n"
 "If you didn't request this, you can safely ignore this email.\n"
 "\n"

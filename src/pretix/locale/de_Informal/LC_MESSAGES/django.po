@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 15:48+0000\n"
+"POT-Creation-Date: 2026-07-07 09:30+0000\n"
 "PO-Revision-Date: 2026-07-07 09:22+0000\n"
 "Last-Translator: Raphael Michel <michel@rami.io>\n"
 "Language-Team: German (informal) <https://translate.pretix.eu/projects/"
@@ -11433,6 +11433,19 @@ msgstr ""
 "dich zu kontaktieren."
 
 #: pretix/base/settings.py pretix/control/forms/event.py
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact URL"
+msgstr "Kontakt"
+
+#: pretix/base/settings.py pretix/control/forms/event.py
+msgid ""
+"If you set this, the footer contact link will point here instead of using "
+"the email address above. Please note that you still need to add a contact "
+"email address that will be shared with all emails you send."
+msgstr ""
+
+#: pretix/base/settings.py pretix/control/forms/event.py
 msgid "Imprint URL"
 msgstr "Impressum (URL)"
 
@@ -19933,8 +19946,9 @@ msgid ""
 "\n"
 "    %(code)s\n"
 "\n"
-"Don't share this code with anyone. The %(instance)s team will never ask you "
-"for it.\n"
+"Don't share this code with anyone unless you want to authorize them to use "
+"this address for this purpose. The %(instance)s team will never ask you for "
+"it.\n"
 "\n"
 "If you didn't request this, you can safely ignore this email.\n"
 "\n"
@@ -19975,8 +19989,8 @@ msgid ""
 msgstr ""
 "Hallo,\n"
 "\n"
-"wir haben eine Anfrage erhalten, das Passwort für deinen Account bei %"
-"(instance)s zurückzusetzen. Um ein neues Passwort zu wählen, klicke auf den "
+"wir haben eine Anfrage erhalten, das Passwort für deinen Account bei "
+"%(instance)s zurückzusetzen. Um ein neues Passwort zu wählen, klicke auf den "
 "folgenden Link:\n"
 "\n"
 "%(url)s\n"
@@ -36418,7 +36432,8 @@ msgstr ""
 
 #: pretix/presale/templates/pretixpresale/organizers/customer_login_interrupted_message.html
 msgid "The site was opened in more than one tab or window at the same time."
-msgstr "Die Seite war in mehr als einem Tab oder Fenster gleichzeitig geöffnet."
+msgstr ""
+"Die Seite war in mehr als einem Tab oder Fenster gleichzeitig geöffnet."
 
 #: pretix/presale/templates/pretixpresale/organizers/customer_login_interrupted_message.html
 msgid ""
