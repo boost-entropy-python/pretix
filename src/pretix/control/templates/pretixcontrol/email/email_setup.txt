@@ -6,7 +6,7 @@ If this was you, enter the following code in the setup form:
 
     {{ code }}
 
-Don't share this code with anyone. The {{ instance }} team will never ask you for it.
+Don't share this code with anyone unless you want to authorize them to use this address for this purpose. The {{ instance }} team will never ask you for it.
 
 If you didn't request this, you can safely ignore this email.
 
