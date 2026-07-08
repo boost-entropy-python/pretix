@@ -330,7 +330,7 @@ class Forgot(TemplateView):
                         user.log_action('pretix.control.auth.user.forgot_password.denied.repeated')
                         raise RepeatedResetDenied()
                     else:
-                        rc.set('pretix_pwreset_%s' % (user.id), '1', ex=3600 * 24)
+                        rc.setex('pretix_pwreset_%s' % (user.id), 3600 * 24, '1')
 
             except User.DoesNotExist:
                 logger.warning('Backend password reset for unregistered e-mail \"' + email + '\" requested.')
