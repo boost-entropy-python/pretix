@@ -523,7 +523,7 @@ class FakeRedis(object):
     def exists(self, rkey):
         return rkey in self.storage
 
-    def set(self, rkey, value, **kwargs):
+    def setex(self, rkey, value, expiration):
         self.storage[rkey] = value
 
     def execute(self):
