@@ -258,7 +258,7 @@ def test_list_list(token_client, organizer, event, clist, item, subevent, django
     res["id"] = clist.pk
     res["limit_products"] = [item.pk]
 
-    with django_assert_num_queries(11):
+    with django_assert_num_queries(9):
         resp = token_client.get('/api/v1/organizers/{}/events/{}/checkinlists/'.format(organizer.slug, event.slug))
     assert resp.status_code == 200
     assert [res] == resp.data['results']
@@ -437,7 +437,7 @@ def test_list_all_items_positions(token_client, organizer, event, clist, clist_a
         p3["addon_to"] = p1["id"]
 
     # All items
-    with django_assert_num_queries(24):
+    with django_assert_num_queries(22):
         resp = token_client.get('/api/v1/organizers/{}/events/{}/checkinlists/{}/positions/?ordering=positionid'.format(
             organizer.slug, event.slug, clist_all.pk
         ))
