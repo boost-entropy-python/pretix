@@ -314,7 +314,7 @@ class SecurityMiddleware(MiddlewareMixin):
             'object-src': ["'none'"],
             'frame-src': ['{static}'],
             'style-src': ["{static}", "{media}"],
-            'connect-src': ["{dynamic}", "{media}"],
+            'connect-src': ["{static}", "{dynamic}", "{media}"],
             'img-src': ["{static}", "{media}", "data:"],
             'font-src': ["{static}"],
             'media-src': ["{static}", "data:"],
