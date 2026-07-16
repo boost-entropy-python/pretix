@@ -67,11 +67,11 @@ from pretix.helpers.daterange import daterange
 from pretix.helpers.thumb import get_thumbnail
 from pretix.multidomain.urlreverse import eventreverse_absolute
 from pretix.presale.forms.organizer import meta_filtersets
+from pretix.presale.productlist import (
+    item_group_by_category, prepare_item_list_for_shop,
+)
 from pretix.presale.style import get_theme_vars_css
 from pretix.presale.views.cart import get_or_create_cart_id
-from pretix.presale.views.event import (
-    get_grouped_items, item_group_by_category,
-)
 from pretix.presale.views.organizer import (
     EventListMixin, add_events_for_days, add_subevents_for_days,
     days_for_template, filter_qs_by_attr, filter_subevents_with_plugins,
@@ -321,7 +321,7 @@ class WidgetAPIProductList(EventListMixin, View):
                 ).values_list('item_id', flat=True)
             )
 
-        items, display_add_to_cart = get_grouped_items(
+        items, display_add_to_cart = prepare_item_list_for_shop(
             self.request.event,
             subevent=self.subevent,
             voucher=self.voucher,
