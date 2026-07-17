@@ -45,7 +45,7 @@ from django.utils.translation import gettext_lazy as _
 from pretix.base.metrics import pretix_failed_logins
 from pretix.base.models import User
 from pretix.helpers.dicts import move_to_end
-from pretix.helpers.ratelimit import rate_limit, rate_limit_reset
+from pretix.helpers.ratelimit import rate_limit
 
 logger = logging.getLogger(__name__)
 
