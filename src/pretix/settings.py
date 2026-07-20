@@ -512,6 +512,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'pretix.helpers.logs.RequestIdMiddleware',
+    'pretix.base.middleware.BaseLocaleMiddleware',
     'pretix.api.middleware.IdempotencyMiddleware',
     'pretix.multidomain.middlewares.MultiDomainMiddleware',
     'django_querytagger.middleware.SetTagMiddleware',  # after MultiDomainMiddleware for correct url resolving
