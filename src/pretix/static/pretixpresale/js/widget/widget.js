@@ -345,7 +345,7 @@ Vue.component('pricebox', {
         + '       :min="display_price_nonlocalized" :value="suggested_price_nonlocalized" :name="field_name"'
         + '       step="any" v-bind:aria-labelledby="aria_labelledby" v-bind:aria-describedby="price_desc_id">'
         + '</div>'
-        + '<small class="pretix-widget-pricebox-tax" :id="price_desc_id" v-if="price.rate != \'0.00\' && price.gross != \'0.00\'">'
+        + '<small class="pretix-widget-pricebox-tax" :id="price_desc_id" v-if="price.rate != \'0\' && price.gross != \'0.00\'">'
         + '{{ taxline }}'
         + '</small>'
         + '</div>'),
@@ -534,7 +534,7 @@ Vue.component('item', {
         + '<div :id="item_price_id" class="pretix-widget-item-price-col">'
         + '<pricebox :price="item.price" :free_price="item.free_price" v-if="!item.has_variations && $root.showPrices"'
         + '          :mandatory_priced_addons="item.mandatory_priced_addons" :suggested_price="item.suggested_price"'
-        + '          :field_name="\'price_\' + item.id" :original_price="item.original_price">'
+        + '          :field_name="\'price_\' + item.id" :original_price="item.original_price" :item_id="item.id">'
         + '</pricebox>'
         + '<div class="pretix-widget-pricebox" v-if="item.has_variations && $root.showPrices" v-html="pricerange"></div>'
         + '<span v-if="!$root.showPrices">&nbsp;</span>'
